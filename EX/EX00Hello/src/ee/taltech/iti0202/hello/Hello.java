@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.hello;
+import java.util.Scanner;
 /**
  * Simple class to test whether you get feedback.
  */
@@ -21,10 +22,12 @@ public class Hello {
      * @param args Arguments from command line
      */
     public static void main(String[] args) {
-        if (getGreeting("Java").equals(new String())){
+        Scanner nObj = new Scanner(System.in);
+        String name = nObj.nextLine();
+        if (name.equals(new String())) {
             System.out.println("Hello!");
         } else {
-            System.out.println(getGreeting("Java"));
+            System.out.println(getGreeting(name));
         }
     }
 }
