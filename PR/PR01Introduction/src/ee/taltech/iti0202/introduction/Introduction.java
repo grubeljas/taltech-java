@@ -78,12 +78,12 @@ public class Introduction {
      */
     public static void main(String[] args) {
         Introduction introduction = new Introduction();
-        System.out.println(introduction.howIsOutcome(3, 6)); // "bad"
+        System.out.println(introduction.howIsOutcome(3, 5)); // "bad"
 
-        List<Integer> nums = new ArrayList<>(Arrays.asList(4, 7, 5, 2, 1, 2, -2, 0));
+        List<Integer> nums = new ArrayList<>(Arrays.asList(4, 5, 2, 1, 2, -2, 0));
         System.out.println(introduction.findEvenNumbersList(nums)); // [4, 2, 2, -2, 0]
 
-        int[] array = {9, 0, 24, -6, 3};
+        int[] array = {2, 3};
         System.out.println(Arrays.toString(introduction.findEvenNumbersArray(array))); // [0, 24, -6]
     }
 }
