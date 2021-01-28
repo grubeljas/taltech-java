@@ -3,11 +3,16 @@ package ee.taltech.iti0202.idcode;
 
 public class IdCode {
 
-    private static final int sEVEN = 7;
-    private static final int fRIDAY = 13;
-    private static final int eLEVEN = 11;
-    private static final int twothousand = 2000;
-    private static final int[] towns = {10, 20, 220, 270, 370, 420, 470, 490, 520, 570, 600, 650, 710};
+    private static final int SIX = 6;
+    private static final int SEVEN = 7;
+    private static final int EIGHT = 8;
+    private static final int NINE = 9;
+    private static final int TWELVE = 12;
+    private static final int FRIDAY = 13;
+    private static final int ELEVEN = 11;
+    private static final int MONTH = 30;
+    private static final int TWOTHOUSAND = 2000;
+    private static final int[] TOWNS = {10, 20, 220, 270, 370, 420, 470, 490, 520, 570, 600, 650, 710};
     private final String idCodeValue;
     enum Gender {
         MALE, FEMALE
@@ -53,7 +58,7 @@ public class IdCode {
         int year = getFullYear();
         String fullyear = Integer.toString(year);
         String month = idCodeValue.substring(3, 5);
-        String day = idCodeValue.substring(5, sEVEN);
+        String day = idCodeValue.substring(5, SEVEN);
         return String.format("This is a %1$s born on %2$s.%3$s.%4$s in %5$s", gender, day, month, fullyear, place);
     }
 
@@ -78,35 +83,33 @@ public class IdCode {
      * @return String with the person's birth place.
      */
     public String getBirthPlace() {
-        int taru1 = 270;
-        int tartu2 = 370;
         String gender = getIdCodeValue().substring(0, 1);
         int intgender = Integer.parseInt(gender);
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
-        String queue = idCodeValue.substring(sEVEN, towns[0]);
+        String queue = idCodeValue.substring(SEVEN, TOWNS[0]);
         int intqueue = Integer.parseInt(queue);
-        if (intyear >= fRIDAY && intgender > 4 || intqueue > towns[12] || 0 == intqueue) {
+        if (intyear >= FRIDAY && intgender > 4 || intqueue > TOWNS[TWELVE] || 0 == intqueue) {
             return "unknown";
-        } else if (0 < intqueue && intqueue <= towns[0]) {
+        } else if (0 < intqueue && intqueue <= TOWNS[0]) {
             return "Kuressaare";
-        } else if (towns[0] < intqueue && intqueue <= towns[1] || towns[3] < intqueue && intqueue <= towns[4]) {
+        } else if (TOWNS[0] < intqueue && intqueue <= TOWNS[1] || TOWNS[3] < intqueue && intqueue <= TOWNS[4]) {
             return "Tartu";
-        } else if (towns[1] < intqueue && intqueue <= towns[2] || towns[6] < intqueue && intqueue <= towns[7]) {
+        } else if (TOWNS[1] < intqueue && intqueue <= TOWNS[2] || TOWNS[SIX] < intqueue && intqueue <= TOWNS[SEVEN]) {
             return "Tallinn";
-        } else if (towns[2] < intqueue && intqueue <= towns[3]) {
+        } else if (TOWNS[2] < intqueue && intqueue <= TOWNS[3]) {
             return "Kohtla-Järve";
-        } else if (towns[7] < intqueue && intqueue <= towns[8]) {
+        } else if (TOWNS[SEVEN] < intqueue && intqueue <= TOWNS[EIGHT]) {
             return "Paide";
-        } else if (towns[4] < intqueue && intqueue <= towns[5]) {
+        } else if (TOWNS[4] < intqueue && intqueue <= TOWNS[5]) {
             return "Narva";
-        } else if (towns[5] < intqueue && intqueue <= towns[6]) {
+        } else if (TOWNS[5] < intqueue && intqueue <= TOWNS[SIX]) {
             return "Pärnu";
-        } else if (towns[8] < intqueue && intqueue <= towns[9]) {
+        } else if (TOWNS[EIGHT] < intqueue && intqueue <= TOWNS[NINE]) {
             return "Rakvere";
-        } else if (towns[9] < intqueue && intqueue <= towns[10]) {
+        } else if (TOWNS[NINE] < intqueue && intqueue <= TOWNS[10]) {
             return "Valga";
-        } else if (towns[10] < intqueue && intqueue <= towns[11]) {
+        } else if (TOWNS[10] < intqueue && intqueue <= TOWNS[11]) {
             return "Viljandi";
         } else {
             return "Võru";
@@ -125,11 +128,11 @@ public class IdCode {
         int intyear = Integer.parseInt(year);
         int fullyear;
         switch (intgender) {
-            case 0: fullyear = twothousand - 200;
+            case 0: fullyear = TWOTHOUSAND - 100 * 2;
                 break;
-            case 1: fullyear = twothousand - 100;
+            case 1: fullyear = TWOTHOUSAND - 100;
                 break;
-            case 2: fullyear = twothousand;
+            case 2: fullyear = TWOTHOUSAND;
                 break;
             default: fullyear = 0;
                 break;
@@ -145,7 +148,7 @@ public class IdCode {
     private boolean isGenderNumberCorrect() {
         String gender = getIdCodeValue().substring(0, 1);
         int intgender = Integer.parseInt(gender);
-        return intgender > 0 && intgender < sEVEN;
+        return intgender > 0 && intgender < SEVEN;
     }
 
     /**
@@ -154,7 +157,7 @@ public class IdCode {
      * @return boolean describing whether the year number is correct.
      */
     private boolean isYearNumberCorrect() {
-        int today = twothousand + 1;
+        int today = TWOTHOUSAND + 1;
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
         String gender = getIdCodeValue().substring(0, 1);
@@ -170,7 +173,7 @@ public class IdCode {
     private boolean isMonthNumberCorrect() {
         String month = idCodeValue.substring(3, 5);
         int intmonth = Integer.parseInt(month);
-        return intmonth > 0 && intmonth < fRIDAY;
+        return intmonth > 0 && intmonth < FRIDAY;
     }
 
     /**
@@ -182,20 +185,20 @@ public class IdCode {
         int lastday;
         String month = idCodeValue.substring(3, 5);
         int intmonth = Integer.parseInt(month);
-        String day = idCodeValue.substring(5, sEVEN);
+        String day = idCodeValue.substring(5, SEVEN);
         int intday = Integer.parseInt(day);
         switch (intmonth) {
-            case 1: case 3: case 5: case sEVEN: case 8: case 10: case 12:
-                lastday = 31;
+            case 1: case 3: case 5: case SEVEN: case EIGHT: case 10: case TWELVE:
+                lastday = MONTH + 1;
                 break;
-            case 4: case 6: case 9: case eLEVEN:
-                lastday = 30;
+            case 4: case SIX: case NINE: case ELEVEN:
+                lastday = MONTH;
                 break;
             case 2:
                 if (isLeapYear(getFullYear())) {
-                    lastday = 29;
+                    lastday = MONTH - 1;
                 } else {
-                    lastday = 28;
+                    lastday = MONTH - 2;
                 }
                 break;
             default:
@@ -210,12 +213,12 @@ public class IdCode {
      * @return boolean describing whether the control number is correct.
      */
     private boolean isControlNumberCorrect() {
-        int six = sEVEN - 1; // if number's place is hugher than 6, make multiplayer smaller
-        int nine = sEVEN + 2;
+        int six = SEVEN - 1; // if number's place is hugher than 6, make multiplayer smaller
+        int nine = SEVEN + 2;
         int counter = 0; int n; int lastn;
         String last = idCodeValue.substring(10);
         int intlast = Integer.parseInt(last);
-        for (int i = 0; i < getIdCodeValue().substring(0, eLEVEN).length(); i++) {
+        for (int i = 0; i < getIdCodeValue().substring(0, ELEVEN).length(); i++) {
             if (i == nine) {
                 n = 1;
             } else {
@@ -224,9 +227,9 @@ public class IdCode {
             int number = Character.getNumericValue(getIdCodeValue().charAt(i));
             counter += number * n;
         }
-        if (counter % eLEVEN == towns[0]) {
+        if (counter % ELEVEN == TOWNS[0]) {
             counter = 0;
-            for (int i = 0; i < getIdCodeValue().substring(0, eLEVEN).length(); i++) {
+            for (int i = 0; i < getIdCodeValue().substring(0, ELEVEN).length(); i++) {
                 if (i > six) {
                     n = i - six;
                 } else {
@@ -235,13 +238,13 @@ public class IdCode {
                 int number = Character.getNumericValue(getIdCodeValue().charAt(i));
                 counter += number * n;
             }
-            if (counter % eLEVEN == towns[0]) {
+            if (counter % ELEVEN == TOWNS[0]) {
                 lastn = 0;
             } else {
-                lastn = counter % eLEVEN;
+                lastn = counter % ELEVEN;
             }
         } else {
-            lastn = counter % eLEVEN;
+            lastn = counter % ELEVEN;
         }
         return intlast == lastn;
     }
