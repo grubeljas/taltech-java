@@ -3,9 +3,10 @@ package ee.taltech.iti0202.idcode;
 
 public class IdCode {
 
-    private final int SEVEN = 7;
-    private final int FRIDAY = 13;
-    private final int ELEVEN = 11;
+    private final int sEVEN = 7;
+    private final int fRIDAY = 13;
+    private final int eLEVEN = 11;
+    private final int twothousand = 2000;
     private final String idCodeValue;
     enum Gender {
         MALE, FEMALE
@@ -51,7 +52,7 @@ public class IdCode {
         int year = getFullYear();
         String fullyear = Integer.toString(year);
         String month = idCodeValue.substring(3, 5);
-        String day = idCodeValue.substring(5, SEVEN);
+        String day = idCodeValue.substring(5, sEVEN);
         return String.format("This is a %1$s born on %2$s.%3$s.%4$s in %5$s", gender, day, month, fullyear, place);
     }
 
@@ -80,11 +81,11 @@ public class IdCode {
         int intgender = Integer.parseInt(gender);
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
-        String queue = idCodeValue.substring(SEVEN, 10);
+        String queue = idCodeValue.substring(sEVEN, 10);
         int intqueue = Integer.parseInt(queue);
-        if (intyear >= FRIDAY && intgender > 4 || intqueue > 710 || intqueue == 0) {
+        if (intyear >= fRIDAY && intgender > 4 || intqueue > 710 || intqueue == 0) {
             return "unknown";
-        } else if (0 < intqueue && intqueue < ELEVEN) {
+        } else if (0 < intqueue && intqueue < eLEVEN) {
             return "Kuressaare";
         } else if (10 < intqueue && intqueue < 21 || 270 < intqueue && intqueue < 371) {
             return "Tartu";
@@ -115,18 +116,17 @@ public class IdCode {
      * @return int with person's birth year.
      */
     public int getFullYear() {
-        int newcentury = 2000;
         String gender = getIdCodeValue().substring(0, 1);
         int intgender = (Integer.parseInt(gender) - 1) / 2;
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
         int fullyear;
         switch (intgender) {
-            case 0: fullyear = newcentury - 200;
+            case 0: fullyear = twothousand - 200;
                 break;
-            case 1: fullyear = newcentury - 100;
+            case 1: fullyear = twothousand - 100;
                 break;
-            case 2: fullyear = newcentury;
+            case 2: fullyear = twothousand;
                 break;
             default: fullyear = 0;
                 break;
@@ -142,7 +142,7 @@ public class IdCode {
     private boolean isGenderNumberCorrect() {
         String gender = getIdCodeValue().substring(0, 1);
         int intgender = Integer.parseInt(gender);
-        return intgender > 0 && intgender < SEVEN;
+        return intgender > 0 && intgender < sEVEN;
     }
 
     /**
@@ -167,7 +167,7 @@ public class IdCode {
     private boolean isMonthNumberCorrect() {
         String month = idCodeValue.substring(3, 5);
         int intmonth = Integer.parseInt(month);
-        return intmonth > 0 && intmonth < FRIDAY;
+        return intmonth > 0 && intmonth < fRIDAY;
     }
 
     /**
@@ -179,13 +179,13 @@ public class IdCode {
         int lastday;
         String month = idCodeValue.substring(3, 5);
         int intmonth = Integer.parseInt(month);
-        String day = idCodeValue.substring(5, SEVEN);
+        String day = idCodeValue.substring(5, sEVEN);
         int intday = Integer.parseInt(day);
         switch (intmonth) {
-            case 1: case 3: case 5: case SEVEN: case 8: case 10: case 12:
+            case 1: case 3: case 5: case sEVEN: case 8: case 10: case 12:
                 lastday = 31;
                 break;
-            case 4: case 6: case 9: case ELEVEN:
+            case 4: case 6: case 9: case eLEVEN:
                 lastday = 30;
                 break;
             case 2:
@@ -198,7 +198,7 @@ public class IdCode {
             default:
                 throw new IllegalArgumentException(Integer.toString(intday));
         }
-        return 0 < intmonth && intday < lastday + 1;
+        return intday < lastday + 1;
     }
 
     /**
@@ -207,13 +207,13 @@ public class IdCode {
      * @return boolean describing whether the control number is correct.
      */
     private boolean isControlNumberCorrect() {
-        int six = 6; // if number's place is hugher than 6, make multiplayer smaller
+        int six = sEVEN - 1; // if number's place is hugher than 6, make multiplayer smaller
+        int nine = sEVEN + 2;
         int counter = 0; int n; int lastn;
         String last = idCodeValue.substring(10);
         int intlast = Integer.parseInt(last);
-        for (int i = 0; i < getIdCodeValue().substring(0, ELEVEN).length(); i++)
-        {
-            if (i == 9){
+        for (int i = 0; i < getIdCodeValue().substring(0, eLEVEN).length(); i++) {
+            if (i == nine) {
                 n = 1;
             } else {
                 n = i + 1;
@@ -221,11 +221,10 @@ public class IdCode {
             int number = Character.getNumericValue(getIdCodeValue().charAt(i));
             counter += number * n;
         }
-        if (counter % ELEVEN == 10) {
+        if (counter % eLEVEN == 10) {
             counter = 0;
-            for (int i = 0; i < getIdCodeValue().substring(0, ELEVEN).length(); i++)
-            {
-                if (i > six){
+            for (int i = 0; i < getIdCodeValue().substring(0, eLEVEN).length(); i++) {
+                if (i > six) {
                     n = i - six;
                 } else {
                     n = i + 3;
@@ -233,13 +232,13 @@ public class IdCode {
                 int number = Character.getNumericValue(getIdCodeValue().charAt(i));
                 counter += number * n;
             }
-            if (counter % ELEVEN == 10) {
+            if (counter % eLEVEN == 10) {
                 lastn = 0;
             } else {
-                lastn = counter % ELEVEN;
+                lastn = counter % eLEVEN;
             }
         } else {
-            lastn = counter % ELEVEN;
+            lastn = counter % eLEVEN;
         }
         return intlast == lastn;
     }
@@ -251,9 +250,9 @@ public class IdCode {
      * @return boolean describing whether the given year is a leap year.
      */
     private boolean isLeapYear(int fullYear) {
-        int FOURLEAP = 4;
-        int HUNDRED = 100;
-        return fullYear % (FOURLEAP * HUNDRED) == 0 || fullYear % FOURLEAP == 0 && fullYear % HUNDRED != 0;
+        int fOURLEAP = 4;
+        int hUNDRED = 100;
+        return fullYear % (fOURLEAP * hUNDRED) == 0 || fullYear % fOURLEAP == 0 && fullYear % hUNDRED != 0;
     }
 
     /**
