@@ -3,10 +3,11 @@ package ee.taltech.iti0202.idcode;
 
 public class IdCode {
 
-    private final int sEVEN = 7;
-    private final int fRIDAY = 13;
-    private final int eLEVEN = 11;
-    private final int twothousand = 2000;
+    private static final int sEVEN = 7;
+    private static final int fRIDAY = 13;
+    private static final int eLEVEN = 11;
+    private static final int twothousand = 2000;
+    private static final int[] towns = {10, 20, 220, 270, 370, 420, 470, 490, 520, 570, 600, 650, 710};
     private final String idCodeValue;
     enum Gender {
         MALE, FEMALE
@@ -83,29 +84,29 @@ public class IdCode {
         int intgender = Integer.parseInt(gender);
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
-        String queue = idCodeValue.substring(sEVEN, 10);
+        String queue = idCodeValue.substring(sEVEN, towns[0]);
         int intqueue = Integer.parseInt(queue);
-        if (intyear >= fRIDAY && intgender > 4 || intqueue > 710 || intqueue == 0) {
+        if (intyear >= fRIDAY && intgender > 4 || intqueue > towns[12] || 0 == intqueue) {
             return "unknown";
-        } else if (0 < intqueue && intqueue < eLEVEN) {
+        } else if (0 < intqueue && intqueue <= towns[0]) {
             return "Kuressaare";
-        } else if (10 < intqueue && intqueue < 21 || taru1 < intqueue && intqueue <= tartu2) {
+        } else if (towns[0] < intqueue && intqueue <= towns[1] || towns[3] < intqueue && intqueue <= towns[4]) {
             return "Tartu";
-        } else if (20 < intqueue && intqueue < 221 || 470 < intqueue && intqueue < 491) {
+        } else if (towns[1] < intqueue && intqueue <= towns[2] || towns[6] < intqueue && intqueue <= towns[7]) {
             return "Tallinn";
-        } else if (220 < intqueue && intqueue <= taru1) {
+        } else if (towns[2] < intqueue && intqueue <= towns[3]) {
             return "Kohtla-Järve";
-        } else if (490 < intqueue && intqueue < 521) {
+        } else if (towns[7] < intqueue && intqueue <= towns[8]) {
             return "Paide";
-        } else if (tartu2 < intqueue && intqueue < 421) {
+        } else if (towns[4] < intqueue && intqueue <= towns[5]) {
             return "Narva";
-        } else if (420 < intqueue && intqueue < 471) {
+        } else if (towns[5] < intqueue && intqueue <= towns[6]) {
             return "Pärnu";
-        } else if (520 < intqueue && intqueue < 571) {
+        } else if (towns[8] < intqueue && intqueue <= towns[9]) {
             return "Rakvere";
-        } else if (570 < intqueue && intqueue < 601) {
+        } else if (towns[9] < intqueue && intqueue <= towns[10]) {
             return "Valga";
-        } else if (600 < intqueue && intqueue < 651) {
+        } else if (towns[10] < intqueue && intqueue <= towns[11]) {
             return "Viljandi";
         } else {
             return "Võru";
@@ -223,7 +224,7 @@ public class IdCode {
             int number = Character.getNumericValue(getIdCodeValue().charAt(i));
             counter += number * n;
         }
-        if (counter % eLEVEN == 10) {
+        if (counter % eLEVEN == towns[0]) {
             counter = 0;
             for (int i = 0; i < getIdCodeValue().substring(0, eLEVEN).length(); i++) {
                 if (i > six) {
@@ -234,7 +235,7 @@ public class IdCode {
                 int number = Character.getNumericValue(getIdCodeValue().charAt(i));
                 counter += number * n;
             }
-            if (counter % eLEVEN == 10) {
+            if (counter % eLEVEN == towns[0]) {
                 lastn = 0;
             } else {
                 lastn = counter % eLEVEN;
