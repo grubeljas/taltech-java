@@ -77,6 +77,8 @@ public class IdCode {
      * @return String with the person's birth place.
      */
     public String getBirthPlace() {
+        int taru1 = 270;
+        int tartu2 = 370;
         String gender = getIdCodeValue().substring(0, 1);
         int intgender = Integer.parseInt(gender);
         String year = idCodeValue.substring(1, 3);
@@ -87,15 +89,15 @@ public class IdCode {
             return "unknown";
         } else if (0 < intqueue && intqueue < eLEVEN) {
             return "Kuressaare";
-        } else if (10 < intqueue && intqueue < 21 || 270 < intqueue && intqueue < 371) {
+        } else if (10 < intqueue && intqueue < 21 || taru1 < intqueue && intqueue <= tartu2) {
             return "Tartu";
         } else if (20 < intqueue && intqueue < 221 || 470 < intqueue && intqueue < 491) {
             return "Tallinn";
-        } else if (220 < intqueue && intqueue < 271) {
+        } else if (220 < intqueue && intqueue <= taru1) {
             return "Kohtla-Järve";
         } else if (490 < intqueue && intqueue < 521) {
             return "Paide";
-        } else if (370 < intqueue && intqueue < 421) {
+        } else if (tartu2 < intqueue && intqueue < 421) {
             return "Narva";
         } else if (420 < intqueue && intqueue < 471) {
             return "Pärnu";
@@ -151,7 +153,7 @@ public class IdCode {
      * @return boolean describing whether the year number is correct.
      */
     private boolean isYearNumberCorrect() {
-        int today = 2021;
+        int today = twothousand + 1;
         String year = idCodeValue.substring(1, 3);
         int intyear = Integer.parseInt(year);
         String gender = getIdCodeValue().substring(0, 1);
