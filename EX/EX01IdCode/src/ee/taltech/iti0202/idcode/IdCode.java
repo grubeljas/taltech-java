@@ -109,7 +109,7 @@ public class IdCode {
             return "Rakvere";
         } else if (TOWNS[NINE] < intqueue && intqueue <= TOWNS[10]) {
             return "Valga";
-        } else if (TOWNS[10] < intqueue && intqueue <= TOWNS[11]) {
+        } else if (TOWNS[10] < intqueue && intqueue <= TOWNS[ELEVEN]) {
             return "Viljandi";
         } else {
             return "Võru";
