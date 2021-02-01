@@ -51,7 +51,12 @@ public class DataStructures {
     public static Map<String, Integer> wordCount(String[] sentence) {
         Map<String, Integer> map = new HashMap<>();
         for (String name : sentence) {
-            map.put(name, map.getOrDefault(name, 0) + 1);
+            if (map.containsKey(name)) {
+                map.put(name, map.get(name) + 1);
+            }
+            else {
+                map.put(name, 1);
+            }
         }
         return map;
     }
@@ -122,7 +127,7 @@ public class DataStructures {
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a]
-        System.out.println(onlyEvenWords(Arrays.asList("SPAM", "SPAM", "SPAM", "SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("SPAM", "SPAM", "SPAM"))); // [SPAM]
 
         DataStructures dataStructures = new DataStructures();
 
