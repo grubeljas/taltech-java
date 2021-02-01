@@ -53,8 +53,7 @@ public class DataStructures {
         for (String name : sentence) {
             if (map.containsKey(name)) {
                 map.put(name, map.get(name) + 1);
-            }
-            else {
+            } else {
                 map.put(name, 1);
             }
         }
@@ -78,7 +77,8 @@ public class DataStructures {
         words.toArray(myArray);
         Map<String, Integer> map = wordCount(myArray);
         for (String i: map.keySet()) {
-            if (map.get(i) % 2 == 0) {
+            while (map.get(i) > 1) {
+                map.put(i, map.get(i) - 2);
                 even.add(i);
             }
         }
@@ -127,7 +127,7 @@ public class DataStructures {
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a]
-        System.out.println(onlyEvenWords(Arrays.asList("SPAM", "SPAM", "SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("SPAM", "SPAM", "SPAM", "SPAM", "S", "S"))); // [SPAM]
 
         DataStructures dataStructures = new DataStructures();
 
@@ -142,4 +142,3 @@ public class DataStructures {
         System.out.println(dataStructures.getStudentGrade("Cheater")); // -1
     }
 }
-
