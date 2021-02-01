@@ -1,10 +1,14 @@
 package ee.taltech.iti0202.datastructures;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedList;
 
 public class DataStructures {
 
-    Map<String, Integer> student_map = new HashMap<>();
+    Map<String, Integer> smap = new HashMap<>();
 
     /**
      * Given String is a sentence with some words.
@@ -17,7 +21,7 @@ public class DataStructures {
      * <p>
      * Hints:
      * You can split words into an array using "str.split()"
-     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically first.
+     * Sorting the list with the longest words can definitely help you to find the word which comes alphabetically.
      *
      * @param sentence input String to find the longest words
      * @return the longest String from input
@@ -85,10 +89,10 @@ public class DataStructures {
     public void addStudent(String studentInfo) {
         String[] array = studentInfo.split(":");
         int n = Integer.parseInt(array[1]);
-        if (0 <= n && n <= 5){
-            student_map.put(array[0], n);
+        if (0 <= n && n <= 5) {
+            smap.put(array[0], n);
         } else {
-            student_map.put(array[0], -1);
+            smap.put(array[0], -1);
         }
     }
 
@@ -101,7 +105,7 @@ public class DataStructures {
      * @return int student's grade.
      */
     public int getStudentGrade(String name) {
-        return student_map.get(name);
+        return smap.get(name);
     }
 
     /**
@@ -114,11 +118,11 @@ public class DataStructures {
         System.out.println(findLongestWord("hello ahllo")); // "ahllo"
 
         System.out.println(wordCount(new String[]{})); // empty
-        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"})); // {bacon=2, eggs=2, SPAM=3}
+        System.out.println(wordCount(new String[]{"eggs", "SPAM", "eggs", "bacon", "SPAM", "bacon", "SPAM"}));
 
         System.out.println(onlyEvenWords(Arrays.asList("foo", "bar", "baz", "baz", "bar", "foo"))); // [baz, bar, foo]
         System.out.println(onlyEvenWords(Arrays.asList("a", "b", "b", "a"))); // [b, a]
-        System.out.println(onlyEvenWords(Arrays.asList("eggs", "bacon", "SPAM", "ham", "SPAM"))); // [SPAM]
+        System.out.println(onlyEvenWords(Arrays.asList("SPAM", "SPAM", "SPAM", "SPAM"))); // [SPAM]
 
         DataStructures dataStructures = new DataStructures();
 
