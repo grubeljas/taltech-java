@@ -1,6 +1,12 @@
 package ee.taltech.iti0202.webbrowser;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Collections;
+import java.util.Map;
+import java.util.HashMap;
 
 public class WebBrowser {
 
@@ -12,7 +18,7 @@ public class WebBrowser {
 
     Deque<String> fstack = new ArrayDeque<>();
 
-    List<String> bookmarks = new LinkedList<>();
+    List<String> bookmarks = new ArrayList<>();
 
     /**
      * Construct.
@@ -30,10 +36,6 @@ public class WebBrowser {
             history.add(homePage);
             reset();
         }
-    }
-
-    public Deque getBackstack() {
-        return backstack;
     }
 
     /**
@@ -80,11 +82,11 @@ public class WebBrowser {
      */
     public void reset() {
         if (!fstack.isEmpty()) {
-            backstack.clear();
-            List reverse = new LinkedList(history);
+            /** backstack.clear();
+            List reverse = new ArrayList(history);
             Collections.reverse(reverse);
             backstack = new ArrayDeque<>(reverse);
-            backstack.pop();
+            backstack.pop(); **/
             fstack.clear();
         }
     }
@@ -93,7 +95,9 @@ public class WebBrowser {
      * Add a webpage as a bookmark.
      */
     public void addAsBookmark() {
-        bookmarks.add(getCurrentUrl());
+        if (!bookmarks.contains(getCurrentUrl())) {
+            bookmarks.add(getCurrentUrl());
+        }
     }
 
     /**
@@ -137,8 +141,8 @@ public class WebBrowser {
                 map.put(name, 1);
             }
         }
-        List<String> top = new LinkedList<>();
-        List<Integer> number = new LinkedList<>();
+        List<String> top = new ArrayList<>();
+        List<Integer> number = new ArrayList<>();
         while (!map.isEmpty() && top.size() < 3) {
             int best = 0;
             String pop = "";
