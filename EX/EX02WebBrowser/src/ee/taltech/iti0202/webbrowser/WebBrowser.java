@@ -1,17 +1,12 @@
 package ee.taltech.iti0202.webbrowser;
 
-import java.util.LinkedList;
-import java.util.Deque;
-import java.util.Map;
-import java.util.ArrayDeque;
-import java.util.List;
-import java.util.HashMap;
+import java.util.*;
 
 public class WebBrowser {
 
     private String homePage = "google.com";
 
-    LinkedList<String> history = new LinkedList<>();
+    List<String> history = new ArrayList<>();
 
     Deque<String> backstack = new ArrayDeque<>();
 
@@ -19,6 +14,9 @@ public class WebBrowser {
 
     List<String> bookmarks = new LinkedList<>();
 
+    /**
+     * Construct.
+     */
     public WebBrowser() {
         history.add("google.com");
     }
@@ -28,9 +26,14 @@ public class WebBrowser {
      */
     public void homePage() {
         if (!getCurrentUrl().equals(homePage)) {
+            backstack.push(getCurrentUrl());
             history.add(homePage);
             reset();
         }
+    }
+
+    public Deque getBackstack() {
+        return backstack;
     }
 
     /**
@@ -66,6 +69,7 @@ public class WebBrowser {
      */
     public void goTo(String url) {
         if (!getCurrentUrl().equals(url)) {
+            backstack.push(getCurrentUrl());
             history.add(url);
             reset();
         }
@@ -75,11 +79,14 @@ public class WebBrowser {
      * Reset parameters.
      */
     public void reset() {
-        backstack.clear();
-        for (int i = 0; i < history.size() - 1; i++) {
-            backstack.push(history.get(i));
+        if (!fstack.isEmpty()) {
+            backstack.clear();
+            List reverse = new LinkedList(history);
+            Collections.reverse(reverse);
+            backstack = new ArrayDeque<>(reverse);
+            backstack.pop();
+            fstack.clear();
         }
-        fstack.clear();
     }
 
     /**
@@ -101,6 +108,7 @@ public class WebBrowser {
     /**
      * Get a bookmark.
      *
+     * @return list of bookmarks
      */
     public List<String> getBookmarks() {
         return bookmarks;
