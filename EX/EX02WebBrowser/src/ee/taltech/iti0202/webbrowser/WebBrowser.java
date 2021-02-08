@@ -1,6 +1,11 @@
 package ee.taltech.iti0202.webbrowser;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Deque;
+import java.util.Map;
+import java.util.ArrayDeque;
+import java.util.List;
+import java.util.HashMap;
 
 public class WebBrowser {
 
@@ -70,15 +75,11 @@ public class WebBrowser {
      * Reset parameters.
      */
     public void reset() {
-        while (!backstack.isEmpty()) {
-            backstack.pop();
-        }
+        backstack.clear();
         for (int i = 0; i < history.size() - 1; i++) {
             backstack.push(history.get(i));
         }
-        while (!fstack.isEmpty()) {
-            fstack.pop();
-        }
+        fstack.clear();
     }
 
     /**
@@ -97,10 +98,19 @@ public class WebBrowser {
         bookmarks.remove(bookmark);
     }
 
+    /**
+     * Get a bookmark.
+     *
+     */
     public List<String> getBookmarks() {
         return bookmarks;
     }
 
+    /**
+     * Set a new homepage.
+     *
+     * @param homePage to remove
+     */
     public void setHomePage(String homePage) {
         this.homePage = homePage;
     }
@@ -123,7 +133,7 @@ public class WebBrowser {
         List<Integer> number = new LinkedList<>();
         while (!map.isEmpty() && top.size() < 3) {
             int best = 0;
-            String pop = new String();
+            String pop = "";
             for (String i : map.keySet()) {
                 if (map.get(i) > best || map.get(i) == best && history.indexOf(i) < history.indexOf(pop)) {
                     best = map.get(i);
@@ -134,15 +144,15 @@ public class WebBrowser {
             number.add(best);
             map.remove(pop);
         }
-        String message = new String();
+        StringBuilder message = new StringBuilder();
         for (int i = 0; i < top.size(); i++) {
             String s = "";
-            if (number.get(i) > 1){
+            if (number.get(i) > 1) {
                 s = "s";
             }
-            message = message + String.format("%1$s - %2$s visit%3$s\n", top.get(i), number.get(i), s);
+            message.append(String.format("%1$s - %2$s visit%3$s\n", top.get(i), number.get(i), s));
         }
-        return message;
+        return message.toString();
     }
 
     /**
