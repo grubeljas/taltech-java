@@ -2,7 +2,7 @@ package ee.taltech.iti0202.lotr;
 
 public class Ring {
 
-    Type name; Material madeof;
+    private Type name; private Material madeof;
 
     public enum Type {
         THE_ONE, GOLDEN, NENYA, OTHER
@@ -12,19 +12,40 @@ public class Ring {
         GOLD, SILVER, BRONZE, PLASTIC, DIAMOND
     }
 
+    /**
+     * Ring construct.
+     *
+     * @param type
+     * @param material
+     */
     public Ring(Type type, Material material) {
         this.name = type;
         this.madeof = material;
     }
 
+    /**
+     * Get type.
+     *
+     * @return
+     */
     public Type getType() {
         return name;
     }
 
+    /**
+     * Get material.
+     *
+     * @return
+     */
     public Material getMaterial() {
         return madeof;
     }
 
+    /**
+     * Main.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
 // LOTR simplified play through
@@ -56,6 +77,8 @@ public class Ring {
         System.out.println(frodo.isSauron()); // No
         sauron.setRing(theRing);
         System.out.println(sauron.isSauron()); // Affirmative
+        System.out.println(gollum.isSauron());
+        System.out.println(null == null);
 
     }
 }
