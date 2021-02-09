@@ -55,7 +55,7 @@ public class Person {
             } else {
                 return "No, but he's claiming to be";
             }
-        } if (getRing() != null) {
+        } else if (getRing() != null) {
             if (getRing().getType().equals(Ring.Type.THE_ONE)
                     && getRing().getMaterial().equals(Ring.Material.GOLD)) {
                 return "No, he just stole the ring";
