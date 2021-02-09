@@ -2,14 +2,14 @@ package ee.taltech.iti0202.lotr;
 
 public class Person {
 
-    private String race, name; private Ring ring = null;
+    private final String race, name; private Ring ring = null;
 
     /**
      * Constructor full.
      *
-     * @param race
-     * @param name
-     * @param ring
+     * @param race of person.
+     * @param name of person nimi.
+     * @param ring which ring he has.
      */
     public Person(String race, String name, Ring ring) {
         this.race = race;
@@ -20,8 +20,8 @@ public class Person {
     /**
      * Constructor not full.
      *
-     * @param race
-     * @param name
+     * @param race from fantasy.
+     * @param name nimi.
      */
     public Person(String race, String name) {
         this.race = race;
@@ -31,7 +31,7 @@ public class Person {
     /**
      * Set ring.
      *
-     * @param ring
+     * @param ring or null.
      */
     public void setRing(Ring ring) {
         this.ring = ring;
@@ -40,12 +40,11 @@ public class Person {
     /**
      * Check is this Sauron and what ring is this.
      *
-     * @return
+     * @return string which describes all info.
      */
     public String isSauron() {
-
         if (getName().equals("Sauron")) {
-            if (getRing().equals(null)) {
+            if (getRing() == null) {
                 return "No, but he's claiming to be";
             } else if (getRing().getType().equals(Ring.Type.THE_ONE)) {
                 if (getRing().getMaterial().equals(Ring.Material.GOLD)) {
@@ -56,18 +55,19 @@ public class Person {
             } else {
                 return "No, but he's claiming to be";
             }
-        } else if (getRing().getType().equals(Ring.Type.THE_ONE)
-                && getRing().getMaterial().equals(Ring.Material.GOLD)) {
-            return "No, he just stole the ring";
-        } else {
-            return "No";
+        } if (getRing() != null) {
+            if (getRing().getType().equals(Ring.Type.THE_ONE)
+                    && getRing().getMaterial().equals(Ring.Material.GOLD)) {
+                return "No, he just stole the ring";
+            }
         }
+        return "No";
     }
 
     /**
      * Get race.
      *
-     * @return
+     * @return race of this person
      */
     public String getRace() {
         return race;
@@ -76,7 +76,7 @@ public class Person {
     /**
      * Get name.
      *
-     * @return
+     * @return name of person.
      */
     public String getName() {
         return name;
@@ -85,7 +85,7 @@ public class Person {
     /**
      * Get ring.
      *
-     * @return
+     * @return ring or null.
      */
     public Ring getRing() {
         return ring;
