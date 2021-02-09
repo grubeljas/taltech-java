@@ -15,8 +15,8 @@ public class Ring {
     /**
      * Ring construct.
      *
-     * @param type
-     * @param material
+     * @param type of ring
+     * @param material of ring
      */
     public Ring(Type type, Material material) {
         this.name = type;
@@ -26,7 +26,7 @@ public class Ring {
     /**
      * Get type.
      *
-     * @return
+     * @return type of ring
      */
     public Type getType() {
         return name;
@@ -35,7 +35,7 @@ public class Ring {
     /**
      * Get material.
      *
-     * @return
+     * @return material of ring
      */
     public Material getMaterial() {
         return madeof;
@@ -44,7 +44,7 @@ public class Ring {
     /**
      * Main.
      *
-     * @param args
+     * @param args of main
      */
     public static void main(String[] args) {
 
@@ -77,8 +77,9 @@ public class Ring {
         System.out.println(frodo.isSauron()); // No
         sauron.setRing(theRing);
         System.out.println(sauron.isSauron()); // Affirmative
-        System.out.println(gollum.isSauron());
+        //System.out.println(gollum.isSauron());
         System.out.println(null == null);
+        System.out.println(gollum.getRing() == null);
 
     }
 }
