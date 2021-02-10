@@ -102,7 +102,7 @@ public class Book {
             owner = null;
             return true;
         }
-        if (getPrice() <= buyer.getMoney()) {
+        if (getPrice() <= buyer.getMoney() && owner != buyer) {
             if (owner != null) {
                 owner.setMoney(owner.getMoney() + getPrice());
             }
