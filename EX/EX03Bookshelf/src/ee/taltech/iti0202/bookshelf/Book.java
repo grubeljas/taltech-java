@@ -2,39 +2,64 @@ package ee.taltech.iti0202.bookshelf;
 
 public class Book {
 
+    private String title;
+    private String author;
+    private int year, price;
+    static int id = -1;
+    int number;
+    private Person owner;
+
     public static int getAndIncrementNextId() {
-        return 0;
+        return ++id;
     }
 
     public Book(String title, String author, int yearOfPublishing, int price) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.year = yearOfPublishing;
+        this.number = getAndIncrementNextId();
     }
 
     public String getTitle() {
-        return null;
+        return title;
     }
 
     public String getAuthor() {
-        return null;
+        return author;
     }
 
     public int getYearOfPublishing() {
-        return 0;
+        return year;
     }
 
     public Person getOwner() {
-        return null;
+        return owner;
     }
 
     public int getPrice() {
-        return 0;
+        return price;
     }
 
     public int getId() {
-        return -287;
+        return number;
     }
 
     public boolean buy(Person buyer) {
-        return false;
+        if (buyer == null) {
+            owner.setMoney(owner.getMoney() + getPrice());
+            owner = null;
+            return true;
+        }
+        if (getPrice() <= buyer.getMoney()) {
+            if (owner != null) {
+                owner.setMoney(owner.getMoney() + getPrice());
+            }
+            owner = buyer;
+            owner.setMoney(owner.getMoney() - getPrice());
+            return true;
+        }
+        return (getPrice() <= buyer.getMoney());
     }
 
 }
