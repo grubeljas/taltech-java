@@ -62,8 +62,8 @@ public class Book {
         prevYear = yearOfPublishing;
         Book book = new Book(title, author, yearOfPublishing, price);
         data.add(book);
-        authors.getOrDefault(author.toUpperCase(), new Author(author.toUpperCase()));
-        authors.get(author.toUpperCase()).addBook(book);
+        Author newauthor = Author.of(author.toUpperCase());
+        newauthor.addBook(book);
         return book;
     }
 
@@ -210,6 +210,7 @@ class Author {
 
     private String author;
     public List<Book> data;
+    static List<Author> all = new LinkedList<>();
 
     /**
      * Constructor.
@@ -219,6 +220,16 @@ class Author {
     Author(String author) {
         this.author = author;
         this.data = new LinkedList<>();
+    }
+
+    static public Author of(String name) {
+        for (Author el: all) {
+            if (el.author.equals(name)) {
+                return el;
+            }
+        }
+        Author newby = new Author(name);
+        return newby;
     }
 
     /**
