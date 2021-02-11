@@ -228,10 +228,8 @@ class Author {
      */
     public boolean addBook(Book book) {
         if (book != null) {
-            if (!data.contains(book)) {
-                data.add(book);
-                return true;
-            }
+            data.add(book);
+            return true;
         }
         return false;
     }
