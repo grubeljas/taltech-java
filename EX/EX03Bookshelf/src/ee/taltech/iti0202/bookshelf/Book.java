@@ -2,7 +2,6 @@ package ee.taltech.iti0202.bookshelf;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Book {
@@ -15,7 +14,6 @@ public class Book {
     Person owner = null;
     static List<Book> data = new ArrayList<>();
     static String previousAuthor;
-    static HashMap<String, Author> authors = new HashMap<>();
     static int prevYear;
 
     /**
@@ -103,7 +101,8 @@ public class Book {
             return false;
         }
         if (data.contains(book)) {
-            authors.get(book.getAuthor().toUpperCase()).removeBook(book);
+            Author newauthor = Author.of(book.getAuthor().toUpperCase());
+            newauthor.removeBook(book);
             book.buy(null);
             data.remove(book);
             return true;
@@ -118,13 +117,10 @@ public class Book {
      * @return alllll.
      */
     public static List<Book> getBooksByAuthor(String author) {
-        List<Book> books = new LinkedList<>();
         if (author == null) {
-            return books;
-        } else if (!authors.containsKey(author.toUpperCase())) {
-            return books;
+            return new LinkedList<>();
         }
-        return authors.get(author.toUpperCase()).getData();
+        return Author.of(author.toUpperCase()).data;
     }
 
     /**
@@ -208,7 +204,7 @@ public class Book {
 
 class Author {
 
-    private String author;
+    private final String author;
     public List<Book> data;
     static List<Author> all = new LinkedList<>();
 
@@ -228,8 +224,7 @@ class Author {
                 return el;
             }
         }
-        Author newby = new Author(name);
-        return newby;
+        return new Author(name);
     }
 
     /**
