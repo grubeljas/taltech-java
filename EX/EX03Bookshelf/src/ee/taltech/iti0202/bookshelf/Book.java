@@ -123,6 +123,12 @@ public class Book {
      * @return alllll.
      */
     public static List<Book> getBooksByAuthor(String author) {
+        List<Book> books = new LinkedList<>();
+        if (author == null) {
+            return books;
+        } else if (!authors.containsKey(author.toUpperCase())) {
+            return books;
+        }
         return authors.get(author.toUpperCase()).getData();
     }
 
