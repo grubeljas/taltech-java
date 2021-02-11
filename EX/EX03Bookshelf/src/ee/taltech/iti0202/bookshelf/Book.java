@@ -53,22 +53,17 @@ public class Book {
      * @return masterpiece
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
-        previousAuthor = author;
-        prevYear = yearOfPublishing;
         for (Book el: data) {
             if (el.title.equals(title) && el.author.equals(author) && el.year == yearOfPublishing) {
                 return el;
             }
         }
+        previousAuthor = author;
+        prevYear = yearOfPublishing;
         Book book = new Book(title, author, yearOfPublishing, price);
         data.add(book);
-        if (authors.containsKey(author.toUpperCase())) {
-            authors.get(author.toUpperCase()).addBook(book);
-        } else {
-            Author newauthor = new Author(author.toUpperCase());
-            newauthor.addBook(book);
-            authors.put(author.toUpperCase(), newauthor);
-        }
+        authors.getOrDefault(author.toUpperCase(), new Author(author.toUpperCase()));
+        authors.get(author.toUpperCase()).addBook(book);
         return book;
     }
 
