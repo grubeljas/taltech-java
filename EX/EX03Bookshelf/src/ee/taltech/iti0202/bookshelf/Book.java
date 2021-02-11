@@ -211,3 +211,58 @@ public class Book {
     }
 
 }
+
+class Author {
+
+    private String author;
+    public List<Book> data;
+
+    /**
+     * Constructor.
+     *
+     * @param author who wrote this book
+     */
+    public Author(String author) {
+        this.author = author;
+        this.data = new LinkedList<>();
+    }
+
+    /**
+     * Add book.
+     *
+     * @param book of his
+     * @return true of false
+     */
+    public boolean addBook(Book book) {
+        if (book != null) {
+            if (!data.contains(book)) {
+                data.add(book);
+                return true;
+            }
+        } return false;
+    }
+
+    /**
+     * Remove book.
+     *
+     * @param book of book
+     * @return f or t
+     */
+    public boolean removeBook(Book book) {
+        if (book != null) {
+            if (data.contains(book)) {
+                data.remove(book);
+                return true;
+            }
+        } return false;
+    }
+
+    /**
+     * Get data.
+     *
+     * @return list of books.
+     */
+    public List<Book> getData(){
+        return data;
+    }
+}
