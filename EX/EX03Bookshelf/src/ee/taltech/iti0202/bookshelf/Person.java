@@ -69,6 +69,7 @@ public class Person {
         if (getMoney() >= book.getPrice()) {
             setMoney(getMoney() - book.getPrice());
             collection.add(book);
+            book.owner = this;
             return true;
         }
         return false;
@@ -87,6 +88,7 @@ public class Person {
         if (book.getOwner() == this) {
             setMoney(getMoney() + book.getPrice());
             collection.remove(book);
+            book.owner = null;
             return true;
         }
         return false;

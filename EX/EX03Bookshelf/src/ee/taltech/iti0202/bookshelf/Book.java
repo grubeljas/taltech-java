@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.bookshelf;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Book {
 
@@ -9,7 +12,7 @@ public class Book {
     private final int year, price;
     static int id = -1;
     int number;
-    private Person owner = null;
+    Person owner = null;
     static List<Book> data = new ArrayList<>();
     static String previousAuthor;
     static HashMap<String, Author> authors = new HashMap<>();
@@ -188,15 +191,13 @@ public class Book {
             if (owner != null) {
                 owner.sellBook(this);
             }
-            owner = null;
             return true;
         }
         if (getPrice() <= buyer.getMoney() && owner != buyer) {
             if (owner != null) {
                 owner.sellBook(this);
             }
-            owner = buyer;
-            owner.buyBook(this);
+            buyer.buyBook(this);
             return true;
         }
         return false;
@@ -214,7 +215,7 @@ class Author {
      *
      * @param author who wrote this book
      */
-    public Author(String author) {
+    Author(String author) {
         this.author = author;
         this.data = new LinkedList<>();
     }
@@ -231,7 +232,8 @@ class Author {
                 data.add(book);
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
     /**
@@ -246,7 +248,8 @@ class Author {
                 data.remove(book);
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
     /**
@@ -254,7 +257,7 @@ class Author {
      *
      * @return list of books.
      */
-    public List<Book> getData(){
+    public List<Book> getData() {
         return data;
     }
 }
