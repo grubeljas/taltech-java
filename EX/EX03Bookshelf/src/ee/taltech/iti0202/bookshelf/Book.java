@@ -213,7 +213,6 @@ public class Book {
 
 class Author {
 
-    private String author;
     public List<Book> data;
 
     /**
@@ -222,7 +221,6 @@ class Author {
      * @param author who wrote this book
      */
     Author(String author) {
-        this.author = author;
         this.data = new LinkedList<>();
     }
 
