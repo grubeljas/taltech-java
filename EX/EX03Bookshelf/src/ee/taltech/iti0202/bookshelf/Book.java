@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.bookshelf;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.HashMap;
+import java.util.*;
 
 public class Book {
 
@@ -55,9 +52,6 @@ public class Book {
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         for (Book el: data) {
             if (el.title.equals(title) && el.author.equals(author) && el.year == yearOfPublishing) {
-                if (authors.containsKey(author)) {
-                    authors.get(author).addBook(el);
-                }
                 return el;
             }
         }
@@ -65,12 +59,12 @@ public class Book {
         prevYear = yearOfPublishing;
         Book book = new Book(title, author, yearOfPublishing, price);
         data.add(book);
-        if (authors.containsKey(author)) {
-            authors.get(author).addBook(book);
+        if (authors.containsKey(author.toUpperCase())) {
+            authors.get(author.toUpperCase()).addBook(book);
         } else {
-            Author newauthor = new Author(author);
+            Author newauthor = new Author(author.toUpperCase());
             newauthor.addBook(book);
-            authors.put(author, newauthor);
+            authors.put(author.toUpperCase(), newauthor);
         }
         return book;
     }
@@ -86,9 +80,7 @@ public class Book {
         if (data.isEmpty()) {
             return null;
         } else {
-            Book book = new Book(title, previousAuthor, prevYear, price);
-            authors.get(previousAuthor).addBook(book);
-            return book;
+            return Book.of(title, previousAuthor, prevYear, price);
         }
     }
 
@@ -113,7 +105,7 @@ public class Book {
             return false;
         }
         if (data.contains(book)) {
-            authors.get(book.getAuthor()).removeBook(book);
+            authors.get(book.getAuthor().toUpperCase()).removeBook(book);
             book.buy(null);
             data.remove(book);
             return true;
@@ -128,7 +120,7 @@ public class Book {
      * @return alllll.
      */
     public static List<Book> getBooksByAuthor(String author) {
-        return authors.get(author).getData();
+        return authors.get(author.toUpperCase()).getData();
     }
 
     /**
@@ -194,17 +186,17 @@ public class Book {
     public boolean buy(Person buyer) {
         if (buyer == null) {
             if (owner != null) {
-                owner.setMoney(owner.getMoney() + getPrice());
+                owner.sellBook(this);
             }
             owner = null;
             return true;
         }
         if (getPrice() <= buyer.getMoney() && owner != buyer) {
             if (owner != null) {
-                owner.setMoney(owner.getMoney() + getPrice());
+                owner.sellBook(this);
             }
             owner = buyer;
-            owner.setMoney(owner.getMoney() - getPrice());
+            owner.buyBook(this);
             return true;
         }
         return false;

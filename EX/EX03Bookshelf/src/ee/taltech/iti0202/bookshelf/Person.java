@@ -66,8 +66,8 @@ public class Person {
         if (book == null) {
             return false;
         }
-        if (getMoney() >= book.getPrice() && book.getOwner() == null) {
-            book.buy(this);
+        if (getMoney() >= book.getPrice()) {
+            setMoney(getMoney() - book.getPrice());
             collection.add(book);
             return true;
         }
@@ -85,7 +85,7 @@ public class Person {
             return false;
         }
         if (book.getOwner() == this) {
-            book.buy(null);
+            setMoney(getMoney() + book.getPrice());
             collection.remove(book);
             return true;
         }
