@@ -3,17 +3,19 @@ package ee.taltech.iti0202.bookshelf;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.HashMap;
 
 public class Book {
 
-    private String title;
-    private String author;
-    private int year, price;
+    private final String title;
+    private final String author;
+    private final int year, price;
     static int id = -1;
     int number;
     private Person owner = null;
     static List<Book> data = new ArrayList<>();
     static String previousAuthor;
+    static HashMap<String, Author> authors = new HashMap<>();
     static int prevYear;
 
     /**
@@ -53,6 +55,9 @@ public class Book {
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         for (Book el: data) {
             if (el.title.equals(title) && el.author.equals(author) && el.year == yearOfPublishing) {
+                if (authors.containsKey(author)) {
+                    authors.get(author).addBook(el);
+                }
                 return el;
             }
         }
@@ -60,6 +65,13 @@ public class Book {
         prevYear = yearOfPublishing;
         Book book = new Book(title, author, yearOfPublishing, price);
         data.add(book);
+        if (authors.containsKey(author)) {
+            authors.get(author).addBook(book);
+        } else {
+            Author newauthor = new Author(author);
+            newauthor.addBook(book);
+            authors.put(author, newauthor);
+        }
         return book;
     }
 
@@ -74,7 +86,9 @@ public class Book {
         if (data.isEmpty()) {
             return null;
         } else {
-            return of(title, previousAuthor, prevYear, price);
+            Book book = new Book(title, previousAuthor, prevYear, price);
+            authors.get(previousAuthor).addBook(book);
+            return book;
         }
     }
 
@@ -99,6 +113,7 @@ public class Book {
             return false;
         }
         if (data.contains(book)) {
+            authors.get(book.getAuthor()).removeBook(book);
             book.buy(null);
             data.remove(book);
             return true;
@@ -113,15 +128,7 @@ public class Book {
      * @return alllll.
      */
     public static List<Book> getBooksByAuthor(String author) {
-        List<Book> collection = new LinkedList<>();
-        for (Book book: data) {
-            if (book.getAuthor().length() == author.length()) {
-                if (book.getAuthor().toLowerCase().equals(author.toLowerCase())) {
-                    collection.add(book);
-                }
-            }
-        }
-        return collection;
+        return authors.get(author).getData();
     }
 
     /**

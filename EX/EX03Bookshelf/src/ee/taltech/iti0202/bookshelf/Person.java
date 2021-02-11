@@ -7,6 +7,7 @@ public class Person {
 
     private String name; private int money;
     private List<Book> collection = new LinkedList<>();
+    static List<Author> authors = new LinkedList<>();
 
     /**
      * Constructor.
