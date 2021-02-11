@@ -85,15 +85,7 @@ public class Book {
      * @return collection.
      */
     public static List<Book> getBooksByOwner(Person owner) {
-        List<Book> collection = new LinkedList<>();
-        for (Book book: data) {
-            if (book.getOwner() != null) {
-                if (book.getOwner().getName().equals(owner.getName())) {
-                    collection.add(book);
-                }
-            }
-        }
-        return collection;
+        return owner.getBooks();
     }
 
     /**
@@ -106,7 +98,7 @@ public class Book {
         if (book == null) {
             return false;
         }
-        if(data.contains(book)) {
+        if (data.contains(book)) {
             book.buy(null);
             data.remove(book);
             return true;
@@ -123,8 +115,10 @@ public class Book {
     public static List<Book> getBooksByAuthor(String author) {
         List<Book> collection = new LinkedList<>();
         for (Book book: data) {
-            if (book.getAuthor().toLowerCase().equals(author.toLowerCase())) {
-                collection.add(book);
+            if (book.getAuthor().length() == author.length()) {
+                if (book.getAuthor().toLowerCase().equals(author.toLowerCase())) {
+                    collection.add(book);
+                }
             }
         }
         return collection;
