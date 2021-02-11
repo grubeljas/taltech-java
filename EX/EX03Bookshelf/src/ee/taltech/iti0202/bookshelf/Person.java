@@ -1,10 +1,12 @@
 package ee.taltech.iti0202.bookshelf;
 
-//import java.util.TreeMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Person {
 
     private String name; private int money;
+    private List<Book> collection = new LinkedList<>();
 
     /**
      * Constructor.
@@ -45,6 +47,15 @@ public class Person {
     }
 
     /**
+     * Get all.
+     *
+     * @return collects.
+     */
+    public List<Book> getBooks() {
+        return collection;
+    }
+
+    /**
      * Buy book.
      *
      * @param book of deal.
@@ -56,6 +67,7 @@ public class Person {
         }
         if (getMoney() >= book.getPrice() && book.getOwner() == null) {
             book.buy(this);
+            collection.add(book);
             return true;
         }
         return false;
@@ -73,6 +85,7 @@ public class Person {
         }
         if (book.getOwner() == this) {
             book.buy(null);
+            collection.remove(book);
             return true;
         }
         return false;
