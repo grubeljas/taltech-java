@@ -54,8 +54,12 @@ public class Book {
      */
     public static Book of(String title, String author, int yearOfPublishing, int price) {
         for (Book el: data) {
-            if (el.title.equals(title) && el.author.equals(author) && el.year == yearOfPublishing) {
-                return el;
+            if (el.title.equals(title)) {
+                if (el.author.equals(author)) {
+                    if (el.year == yearOfPublishing) {
+                        return el;
+                    }
+                }
             }
         }
         previousAuthor = author;
@@ -213,6 +217,7 @@ public class Book {
 
 class Author {
 
+    private String author;
     public List<Book> data;
 
     /**
@@ -221,6 +226,7 @@ class Author {
      * @param author who wrote this book
      */
     Author(String author) {
+        this.author = author;
         this.data = new LinkedList<>();
     }
 
