@@ -2,6 +2,7 @@ package ee.taltech.iti0202.bookshelf;
 
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Book {
@@ -14,6 +15,7 @@ public class Book {
     Person owner = null;
     static List<Book> data = new ArrayList<>();
     static String previousAuthor;
+    static HashMap<String, Author> authors = new HashMap<>();
     static int prevYear;
 
     /**
@@ -60,8 +62,13 @@ public class Book {
         prevYear = yearOfPublishing;
         Book book = new Book(title, author, yearOfPublishing, price);
         data.add(book);
-        Author newauthor = Author.of(author.toUpperCase());
-        newauthor.addBook(book);
+        if (authors.containsKey(author.toUpperCase())) {
+            authors.get(author.toUpperCase()).addBook(book);
+        } else {
+            Author newauthor = new Author(author.toUpperCase());
+            newauthor.addBook(book);
+            authors.put(author.toUpperCase(), newauthor);
+        }
         return book;
     }
 
@@ -101,8 +108,7 @@ public class Book {
             return false;
         }
         if (data.contains(book)) {
-            Author newauthor = Author.of(book.getAuthor().toUpperCase());
-            newauthor.removeBook(book);
+            authors.get(book.getAuthor().toUpperCase()).removeBook(book);
             book.buy(null);
             data.remove(book);
             return true;
@@ -117,10 +123,13 @@ public class Book {
      * @return alllll.
      */
     public static List<Book> getBooksByAuthor(String author) {
+        List<Book> books = new LinkedList<>();
         if (author == null) {
-            return new LinkedList<>();
+            return books;
+        } else if (!authors.containsKey(author.toUpperCase())) {
+            return books;
         }
-        return Author.of(author.toUpperCase()).data;
+        return authors.get(author.toUpperCase()).getData();
     }
 
     /**
@@ -204,9 +213,8 @@ public class Book {
 
 class Author {
 
-    private final String author;
+    private String author;
     public List<Book> data;
-    static List<Author> all = new LinkedList<>();
 
     /**
      * Constructor.
@@ -216,15 +224,6 @@ class Author {
     Author(String author) {
         this.author = author;
         this.data = new LinkedList<>();
-    }
-
-    static public Author of(String name) {
-        for (Author el: all) {
-            if (el.author.equals(name)) {
-                return el;
-            }
-        }
-        return new Author(name);
     }
 
     /**
