@@ -1,13 +1,12 @@
 package ee.taltech.iti0202.stock.stock;
-import ee.taltech.iti0202.stock.exceptions.StockException;
 import ee.taltech.iti0202.stock.product.Product;
+import ee.taltech.iti0202.stock.exceptions.StockException;
 
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * The stock class.
@@ -25,9 +24,9 @@ import java.util.stream.Stream;
 
 public class Stock {
 
-    private String name;
-    private int max;
-    private List<Product> products;
+    private final String name;
+    private final int max;
+    private final List<Product> products;
     static final int BIGNUMBER = 1000000;
 
     /**
@@ -132,7 +131,7 @@ public class Stock {
      */
     public List<Product> getProducts(String name) {
         List<Product> products = getProducts();
-        List<Product> filteredProducts = getProducts();
+        List<Product> filteredProducts = new LinkedList<>();
         products.stream()
                 .filter(product -> product.getName().equals(name))
                 .sorted(Comparator.comparing(Product::getId))

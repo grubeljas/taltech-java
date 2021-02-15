@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.stock.product;
+
 import ee.taltech.iti0202.stock.exceptions.StockException;
 
 public class Product {
