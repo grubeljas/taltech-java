@@ -26,7 +26,7 @@ public class Stock {
 
     private final String name;
     private final int max;
-    private final List<Product> products;
+    public List<Product> products;
     static final int BIGNUMBER = 1000000;
 
     /**
@@ -38,7 +38,7 @@ public class Stock {
     public Stock(String name, int maxCapacity) {
         this.name = name;
         this.max = maxCapacity;
-        this.products = new LinkedList();
+        this.products = new LinkedList<Product>();
     }
 
     /**
@@ -105,11 +105,10 @@ public class Stock {
 
     public Optional<Product> removeProduct(String name) {
         Optional<Product> product = getProduct(name);
-        if (product != null) {
-            products.remove(product);
-            return product;
+        if (product.isPresent()) {
+            products.remove(product.get());
         }
-        return Optional.empty();
+        return product;
     }
 
     /**
@@ -131,10 +130,10 @@ public class Stock {
      */
     public List<Product> getProducts(String name) {
         List<Product> products = getProducts();
-        List<Product> filteredProducts = new LinkedList<>();
+        LinkedList<Product> filteredProducts = new LinkedList<Product>();
         products.stream()
-                .filter(product -> product.getName().equals(name))
-                .sorted(Comparator.comparing(Product::getId))
+                .filter(p -> p.getName().equals(name))
+                .sorted(Comparator.comparingInt(Product::getId))
                 .sorted(Comparator.comparing(Product::getPrice))
                 .collect(Collectors.toList());
         return products;
@@ -147,10 +146,9 @@ public class Stock {
      */
     public int getTotalPrice() {
         List<Product> filteredProducts = getProducts();
-        Integer sum = filteredProducts.stream()
-                .map(x -> x.getPrice())
+        return filteredProducts.stream()
+                .map(Product::getPrice)
                 .reduce(0, Integer::sum);
-        return sum;
     }
 
     /**
