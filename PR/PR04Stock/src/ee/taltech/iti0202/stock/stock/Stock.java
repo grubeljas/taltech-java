@@ -129,9 +129,7 @@ public class Stock {
      * @return List
      */
     public List<Product> getProducts(String name) {
-        List<Product> products = getProducts();
-        LinkedList<Product> filteredProducts = new LinkedList<Product>();
-        products.stream()
+        List<Product> products = getProducts().stream()
                 .filter(p -> p.getName().equals(name))
                 .sorted(Comparator.comparingInt(Product::getId))
                 .sorted(Comparator.comparing(Product::getPrice))
