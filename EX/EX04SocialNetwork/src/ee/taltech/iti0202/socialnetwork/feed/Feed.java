@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Feed {
 
-    private final User user;
+    private User user;
     private Set<Message> messages;
 
     public Feed(User user, Set<Message> messages) {

@@ -3,8 +3,8 @@ import ee.taltech.iti0202.socialnetwork.user.User;
 
 public class Message {
 
-    private final String title, message;
-    private final User author;
+    private String title, message;
+    private User author;
 
     public Message(String title, String message, User author) {
         this.author = author;

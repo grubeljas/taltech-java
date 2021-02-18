@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class SocialNetwork {
 
-    static Set<Group> groups = new HashSet<>();
+    private Set<Group> groups = new HashSet<>();
 
     public void registerGroup(Group group) {
         groups.add(group);
@@ -23,9 +23,9 @@ public class SocialNetwork {
     public Feed getFeedForUser(User user) {
         Iterator<Group> it = getGroups().iterator();
         Set<Message> history = new HashSet<Message>();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             Group group = it.next();
-            if (group.getParticipants().contains(user)); {
+            if (group.getParticipants().contains(user)) {
                 history.addAll(group.getMessages());
             }
         }

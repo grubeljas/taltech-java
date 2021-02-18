@@ -1,7 +1,7 @@
 package ee.taltech.iti0202.socialnetwork.user;
 public class User {
 
-    private final String name;
+    private String name;
     private Integer age;
 
     public User(String name) {

@@ -10,7 +10,7 @@ import java.util.HashSet;
 public class Group {
 
     private String nameOfGroup;
-    private final User owner;
+    private User owner;
     private List<Message> messages;
     private Set<User> members;
 
