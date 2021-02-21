@@ -5,12 +5,24 @@ public class Cat {
     private String name, color;
     private int age;
 
+    /**
+     * Conctruct.
+     *
+     * @param name name
+     * @param age age
+     * @param color colot
+     */
     public Cat(String name, int age, String color) {
         this.color = color;
         this.name = name;
         this.age = age;
     }
 
+    /**
+     * Constructor without age and color.
+     *
+     * @param name
+     */
     public Cat(String name) {
         this.name = name;
     }
@@ -39,14 +51,17 @@ public class Cat {
         this.name = name;
     }
 
+    /**
+     * Convert to string.
+     *
+     * @return String
+     */
     public String toString() {
         if (color.isBlank()) {
             return name;
         } else {
-            return String.format("%1$s %2$s: %3$s", color, name, age);
+            return String.format("%1$s %2$s (%3$s)", color, name, age);
         }
     }
 
-    public static void main(String[] args) {
-    }
 }

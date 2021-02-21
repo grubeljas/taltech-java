@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Person {
 
-    public List<Cat> cats = new LinkedList<>();
+    private List<Cat> cats = new LinkedList<>();
 
     /**
      * Add cat to person.
@@ -13,9 +13,9 @@ public class Person {
      * @param cat cat
      * @return bool
      */
-    public boolean addCat(Cat cat){
-        if (!cats.contains(cat)) {
-            cats.add(cat);
+    public boolean addCat(Cat cat) {
+        if (!getCats().contains(cat)) {
+            getCats().add(cat);
             return true;
         } else {
             return false;
@@ -39,8 +39,8 @@ public class Person {
      * @return bool
      */
     public boolean sellCat(Person sellTo, Cat cat) {
-        if (cats.contains(cat) && !sellTo.equals(this)) {
-            cats.remove(cat);
+        if (getCats().contains(cat) && !sellTo.equals(this)) {
+            getCats().remove(cat);
             sellTo.addCat(cat);
             return true;
         } else {

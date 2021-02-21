@@ -18,11 +18,12 @@ public class Exam {
      */
     public static List<Integer> evenOdd(List<Integer> nums) {
         List<Integer> sorted = new LinkedList<>();
-        for (Integer i: nums) {
+        sorted.add(nums.get(0));
+        for (Integer i: nums.subList(1, nums.size() - 1)) {
             if (i % 2 == 0) {
                 sorted.add(0, i);
             } else {
-                sorted.add(sorted.size() - 1, i);
+                sorted.add(i);
             }
         }
         return sorted;
