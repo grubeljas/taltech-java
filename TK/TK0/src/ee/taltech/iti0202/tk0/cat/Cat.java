@@ -57,7 +57,7 @@ public class Cat {
      * @return String
      */
     public String toString() {
-        if (color.isBlank()) {
+        if (color == null) {
             return name;
         } else {
             return String.format("%1$s %2$s (%3$s)", color, name, age);
