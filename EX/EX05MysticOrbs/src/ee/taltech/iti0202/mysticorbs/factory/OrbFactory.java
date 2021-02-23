@@ -46,7 +46,7 @@ public class OrbFactory {
     /**
      * Produce orbs.
      *
-     * @return number of orbs.
+     * @return
      */
     public int produceOrbs() {
         int n = 0;
@@ -73,8 +73,8 @@ public class OrbFactory {
     /**
      * Produce multiple producing.
      *
-     * @param cycles loop.
-     * @return orbs for all cycles.
+     * @param cycles
+     * @return
      */
     public int produceOrbs(int cycles) {
         int n = 0;
