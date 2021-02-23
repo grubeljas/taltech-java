@@ -6,21 +6,37 @@ import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Optional;
 
-public class MagicOven extends Oven implements Fixable{
+public class MagicOven extends Oven implements Fixable {
 
     public int timesFixed, i;
 
+    /**
+     * Constructor.
+     *
+     * @param name name
+     * @param resourceStorage resStor
+     */
     public MagicOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         timesFixed = 0;
         i = 1;
     }
 
+    /**
+     * Is broken
+     *
+     * @return bool
+     */
     @Override
     public boolean isBroken() {
         return getCreatedOrbsAmount() == 5 * i;
     }
 
+    /**
+     * Craft one orb
+     *
+     * @return orb or none
+     */
     @Override
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
@@ -44,11 +60,16 @@ public class MagicOven extends Oven implements Fixable{
         return Optional.empty();
     }
 
+    /**
+     * fix oven
+     *
+     * @throws CannotFixException if cannot fix
+     */
     @Override
     public void fix() throws CannotFixException {
         if (isBroken()) {
             if (getTimesFixed() < 10) {
-                if (storage.takeResource("clay", 25 * (getTimesFixed() + 1))) {
+                if (storage.takeResource("clay", 5 * 5 * (getTimesFixed() + 1))) {
                     if (storage.takeResource("freezing powder", 100 * (getTimesFixed() + 1))) {
                         timesFixed++;
                         i++;
@@ -67,6 +88,11 @@ public class MagicOven extends Oven implements Fixable{
         }
     }
 
+    /**
+     * Get n
+     *
+     * @return n.
+     */
     @Override
     public int getTimesFixed() {
         return timesFixed;

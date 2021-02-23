@@ -10,6 +10,12 @@ public class Oven implements Comparable<Oven>, Fixable {
     public final ResourceStorage storage;
     public int orbs;
 
+    /**
+     * Constructor.
+     *
+     * @param name name
+     * @param resourceStorage resStor
+     */
     public Oven(String name, ResourceStorage resourceStorage) {
         this.name = name;
         this.storage = resourceStorage;
@@ -34,7 +40,7 @@ public class Oven implements Comparable<Oven>, Fixable {
      * @return boolean
      */
     public boolean isBroken() {
-        return getCreatedOrbsAmount() == 15;
+        return getCreatedOrbsAmount() == 5 * 3;
     }
 
     /**
@@ -62,8 +68,8 @@ public class Oven implements Comparable<Oven>, Fixable {
     @Override
     public int compareTo(Oven o) {
         if (isBroken() == o.isBroken()) {
-            if (this.getClass().equals(o.getClass()) ||
-                    this instanceof InfinityMagicOven || o instanceof InfinityMagicOven) {
+            if (this.getClass().equals(o.getClass())
+                    || this instanceof InfinityMagicOven || o instanceof InfinityMagicOven) {
                 if (this instanceof MagicOven) {
                     if (getCreatedOrbsAmount() % 2 == 1 && o.getCreatedOrbsAmount() % 2 == 0) {
                         return 1;

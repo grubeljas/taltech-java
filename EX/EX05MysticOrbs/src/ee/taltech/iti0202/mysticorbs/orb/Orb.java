@@ -5,6 +5,11 @@ public class Orb {
     public final String creator;
     public int energy;
 
+    /**
+     * Constructor.
+     *
+     * @param creator oven.
+     */
     public Orb(String creator) {
         this.creator = creator;
         this.energy = 0;
@@ -17,7 +22,7 @@ public class Orb {
      * @param amount int
      */
     public void charge(String resource, int amount) {
-        if (!resource.toLowerCase().equals("dust") && !resource.isBlank()) {
+        if (!resource.equalsIgnoreCase("dust") && !resource.isBlank()) {
             energy += resource.length() * amount;
         }
     }

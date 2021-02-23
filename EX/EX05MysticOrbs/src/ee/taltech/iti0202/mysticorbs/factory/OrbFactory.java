@@ -4,7 +4,6 @@ import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import ee.taltech.iti0202.mysticorbs.orb.Orb;
 import ee.taltech.iti0202.mysticorbs.oven.Oven;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +14,11 @@ public class OrbFactory {
     public List<Orb> orbs;
     public List<Oven> brokenOvens;
 
+    /**
+     * Constructor.
+     *
+     * @param resourceStorage resstor.
+     */
     public OrbFactory(ResourceStorage resourceStorage) {
         ResourceStorage storage = resourceStorage;
         ovens = new LinkedList<>();
@@ -22,6 +26,11 @@ public class OrbFactory {
         brokenOvens = new LinkedList<>();
     }
 
+    /**
+     * Add oven.
+     *
+     * @param oven oven.
+     */
     public void addOven(Oven oven) {
         getOvens().add(oven);
     }
@@ -34,6 +43,11 @@ public class OrbFactory {
         return orbs;
     }
 
+    /**
+     * Produce orbs.
+     *
+     * @return number of orbs.
+     */
     public int produceOrbs() {
         int n = 0;
         for (Oven oven: getOvens()) {
@@ -56,6 +70,12 @@ public class OrbFactory {
         return n;
     }
 
+    /**
+     * Produce multiple producing.
+     *
+     * @param cycles loop.
+     * @return orbs for all cycles.
+     */
     public int produceOrbs(int cycles) {
         int n = 0;
         for (int i = 0; i < cycles; i++) {
@@ -68,6 +88,9 @@ public class OrbFactory {
         return brokenOvens;
     }
 
+    /**
+     * Remove broken ovens.
+     */
     public void getRidOfOvensThatCannotBeFixed() {
         for (Oven oven: getOvensThatCannotBeFixed()) {
             ovens.remove(oven);
@@ -75,6 +98,9 @@ public class OrbFactory {
         getOvensThatCannotBeFixed().clear();
     }
 
+    /**
+     * Optimize order.
+     */
     public void optimizeOvensOrder() {
         getOvens().stream().sorted(Oven::compareTo);
     }

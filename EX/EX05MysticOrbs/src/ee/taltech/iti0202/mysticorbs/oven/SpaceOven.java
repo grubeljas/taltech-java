@@ -5,10 +5,17 @@ import ee.taltech.iti0202.mysticorbs.orb.SpaceOrb;
 import ee.taltech.iti0202.mysticorbs.storage.ResourceStorage;
 import java.util.Optional;
 
-public class SpaceOven extends Oven implements Fixable{
+public class SpaceOven extends Oven implements Fixable {
 
     public int timesFixed, i;
+    static final int sTARFRAGMENT = 15;
 
+    /**
+     * Constructor.
+     *
+     * @param name oven.
+     * @param resourceStorage resstor.
+     */
     public SpaceOven(String name, ResourceStorage resourceStorage) {
         super(name, resourceStorage);
         timesFixed = 0;
@@ -17,18 +24,18 @@ public class SpaceOven extends Oven implements Fixable{
 
     @Override
     public boolean isBroken() {
-        return getCreatedOrbsAmount() >= 25 * i;
+        return getCreatedOrbsAmount() >= 5 * 5 * i;
     }
 
     @Override
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
             if (getResourceStorage().takeResource("meteorite stone", 1)) {
-                if (getResourceStorage().takeResource("star fragment", 15)) {
+                if (getResourceStorage().takeResource("star fragment", sTARFRAGMENT)) {
                     ++orbs;
                     Orb orb = new SpaceOrb(getName());
                     orb.charge("meteorite stone", 1);
-                    orb.charge("star fragment", 15);
+                    orb.charge("star fragment", sTARFRAGMENT);
                     return Optional.of(orb);
                 } else {
                     getResourceStorage().addResource("meteorite stone", 1); //return stone back,cause out of star
@@ -53,7 +60,7 @@ public class SpaceOven extends Oven implements Fixable{
     public void fix() throws CannotFixException {
         if (isBroken()) {
             if (getTimesFixed() < 5) {
-                if (storage.takeResource("liquid silver", 40)) {
+                if (storage.takeResource("liquid silver", 10 * 4)) {
                     fixOven();
                 } else if (storage.takeResource("star essence", 10)) {
                     fixOven();
