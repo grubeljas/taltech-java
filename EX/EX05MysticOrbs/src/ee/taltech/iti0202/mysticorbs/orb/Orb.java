@@ -22,7 +22,7 @@ public class Orb {
      * @param amount int
      */
     public void charge(String resource, int amount) {
-        if (!resource.equalsIgnoreCase("dust") && !resource.isBlank()) {
+        if (!resource.equalsIgnoreCase("dust") && !resource.isBlank() && amount > 0) {
             energy += resource.length() * amount;
         }
     }

@@ -74,7 +74,7 @@ public class MagicOven extends Oven implements Fixable {
                         timesFixed++;
                         i++;
                     } else {
-                        storage.addResource("clay", 25 * (getTimesFixed() + 1));
+                        storage.addResource("clay", 5 * 5 * (getTimesFixed() + 1));
                         throw new CannotFixException(this, CannotFixException.Reason.NOT_ENOUGH_RESOURCES);
                     }
                 } else {

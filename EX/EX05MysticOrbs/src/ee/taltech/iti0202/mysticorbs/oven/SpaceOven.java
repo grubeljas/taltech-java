@@ -8,7 +8,7 @@ import java.util.Optional;
 public class SpaceOven extends Oven implements Fixable {
 
     public int timesFixed, i;
-    static final int sTARFRAGMENT = 15;
+    static final int STARFRAGMENT = 15;
 
     /**
      * Constructor.
@@ -31,11 +31,11 @@ public class SpaceOven extends Oven implements Fixable {
     public Optional<Orb> craftOrb() {
         if (!isBroken()) {
             if (getResourceStorage().takeResource("meteorite stone", 1)) {
-                if (getResourceStorage().takeResource("star fragment", sTARFRAGMENT)) {
+                if (getResourceStorage().takeResource("star fragment", STARFRAGMENT)) {
                     ++orbs;
                     Orb orb = new SpaceOrb(getName());
                     orb.charge("meteorite stone", 1);
-                    orb.charge("star fragment", sTARFRAGMENT);
+                    orb.charge("star fragment", STARFRAGMENT);
                     return Optional.of(orb);
                 } else {
                     getResourceStorage().addResource("meteorite stone", 1); //return stone back,cause out of star
