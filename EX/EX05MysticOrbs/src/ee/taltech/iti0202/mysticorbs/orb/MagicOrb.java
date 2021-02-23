@@ -2,6 +2,8 @@ package ee.taltech.iti0202.mysticorbs.orb;
 
 public class MagicOrb extends Orb {
 
+    public int energy;
+
     /**
      * Constructor.
      *
@@ -9,7 +11,7 @@ public class MagicOrb extends Orb {
      */
     public MagicOrb(String creator) {
         super(creator);
-        int energy = 0;
+        this.energy = 0;
     }
 
     @Override
@@ -21,5 +23,10 @@ public class MagicOrb extends Orb {
     @Override
     public String toString() {
         return "Magic" + super.toString();
+    }
+
+    @Override
+    public int getEnergy() {
+        return energy;
     }
 }
