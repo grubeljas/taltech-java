@@ -29,7 +29,7 @@ public class OrbFactory {
     /**
      * Add oven.
      *
-     * @param oven oven.
+     * @param oven
      */
     public void addOven(Oven oven) {
         getOvens().add(oven);
@@ -40,7 +40,9 @@ public class OrbFactory {
     }
 
     public List<Orb> getAndClearProducedOrbsList() {
-        return orbs;
+        List<Orb> produced = new LinkedList<Orb>(orbs);
+        orbs.clear();
+        return produced;
     }
 
     /**
