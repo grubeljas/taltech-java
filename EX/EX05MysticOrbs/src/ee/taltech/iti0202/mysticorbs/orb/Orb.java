@@ -39,4 +39,8 @@ public class Orb {
     public String toString() {
         return String.format("Orb by %1$s", creator);
     }
+
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
 }
