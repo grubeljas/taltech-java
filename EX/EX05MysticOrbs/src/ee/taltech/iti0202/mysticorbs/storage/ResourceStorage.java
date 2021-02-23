@@ -35,9 +35,9 @@ public class ResourceStorage {
      * @param amount number of
      */
     public void addResource(String resource, int amount) {
-        if (resources.containsKey(resource.toLowerCase()) && amount > 0) {
+        if (resources.containsKey(resource.toLowerCase()) && amount > 0 && !resource.isBlank()) {
             resources.put(resource.toLowerCase(), resources.get(resource.toLowerCase()) + amount);
-        } else if (amount > 0) {
+        } else if (amount > 0 && !resource.isBlank()) {
             resources.put(resource.toLowerCase(), amount);
         }
     }

@@ -39,6 +39,11 @@ public class OrbFactory {
         return ovens;
     }
 
+    /**
+     * Get orbs and clear list.
+     *
+     * @return list.
+     */
     public List<Orb> getAndClearProducedOrbsList() {
         List<Orb> produced = new LinkedList<Orb>(orbs);
         orbs.clear();
