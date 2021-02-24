@@ -7,6 +7,7 @@ import ee.taltech.iti0202.mysticorbs.oven.Oven;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class OrbFactory {
 
@@ -109,6 +110,7 @@ public class OrbFactory {
      * Optimize order.
      */
     public void optimizeOvensOrder() {
-        getOvens().stream().sorted(Oven::compareTo);
+        this.ovens = getOvens().stream().sorted(Oven::compareTo)
+        .collect(Collectors.toList());
     }
 }
