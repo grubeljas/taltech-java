@@ -31,8 +31,12 @@ public class SpaceOrb extends Orb {
      */
     public boolean absorb(Orb orb) {
         if (getEnergy() > orb.getEnergy()) {
-            this.energy += orb.energy;
-            orb.energy = 0;
+            this.energy += orb.getEnergy();
+            if (orb instanceof SpaceOrb) {
+                ((SpaceOrb) orb).zeroEnrgy();
+            } else {
+                orb.energy = 0;
+            }
             return true;
         } else {
             return false;
@@ -42,5 +46,13 @@ public class SpaceOrb extends Orb {
     @Override
     public int getEnergy() {
         return energy;
+    }
+
+    /**
+     * Make energy zero.
+     *
+     */
+    public void zeroEnrgy() {
+        this.energy = 0;
     }
 }
