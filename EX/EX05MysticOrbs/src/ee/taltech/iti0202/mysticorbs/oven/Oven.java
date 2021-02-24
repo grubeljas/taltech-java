@@ -92,7 +92,7 @@ public class Oven implements Comparable<Oven>, Fixable {
                 }
             } else if (getClass().equals(SpaceOven.class) || o.getClass().equals(Oven.class)) {
                 return 1;
-            } else if (getClass().toString().equals(new Oven("", getResourceStorage()).toString()) || o.getClass().equals(SpaceOven.class)) {
+            } else if (getClass().equals(Oven.class) || o.getClass().equals(SpaceOven.class)) {
                 return -1;
             }
         } else if (isBroken()) {
