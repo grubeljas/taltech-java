@@ -20,6 +20,7 @@ public class SpaceOven extends Oven implements Fixable {
         super(name, resourceStorage);
         timesFixed = 0;
         i = 1;
+        usualOven = false;
     }
 
     @Override

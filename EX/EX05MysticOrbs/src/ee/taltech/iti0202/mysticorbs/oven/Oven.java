@@ -9,6 +9,7 @@ public class Oven implements Comparable<Oven>, Fixable {
     public final String name;
     public final ResourceStorage storage;
     public int orbs;
+    public boolean usualOven;
 
     /**
      * Constructor.
@@ -20,6 +21,7 @@ public class Oven implements Comparable<Oven>, Fixable {
         this.name = name;
         this.storage = resourceStorage;
         this.orbs = 0;
+        usualOven = true;
     }
 
     public String getName() {
@@ -90,9 +92,9 @@ public class Oven implements Comparable<Oven>, Fixable {
                 } else if (getCreatedOrbsAmount() == o.getCreatedOrbsAmount()) {
                     return getName().compareTo(o.getName());
                 }
-            } else if (getClass().equals(SpaceOven.class) || o.getClass().equals(Oven.class)) {
+            } else if (getClass().equals(SpaceOven.class) || o.usualOven) {
                 return 1;
-            } else if (getClass().equals(Oven.class) || o.getClass().equals(SpaceOven.class)) {
+            } else if (usualOven || o.getClass().equals(SpaceOven.class)) {
                 return -1;
             }
         } else if (isBroken()) {
