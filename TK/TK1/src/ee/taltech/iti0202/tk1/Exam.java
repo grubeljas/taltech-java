@@ -2,10 +2,12 @@ package ee.taltech.iti0202.tk1;
 
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class Exam {
 
+    static final int BLACKJACK = 21;
 
     /**
      * Return the "centered" average of an array of ints, which we'll say is the mean average of the values,
@@ -39,15 +41,15 @@ public class Exam {
      * blackjack(19, 22) → 19
      */
     public static int blackjack(int a, int b) {
-        if (a > 21 && b > 21) {
+        if (a > BLACKJACK && b > BLACKJACK) {
             return 0;
-        } else if (a == 21 || b == 21) {
+        } else if (a == BLACKJACK || b == BLACKJACK) {
             return 21;
-        } else if (a > 21) {
+        } else if (a > BLACKJACK) {
             return b;
-        } else if (b > 21) {
+        } else if (b > BLACKJACK) {
             return a;
-        } else if (21 - a >= 21 - b) {
+        } else if (BLACKJACK - a >= BLACKJACK - b) {
             return b;
         } else {
             return a;
@@ -60,17 +62,15 @@ public class Exam {
      Given a string and an int n, return a string made of n repetitions of the last n characters
      of the string. You may assume that n is between 0 and the length of the string, inclusive.
 
-     repeatEnd("Hello", 3) → "llollollo"
-     repeatEnd("Hello", 2) → "lolo"
+     repeatEnd("Hello", 3) →
+     repeatEnd("Hello", 2) → "lol"
      repeatEnd("Hello", 1) → "o"
      */
     public static String repeatEnd(String str, int n) {
-        String answer = "";
+        StringBuilder answer = new StringBuilder();
         String substring = str.substring(str.length() - n);
-        for (int i = 0; i < n; i++) {
-            answer += substring;
-        }
-        return answer;
+        answer.append(substring.repeat(Math.max(0, n)));
+        return answer.toString();
     }
 
     /**
@@ -83,11 +83,13 @@ public class Exam {
      mapAB2({"a": "aaa", "b": "bbb", "c": "aaa"}) → {"a": "aaa", "b": "bbb", "c": "aaa"}
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
-        if (map.get("a").equals(map.get("b"))) {
-            map.remove("a");
-            map.remove("b");
+        HashMap<String, String> map1 = new HashMap<>(map);
+        if (map1.get("a").equals(map1.get("b"))) {
+            System.out.println(1);
+            map1.remove("a");
+            map1.remove("b");
         }
-        return null;
+        return map1;
     }
 
 }

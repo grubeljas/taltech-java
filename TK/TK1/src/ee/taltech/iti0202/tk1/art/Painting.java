@@ -25,7 +25,7 @@ public class Painting {
         this.author = "";
     }
 
-    public String getName() {
+    public String getTitle() {
         return name;
     }
 
@@ -41,11 +41,16 @@ public class Painting {
         this.author = author;
     }
 
+    /**
+     * Convert object to a string.
+     *
+     * @return string woth name and author.
+     */
     public String toString() {
         if (getAuthor().equals("")) {
-            return "This is a painting named " + getName() + " and made by an unknown artist.";
+            return "This is a painting named " + getTitle() + " and made by an unknown artist.";
         } else {
-            return "This is a painting named " + getName() + " and made by " + getAuthor() + ".";
+            return "This is a painting named " + getTitle() + " and made by " + getAuthor() + ".";
         }
     }
 }

@@ -1,5 +1,4 @@
 package ee.taltech.iti0202.tk1.art;
-import ee.taltech.iti0202.tk1.art.Painting;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +14,9 @@ public class Collector {
      * @return bool
      */
     public boolean addPainting(Painting painting) {
-        List<String> names = collection.stream().map(Painting::getName)
+        List<String> names = collection.stream().map(Painting::getTitle)
                 .collect(Collectors.toList());
-        if (collection.contains(painting) || names.contains(painting.getName())) {
+        if (collection.contains(painting) || names.contains(painting.getTitle())) {
             return false;
         } else {
             collection.add(painting);
