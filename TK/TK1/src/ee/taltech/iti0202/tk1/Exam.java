@@ -44,7 +44,7 @@ public class Exam {
         if (a > BLACKJACK && b > BLACKJACK) {
             return 0;
         } else if (a == BLACKJACK || b == BLACKJACK) {
-            return 21;
+            return BLACKJACK;
         } else if (a > BLACKJACK) {
             return b;
         } else if (b > BLACKJACK) {
@@ -84,10 +84,12 @@ public class Exam {
      */
     public static Map<String, String> mapAB(Map<String, String> map) {
         HashMap<String, String> map1 = new HashMap<>(map);
-        if (map1.get("a").equals(map1.get("b"))) {
-            System.out.println(1);
-            map1.remove("a");
-            map1.remove("b");
+        if (map.containsKey("a") && map.containsKey("b")) {
+            if (map1.get("a").equals(map1.get("b"))) {
+                System.out.println(1);
+                map1.remove("a");
+                map1.remove("b");
+            }
         }
         return map1;
     }

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Collector {
 
-    public List<Painting> collection = new LinkedList<>();
+    private List<Painting> collection = new LinkedList<>();
 
     /**
      * Add painting to the collection.
