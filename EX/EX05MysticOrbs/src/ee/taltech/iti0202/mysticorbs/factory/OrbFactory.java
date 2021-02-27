@@ -48,6 +48,7 @@ public class OrbFactory {
     public List<Orb> getAndClearProducedOrbsList() {
         List<Orb> produced = new LinkedList<Orb>(orbs);
         orbs.clear();
+        System.out.println(orbs);
         return produced;
     }
 
@@ -63,7 +64,7 @@ public class OrbFactory {
                 try {
                     oven.fix();
                 } catch (CannotFixException e) {
-                    if (e.reason.equals(CannotFixException.Reason.FIXED_MAXIMUM_TIMES)) {
+                    if (e.reason.equals(CannotFixException.Reason.FIXED_MAXIMUM_TIMES) && !brokenOvens.contains(oven)) {
                         brokenOvens.add(oven);
                         continue;
                     }
@@ -113,4 +114,5 @@ public class OrbFactory {
         this.ovens = getOvens().stream().sorted(Oven::compareTo)
         .collect(Collectors.toList());
     }
+
 }
