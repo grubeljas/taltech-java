@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TestAnimalProvider implements AnimalProvider {
 
-    public Set<Animal> animals;
+    Set<Animal> animals;
     public int i;
 
     /**
@@ -41,17 +41,10 @@ public class TestAnimalProvider implements AnimalProvider {
                 .filter(animal1 -> animal1.type.equals(type))
                 .collect(Collectors.toSet());
         List<Animal> providedAnimals = new LinkedList<>(providedAnimalsSet);
-        try {
-            providedAnimals = providedAnimals.subList(i, i + 3);
-            i += 3;
-        } catch (IndexOutOfBoundsException e) {
-            try {
-                providedAnimals = providedAnimals.subList(i, i + 2);
-                i += 2;
-            } catch (IndexOutOfBoundsException e1) {
-                providedAnimals.clear();
-            }
+        if (providedAnimals.size() > 3) {
+            providedAnimals = providedAnimals.subList(0, 3);
         }
+        animals.removeAll(providedAnimals);
         return providedAnimals;
     }
 }
