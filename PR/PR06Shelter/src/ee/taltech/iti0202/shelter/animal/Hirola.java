@@ -5,5 +5,6 @@ package ee.taltech.iti0202.shelter.animal;
 public class Hirola extends Animal {
     public Hirola(String color) {
         super(color);
+        this.type = Type.HIROLA;
     }
 }

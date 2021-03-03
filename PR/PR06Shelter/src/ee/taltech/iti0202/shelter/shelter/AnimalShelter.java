@@ -5,9 +5,10 @@ import ee.taltech.iti0202.shelter.animalprovider.AnimalProvider;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AnimalShelter implements AnimalProvider {
+public class AnimalShelter {
 
     public List<Animal> animals;
+    public AnimalProvider provider;
 
     /**
      * Constructor.
@@ -15,6 +16,7 @@ public class AnimalShelter implements AnimalProvider {
      * @param animalProvider
      */
     public AnimalShelter(AnimalProvider animalProvider) {
+        this.provider = animalProvider;
         this.animals = new LinkedList<>();
     }
 
@@ -35,11 +37,22 @@ public class AnimalShelter implements AnimalProvider {
      * @return Maximum {count} number of animals with the given type and color.
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
-        return null;
-    }
-
-    @Override
-    public List<Animal> provide(Animal.Type type) {
-        return null;
+        List<Animal> neededAnimals = new LinkedList<>();
+        provider.provide(animalType);
+        while (neededAnimals.size() < count) {
+            List<Animal> fromProvider = provider.provide(animalType);
+            if (fromProvider.isEmpty()) {
+                break;
+            }
+            for (Animal animal: fromProvider) {
+                if (animal.getColor().equals(color)) {
+                    neededAnimals.add(animal);
+                }
+                if (neededAnimals.size() == count) {
+                    break;
+                }
+            }
+        }
+        return neededAnimals;
     }
 }

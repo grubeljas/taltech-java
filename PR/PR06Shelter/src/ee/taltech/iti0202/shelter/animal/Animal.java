@@ -5,7 +5,7 @@ public abstract class Animal {
         HIROLA, TARANTULA, WOMBAT
     }
     private String color;
-
+    public Type type;
     public Animal(String color) {
         this.color = color;
     }

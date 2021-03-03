@@ -5,5 +5,6 @@ package ee.taltech.iti0202.shelter.animal;
 public class Wombat extends Animal {
     public Wombat(String color) {
         super(color);
+        this.type = Type.WOMBAT;
     }
 }

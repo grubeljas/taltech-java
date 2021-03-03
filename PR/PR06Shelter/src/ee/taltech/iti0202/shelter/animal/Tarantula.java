@@ -5,5 +5,6 @@ package ee.taltech.iti0202.shelter.animal;
 public class Tarantula extends Animal {
     public Tarantula(String color) {
         super(color);
+        this.type = Type.TARANTULA;
     }
 }
