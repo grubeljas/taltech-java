@@ -43,7 +43,7 @@ public class TestAnimalProvider implements AnimalProvider {
         List<Animal> providedAnimals = new LinkedList<>(providedAnimalsSet);
         try {
             providedAnimals = providedAnimals.subList(i, i + 3);
-            i += 3;
+            i += 2;
         } catch (IndexOutOfBoundsException e) {
             try {
                 providedAnimals = providedAnimals.subList(i, i + 2);
