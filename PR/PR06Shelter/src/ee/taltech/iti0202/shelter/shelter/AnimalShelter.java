@@ -38,7 +38,7 @@ public class AnimalShelter {
      */
     public List<Animal> getAnimals(Animal.Type animalType, String color, int count) {
         List<Animal> neededAnimals = new LinkedList<>();
-        while (neededAnimals.size() < count) {
+        while (neededAnimals.size() <= count) {
             List<Animal> fromProvider = provider.provide(animalType);
             if (fromProvider.isEmpty()) {
                 break;
