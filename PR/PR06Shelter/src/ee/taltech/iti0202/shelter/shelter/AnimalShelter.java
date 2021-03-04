@@ -44,7 +44,8 @@ public class AnimalShelter {
                 break;
             }
             for (Animal animal: fromProvider) {
-                if (animal.getColor().equals(color) && !animals.contains(animal)) {
+                if (animal.getColor().equals(color) && !animals.contains(animal)
+                        && !neededAnimals.contains(animal)) {
                     neededAnimals.add(animal);
                 }
                 if (neededAnimals.size() == count) {
