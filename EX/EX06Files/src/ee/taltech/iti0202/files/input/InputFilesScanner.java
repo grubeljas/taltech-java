@@ -24,7 +24,7 @@ public class InputFilesScanner implements InputFilesReader {
                 }
             }
         } catch (IOException e) {
-            throw new FileReaderException("No such file", new Throwable());
+            throw new FileReaderException("No such file", new IOException());
         }
         return lines;
     }
