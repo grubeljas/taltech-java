@@ -90,6 +90,6 @@ public class MorseTranslator {
             }
             translated += " ";
         }
-        return translated;
+        return translated.substring(0, translated.length() - 1);
     }
 }
