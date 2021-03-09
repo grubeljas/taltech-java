@@ -16,13 +16,7 @@ public class InputFilesLines implements InputFilesReader {
             List<String> lines = Files.lines(path).collect(Collectors.toList());
             return lines;
         } catch (IOException e) {
-            try {
-                throw new FileReaderException("No such file", new Throwable());
-            } catch (FileReaderException e1) {
-                System.out.println("Error reading file:" + e1.getMessage());
-                e.printStackTrace();
-            }
+            throw new FileReaderException("No such file", new Throwable());
         }
-        return null;
     }
 }
