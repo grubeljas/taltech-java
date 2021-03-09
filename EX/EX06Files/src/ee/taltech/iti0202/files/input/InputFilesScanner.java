@@ -16,7 +16,7 @@ public class InputFilesScanner implements InputFilesReader {
         try (Scanner scanner = new Scanner(path)) {
             while (scanner.hasNext()) {
                 if (scanner.hasNext("\n")) {
-                    lines.add(" ");
+                    lines.add("");
                     scanner.nextLine();
                 } else {
                     lines.add(scanner.nextLine());
