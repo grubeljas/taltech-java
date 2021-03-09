@@ -82,6 +82,9 @@ public class MorseTranslator {
      */
     private String translateLineFromMorse(String line) {
         String translated = new String();
+        if (line.length() == 0) {
+            return "";
+        }
         for (String word: line.split("\t")) {
             for (String c: word.split(" ")) {
                 if (dictionaryFromMorse.containsKey(c)) {
