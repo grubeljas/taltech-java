@@ -24,6 +24,6 @@ public class InputFilesLines implements InputFilesReader {
                 e.printStackTrace();
             }
         }
-        return new LinkedList<String>();
+        return null;
     }
 }
