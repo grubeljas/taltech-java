@@ -65,13 +65,14 @@ public class MorseTranslator {
      * @return
      */
     private String translateLineToMorse(String line) {
-        String translated = new String();
+        String translated = "";
         if (line.length() == 0) {
             return "";
         }
         for (int i = 0; i < line.length(); ++i) {
-            if (dictionaryFromWords.containsKey(String.valueOf(line.charAt(i)))) {
-                translated += dictionaryFromWords.get(String.valueOf(line.charAt(i))) + " ";
+            String letter = String.valueOf(line.charAt(i)).toLowerCase();
+            if (dictionaryFromWords.containsKey(letter)) {
+                translated += dictionaryFromWords.get(letter) + " ";
             } else if (line.charAt(i) == ' ') {
                 translated = translated.substring(0, translated.length() - 1);
                 translated += "\t";
