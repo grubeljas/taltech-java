@@ -14,12 +14,13 @@ public class InputFilesScanner implements InputFilesReader {
         Path path = Paths.get(filename);
         List<String> lines = new LinkedList<>();
         try (Scanner scanner = new Scanner(path)) {
-            while (scanner.hasNext()) {
-                if (scanner.hasNext("\n")) {
+            while (scanner.hasNextLine()) {
+                String nextLine = scanner.nextLine();
+                System.out.println(nextLine);
+                if (nextLine.isBlank()) {
                     lines.add("");
-                    scanner.nextLine();
                 } else {
-                    lines.add(scanner.nextLine());
+                    lines.add(nextLine);
                 }
             }
         } catch (IOException e) {
