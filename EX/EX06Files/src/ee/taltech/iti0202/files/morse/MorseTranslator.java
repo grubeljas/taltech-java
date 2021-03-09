@@ -49,6 +49,9 @@ public class MorseTranslator {
      */
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> morses = new LinkedList<>();
+        if (lines.size() == 0) {
+            return lines;
+        }
         for (String line: lines) {
             morses.add(translateLineFromMorse(line));
         }
