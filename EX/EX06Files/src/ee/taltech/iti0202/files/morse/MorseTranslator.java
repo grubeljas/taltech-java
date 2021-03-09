@@ -20,9 +20,11 @@ public class MorseTranslator {
         Map<String, String> dictionary = new HashMap<>();
         for (String line: lines) {
             String[] symbols = line.split(" ");
-            dictionary.put(symbols[0].toLowerCase(), symbols[1]);
-            dictionaryFromWords.put(symbols[0].toLowerCase(), symbols[1]);
-            dictionaryFromMorse.put(symbols[1], symbols[0].toLowerCase());
+            if (!symbols[0].isBlank()) {
+                dictionary.put(symbols[0].toLowerCase(), symbols[1]);
+                dictionaryFromWords.put(symbols[0].toLowerCase(), symbols[1]);
+                dictionaryFromMorse.put(symbols[1], symbols[0].toLowerCase());
+            }
         }
         return dictionary;
     }
