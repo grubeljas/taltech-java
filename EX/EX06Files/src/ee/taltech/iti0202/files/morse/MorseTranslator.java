@@ -1,13 +1,21 @@
 package ee.taltech.iti0202.files.morse;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.LinkedList;
 
 public class MorseTranslator {
 
     public Map<String, String> dictionaryFromWords = new HashMap<>();
     public Map<String, String> dictionaryFromMorse = new HashMap<>();
 
-
+    /**
+     * Add morse info to dict.
+     *
+     * @param lines
+     * @return
+     */
     public Map<String, String> addMorseCodes(List<String> lines) {
         Map<String, String> dictionary = new HashMap<>();
         for (String line: lines) {
@@ -19,6 +27,12 @@ public class MorseTranslator {
         return dictionary;
     }
 
+    /**
+     * Translate lines to morse.
+     *
+     * @param lines
+     * @return
+     */
     public List<String> translateLinesToMorse(List<String> lines) {
         List<String> morses = new LinkedList<>();
         for (String line: lines) {
@@ -27,6 +41,12 @@ public class MorseTranslator {
         return morses;
     }
 
+    /**
+     * Translate lines to words.
+     *
+     * @param lines
+     * @return
+     */
     public List<String> translateLinesFromMorse(List<String> lines) {
         List<String> morses = new LinkedList<>();
         for (String line: lines) {
@@ -35,12 +55,18 @@ public class MorseTranslator {
         return morses;
     }
 
+    /**
+     * Translate line to words.
+     *
+     * @param line
+     * @return
+     */
     private String translateLineToMorse(String line) {
         String translated = new String();
         for (int i = 0; i < line.length(); ++i) {
             if (dictionaryFromWords.containsKey(String.valueOf(line.charAt(i)))) {
                 translated += dictionaryFromWords.get(String.valueOf(line.charAt(i))) + " ";
-            } if (line.charAt(i) == ' ') {
+            } else if (line.charAt(i) == ' ') {
                 translated += "\t";
             }
         }

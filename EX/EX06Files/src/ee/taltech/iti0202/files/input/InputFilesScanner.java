@@ -1,15 +1,13 @@
 package ee.taltech.iti0202.files.input;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.io.File;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputFilesScanner implements InputFilesReader{
+public class InputFilesScanner implements InputFilesReader {
 
     @Override
     public List<String> readTextFromFile(String filename) throws FileReaderException {
@@ -22,8 +20,7 @@ public class InputFilesScanner implements InputFilesReader{
         } catch (IOException e) {
             try {
                 throw new FileReaderException("No such file", new Throwable());
-            }
-            catch (FileReaderException e1) {
+            } catch (FileReaderException e1) {
                 System.out.println("Error reading file:" + e1.getMessage());
                 e.printStackTrace();
             }
