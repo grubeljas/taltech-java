@@ -21,7 +21,7 @@ public class InputFilesBufferReader implements InputFilesReader {
                 lines.add(line);
             }
         } catch (IOException e) {
-            throw new FileReaderException("No such file", new Throwable());
+            throw new FileReaderException("No such file", new IOException());
         }
         return lines;
     }
