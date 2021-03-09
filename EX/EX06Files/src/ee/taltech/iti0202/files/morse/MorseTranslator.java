@@ -67,11 +67,11 @@ public class MorseTranslator {
             if (dictionaryFromWords.containsKey(String.valueOf(line.charAt(i)))) {
                 translated += dictionaryFromWords.get(String.valueOf(line.charAt(i))) + " ";
             } else if (line.charAt(i) == ' ') {
-                translated = translated.substring(0, translated.length() - 2);
+                translated = translated.substring(0, translated.length() - 1);
                 translated += "\t";
             }
         }
-        return translated;
+        return translated.substring(0, translated.length() - 1);
     }
 
     /**
