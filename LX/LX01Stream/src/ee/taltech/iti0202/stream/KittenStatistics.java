@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.stream;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class KittenStatistics {
@@ -118,6 +115,7 @@ public class KittenStatistics {
         List<Kitten> answer = kittens.stream()
                 .sorted(Comparator.comparing(Kitten::getAge))
                 .collect(Collectors.toList());
+        Collections.reverse(answer);
         return answer;
     }
 
