@@ -114,8 +114,9 @@ public class KittenStatistics {
      * @return
      */
     public List<Kitten> kittensSortedByAgeOlderFirst() {
-        List<Kitten> answer = kittens.stream()
-                .sorted(Comparator.comparing(Kitten::getAge))
+        List<Kitten> answer = kittensSortedByAgeYoungerFirst().stream()
+                .sorted(Comparator.comparing(Kitten::getAge)
+                .reversed())
                 .collect(Collectors.toList());
         Collections.reverse(answer);
         return answer;
