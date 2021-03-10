@@ -1,6 +1,10 @@
 package ee.taltech.iti0202.stream;
 
-import java.util.*;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Optional;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class KittenStatistics {
@@ -86,15 +90,10 @@ public class KittenStatistics {
      * @return
      */
     public Optional<Kitten> findFirstKittenWithGivenName(String givenName) {
-        Optional<Kitten> first = Optional.empty();
-        List<Kitten> answer = kittens.stream()
+        Optional<Kitten> answer = kittens.stream()
                 .filter(kitten -> kitten.getName().equals(givenName))
-                .collect(Collectors.toList());
-        if (answer.isEmpty()) {
-            return first;
-        }
-        first = Optional.of(answer.get(0));
-        return first;
+                .findFirst();
+        return answer;
     }
 
     /**
