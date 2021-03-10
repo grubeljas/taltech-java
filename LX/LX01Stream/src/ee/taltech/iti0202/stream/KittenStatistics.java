@@ -17,6 +17,9 @@ public class KittenStatistics {
      * @return
      */
     public OptionalDouble findKittensAverageAge() {
+        if (kittens.isEmpty()) {
+            return OptionalDouble.empty();
+        }
         double sumOfAges = kittens.stream()
                 .mapToInt(kitten -> kitten.getAge())
                 .sum();
