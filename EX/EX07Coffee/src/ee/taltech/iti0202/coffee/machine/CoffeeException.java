@@ -1,4 +1,4 @@
-package ee.taltech.iti0202.coffee;
+package ee.taltech.iti0202.coffee.machine;
 
 public class CoffeeException extends Exception{
 
@@ -14,7 +14,7 @@ public class CoffeeException extends Exception{
     }
 
     public enum Reason {
-        NOT_ENOUGH_COFFEE, NOT_ENOUGH_WATER
+        NOT_ENOUGH_COFFEE, NOT_ENOUGH_WATER, WATER_IS_LEAKING
     }
 
     public Reason getReason() {
