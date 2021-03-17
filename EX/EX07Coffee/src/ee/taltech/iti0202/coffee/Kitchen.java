@@ -36,10 +36,15 @@ public class Kitchen {
      * (One package is 10 portions)
      */
     public void buyCoffee() {
-        log.info("Milk is coffee.");
+        log.info("Milk is bought.");
         this.coffee += 10;
     }
 
+    /**
+     * Add new machine to list.
+     *
+     * @param machine
+     */
     public void addMachine(CoffeeMachine machine) {
         machines.add(machine);
     }

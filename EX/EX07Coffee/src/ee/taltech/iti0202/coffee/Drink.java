@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.coffee;
 
-import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -17,8 +16,14 @@ public class Drink {
         put("Cappuccino", new int[]{3, 4, 3});
     }};
 
-    public static void addDrink(String drink, int[] ingridients) {
-        drinksHashMap.put(drink, ingridients);
+    /**
+     * Add new drink in hashmap with number of ingredients(not changeable).
+     *
+     * @param drink
+     * @param ingredients
+     */
+    public static void addDrink(String drink, int[] ingredients) {
+        drinksHashMap.put(drink, ingredients);
     }
 
 }

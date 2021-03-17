@@ -15,6 +15,12 @@ public class WaterContainer {
         this.max = maximum;
     }
 
+    /**
+     * Take water.
+     *
+     * @param usage number of portions.
+     * @throws CoffeeException if not enough water.
+     */
     public void useWater(int usage) throws CoffeeException {
         if (water < usage) {
             throw new CoffeeException(CoffeeException.Reason.NOT_ENOUGH_WATER);

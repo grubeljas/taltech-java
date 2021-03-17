@@ -14,7 +14,7 @@ public class CoffeeException extends Exception{
     }
 
     public enum Reason {
-        NOT_ENOUGH_COFFEE, NOT_ENOUGH_WATER, WATER_IS_LEAKING
+        NOT_ENOUGH_WATER, WATER_IS_LEAKING
     }
 
     public Reason getReason() {
