@@ -184,6 +184,7 @@ public class PersonStatistics {
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
         System.out.println(statistics.countPersons());
+        System.out.println(statistics.persons.get(0).gender);
     }
 
 }

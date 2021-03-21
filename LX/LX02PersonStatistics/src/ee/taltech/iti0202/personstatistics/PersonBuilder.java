@@ -6,7 +6,7 @@ public class PersonBuilder {
     String firstName, lastName, occupation, nation;
     int age;
     double height;
-    Person.Gender gender;
+    Gender gender;
 
     public PersonBuilder withName(String firstName) {
         this.firstName = firstName;
