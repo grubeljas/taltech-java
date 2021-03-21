@@ -1,12 +1,11 @@
 package ee.taltech.iti0202.personstatistics;
-import ee.taltech.iti0202.personstatistics.Person.Gender;
 
 public class PersonBuilder {
 
     String firstName, lastName, occupation, nation;
     int age;
     double height;
-    Gender gender;
+    Person.Gender gender;
 
     public PersonBuilder withName(String firstName) {
         this.firstName = firstName;
@@ -38,7 +37,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder withGender(Gender gender) {
+    public PersonBuilder withGender(Person.Gender gender) {
         this.gender = gender;
         return this;
     }
