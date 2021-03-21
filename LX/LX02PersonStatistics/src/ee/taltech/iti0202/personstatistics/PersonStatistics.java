@@ -190,10 +190,6 @@ public class PersonStatistics {
         System.out.println(statistics.countPersons());
         System.out.println(statistics.persons.get(0).gender);
         System.out.println(statistics.findAverageHeight());
-        System.out.println(statistics.findYoungestPerson());
-        System.out.println(statistics.findOldestPerson());
-        System.out.println(statistics.findLongestLastName());
-        System.out.println(statistics.findSameLetterNameAndNationality());
     }
 
 }

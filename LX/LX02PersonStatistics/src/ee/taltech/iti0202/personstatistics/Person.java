@@ -5,9 +5,9 @@ public class Person {
     String firstName, lastName, occupation, nation;
     int age;
     double height;
-    protected Gender gender;
+    public Gender gender;
 
-    public enum Gender {
+    enum Gender {
         MALE, FEMALE
     }
 
