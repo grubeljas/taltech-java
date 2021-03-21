@@ -1,15 +1,15 @@
 package ee.taltech.iti0202.personstatistics;
 
+enum Gender {
+    MALE, FEMALE
+}
+
 public class Person {
 
     String firstName, lastName, occupation, nation;
     int age;
     double height;
     public Gender gender;
-
-    enum Gender {
-        MALE, FEMALE
-    }
 
     public Person(String firstName, String lastName, int age, double height, Gender gender, String occupation,
                   String nation) {

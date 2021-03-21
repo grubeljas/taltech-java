@@ -16,11 +16,6 @@ public class PersonStatistics {
 
     private final List<Person> persons;
 
-    public enum Gender {
-        MALE, FEMALE
-    }
-
-
     /**
      * Constructor which stores the given list.
      */
