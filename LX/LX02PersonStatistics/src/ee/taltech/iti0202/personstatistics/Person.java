@@ -7,7 +7,7 @@ public class Person {
     double height;
     protected Gender gender;
 
-    enum Gender {
+    public enum Gender {
         MALE, FEMALE
     }
 

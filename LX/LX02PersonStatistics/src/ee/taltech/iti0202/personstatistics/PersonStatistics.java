@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.personstatistics;
 
-import ee.taltech.iti0202.personstatistics.Person.Gender;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Optional;
@@ -16,6 +15,11 @@ import java.util.stream.Collectors;
 public class PersonStatistics {
 
     private final List<Person> persons;
+
+    public enum Gender {
+        MALE, FEMALE
+    }
+
 
     /**
      * Constructor which stores the given list.
