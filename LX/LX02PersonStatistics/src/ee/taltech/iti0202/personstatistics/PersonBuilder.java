@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.personstatistics;
+import ee.taltech.iti0202.personstatistics.Person.Gender;
 
 public class PersonBuilder {
 
@@ -37,7 +38,7 @@ public class PersonBuilder {
         return this;
     }
 
-    public PersonBuilder withGender(Person.Gender gender) {
+    public PersonBuilder withGender(Gender gender) {
         this.gender = gender;
         return this;
     }

@@ -1,6 +1,13 @@
 package ee.taltech.iti0202.personstatistics;
 
-import java.util.*;
+import ee.taltech.iti0202.personstatistics.Person.Gender;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.Optional;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -70,7 +77,7 @@ public class PersonStatistics {
      */
     public List<String> getNationalityData() {
         List<String> nations = persons.stream()
-                .map(Person::getNation)
+                .map(Person::getNationality)
                 .collect(Collectors.toList());
         return nations;
     }
@@ -82,7 +89,7 @@ public class PersonStatistics {
      */
     public List<Double> getHeightInCm() {
         List<Double> heights = persons.stream()
-                .map(Person::getHeight)
+                .map(Person::getHeightInMeters)
                 .map(p -> p * 100)
                 .collect(Collectors.toList());
         return heights;
@@ -106,9 +113,9 @@ public class PersonStatistics {
      *
      * @return first matching person
      */
-    public Optional<Person> findSamplePerson(String nationality, Person.Gender gender, int age) {
+    public Optional<Person> findSamplePerson(String nationality, Gender gender, int age) {
         Optional<Person> person = persons.stream()
-                .filter(person1 -> person1.getNation().equals(nationality))
+                .filter(person1 -> person1.getNationality().equals(nationality))
                 .filter(person1 -> person1.getGender().equals(gender))
                 .filter(person1 -> person1.getAge() == age)
                 .findFirst();
@@ -132,7 +139,7 @@ public class PersonStatistics {
      */
     public List<Person> getReverseOrderedByHeight() {
         List<Person> sorted = persons.stream()
-                .sorted(Comparator.comparingDouble(Person::getHeight)
+                .sorted(Comparator.comparingDouble(Person::getHeightInMeters)
                 .reversed())
                 .collect(Collectors.toList());
         return sorted;
@@ -156,7 +163,7 @@ public class PersonStatistics {
      */
     public List<Person> findSameLetterNameAndNationality() {
         List<Person> people = persons.stream()
-                .filter(person -> person.getFirstName().substring(0, 1).equals(person.getNation().substring(0, 1)))
+                .filter(person -> person.getFirstName().substring(0, 1).equals(person.getNationality().substring(0, 1)))
                 .collect(Collectors.toList());
         return people;
     }

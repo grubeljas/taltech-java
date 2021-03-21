@@ -26,7 +26,7 @@ public class Person {
         return age;
     }
 
-    public double getHeight() {
+    public double getHeightInMeters() {
         return height;
     }
 
@@ -46,7 +46,7 @@ public class Person {
         return getLastName().length();
     }
 
-    public String getNation() {
+    public String getNationality() {
         return nation;
     }
 
