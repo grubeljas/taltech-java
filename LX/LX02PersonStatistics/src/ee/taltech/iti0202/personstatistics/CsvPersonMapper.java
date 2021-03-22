@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 
 public class CsvPersonMapper {
 
-    final int AGEINDEX = 2;
-    final int GENDERINDEX = 3;
-    final int HEIGHTINDEX = 4;
-    final int OCCUPATIONINDEX = 5;
-    final int NATIONINDEX = 6;
+    final int aGEINDEX = 2;
+    final int gENDERINDEX = 3;
+    final int hEIGHTINDEX = 4;
+    final int oCCUPATIONINDEX = 5;
+    final int nATIONINDEX = 6;
 
     public List<Person> mapToPersons(String path) {
         List<List<String>> result;
@@ -31,11 +31,11 @@ public class CsvPersonMapper {
             Person person1 = new PersonBuilder()
                     .withName(person.get(0))
                     .withLastName(person.get(1))
-                    .withAge(Integer.parseInt(person.get(AGEINDEX)))
-                    .withGender(Gender.valueOf(person.get(GENDERINDEX)))
-                    .withHeight(Double.parseDouble(person.get(HEIGHTINDEX)))
-                    .withOccupation(person.get(OCCUPATIONINDEX))
-                    .withNation(person.get(NATIONINDEX))
+                    .withAge(Integer.parseInt(person.get(aGEINDEX)))
+                    .withGender(Gender.valueOf(person.get(gENDERINDEX)))
+                    .withHeight(Double.parseDouble(person.get(hEIGHTINDEX)))
+                    .withOccupation(person.get(oCCUPATIONINDEX))
+                    .withNation(person.get(nATIONINDEX))
                     .build();
             persons.add(person1);
         }
