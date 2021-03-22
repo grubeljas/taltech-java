@@ -37,6 +37,9 @@ public class PersonStatistics {
      * Find the average height of the persons.
      */
     public OptionalDouble findAverageHeight() {
+        if (countPersons() == 0L) {
+            return OptionalDouble.empty();
+        }
         double sumOfAll = 0.0;
         Double sum = persons.stream()
                 .mapToDouble(Person::getAge)
