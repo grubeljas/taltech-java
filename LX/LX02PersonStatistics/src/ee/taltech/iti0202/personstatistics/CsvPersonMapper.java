@@ -33,6 +33,7 @@ public class CsvPersonMapper {
                     .withLastName(person.get(1))
                     .withAge(Integer.parseInt(person.get(aGEINDEX)))
                     .withHeight(Double.parseDouble(person.get(hEIGHTINDEX)))
+                    .withGender(Gender.valueOf(person.get(gENDERINDEX)))
                     .withOccupation(person.get(oCCUPATIONINDEX))
                     .withNation(person.get(nATIONINDEX))
                     .build();

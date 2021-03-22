@@ -116,7 +116,7 @@ public class PersonStatistics {
     public Optional<Person> findSamplePerson(String nationality, Gender gender, int age) {
         Optional<Person> person = persons.stream()
                 .filter(person1 -> person1.getNationality().equals(nationality))
-                //.filter(person1 -> person1.getGender().equals(gender))
+                .filter(person1 -> person1.getGender().equals(gender))
                 .filter(person1 -> person1.getAge() == age)
                 .findFirst();
         return person;

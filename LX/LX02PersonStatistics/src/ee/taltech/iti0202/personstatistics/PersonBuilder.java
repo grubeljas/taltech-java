@@ -5,7 +5,7 @@ public class PersonBuilder {
     String firstName, lastName, occupation, nation;
     int age;
     double height;
-    /**Gender gender;*/
+    Gender gender;
 
     /**
      * Name.
@@ -74,10 +74,10 @@ public class PersonBuilder {
     }
 
 
-    /**public PersonBuilder withGender(Gender gender) {
+    public PersonBuilder withGender(Gender gender) {
         this.gender = gender;
         return this;
-    }*/
+    }
 
     /**
      * Build person object.
@@ -85,7 +85,7 @@ public class PersonBuilder {
      * @return
      */
     public Person build() {
-        return new Person(firstName, lastName, age, height, occupation, nation);
+        return new Person(firstName, lastName, age, gender, height, occupation, nation);
     }
 
 }
