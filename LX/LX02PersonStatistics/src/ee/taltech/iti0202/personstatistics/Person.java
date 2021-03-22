@@ -1,8 +1,5 @@
 package ee.taltech.iti0202.personstatistics;
 
-class Gender {
-}
-
 public class Person {
 
     String firstName, lastName, occupation, nation;

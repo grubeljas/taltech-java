@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class PersonStatistics {
 
     private final List<Person> persons;
+    private final int inCM = 100;
 
     /**
      * Constructor which stores the given list.
@@ -89,7 +90,7 @@ public class PersonStatistics {
     public List<Double> getHeightInCm() {
         List<Double> heights = persons.stream()
                 .map(Person::getHeightInMeters)
-                .map(p -> p * 100)
+                .map(p -> p * inCM)
                 .collect(Collectors.toList());
         return heights;
     }
@@ -183,14 +184,6 @@ public class PersonStatistics {
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
         System.out.println(statistics.countPersons());
-        Person petr = new PersonBuilder()
-                .withAge(1)
-                    .withHeight(1.5)
-                    .withLastName("TOM")
-                    .withName("TOMAS")
-                    .withOccupation("Builder")
-                    .withNation("estonia")
-                .build();
         System.out.println(statistics.findAverageHeight());
     }
 
