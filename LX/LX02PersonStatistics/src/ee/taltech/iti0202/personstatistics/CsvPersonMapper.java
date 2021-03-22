@@ -32,7 +32,7 @@ public class CsvPersonMapper {
         } catch (IOException e) {
             throw new CsvToPersonMappingException("No such file", new IOException());
         }
-        for (List<String> person : result.subList(1, result.size())) {
+        for (List<String> person : result) {
             Person person1 = new PersonBuilder()
                     .withName(person.get(0))
                     .withLastName(person.get(1))
