@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.personstatistics;
 
-enum Gender {
-    MALE, FEMALE
+class Gender {
 }
 
 public class Person {
@@ -9,9 +8,9 @@ public class Person {
     String firstName, lastName, occupation, nation;
     int age;
     double height;
-    public Gender gender;
+    //*Gender gender;
 
-    public Person(String firstName, String lastName, int age, double height, Gender gender, String occupation,
+    public Person(String firstName, String lastName, int age, double height, String occupation,
                   String nation) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,7 +18,7 @@ public class Person {
         this.nation = nation;
         this.age = age;
         this.height = height;
-        this.gender = gender;
+        //*this.gender = gender;
     }
 
     public int getAge() {
@@ -30,9 +29,9 @@ public class Person {
         return height;
     }
 
-    public Gender getGender() {
+    /**public Gender getGender() {
         return gender;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName;

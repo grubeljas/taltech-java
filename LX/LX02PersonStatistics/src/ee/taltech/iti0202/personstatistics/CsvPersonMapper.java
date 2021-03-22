@@ -32,7 +32,6 @@ public class CsvPersonMapper {
                     .withName(person.get(0))
                     .withLastName(person.get(1))
                     .withAge(Integer.parseInt(person.get(aGEINDEX)))
-                    .withGender(Gender.valueOf(person.get(gENDERINDEX)))
                     .withHeight(Double.parseDouble(person.get(hEIGHTINDEX)))
                     .withOccupation(person.get(oCCUPATIONINDEX))
                     .withNation(person.get(nATIONINDEX))

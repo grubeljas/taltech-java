@@ -115,7 +115,7 @@ public class PersonStatistics {
     public Optional<Person> findSamplePerson(String nationality, Gender gender, int age) {
         Optional<Person> person = persons.stream()
                 .filter(person1 -> person1.getNationality().equals(nationality))
-                .filter(person1 -> person1.getGender().equals(gender))
+                //.filter(person1 -> person1.getGender().equals(gender))
                 .filter(person1 -> person1.getAge() == age)
                 .findFirst();
         return person;
@@ -183,7 +183,14 @@ public class PersonStatistics {
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
         System.out.println(statistics.countPersons());
-        System.out.println(statistics.persons.get(0).gender);
+        Person petr = new PersonBuilder()
+                .withAge(1)
+                    .withHeight(1.5)
+                    .withLastName("TOM")
+                    .withName("TOMAS")
+                    .withOccupation("Builder")
+                    .withNation("estonia")
+                .build();
         System.out.println(statistics.findAverageHeight());
     }
 
