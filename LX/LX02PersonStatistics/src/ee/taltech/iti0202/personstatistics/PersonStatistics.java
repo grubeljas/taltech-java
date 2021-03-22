@@ -1,12 +1,6 @@
 package ee.taltech.iti0202.personstatistics;
 
-import java.util.List;
-import java.util.OptionalDouble;
-import java.util.Optional;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -70,9 +64,14 @@ public class PersonStatistics {
      * Return the longest last name.
      */
     public Optional<String> findLongestLastName() {
-        Optional<Person> person = persons.stream()
-                .max(Comparator.comparing(Person::getLastNameSize));
-        return Optional.of(person.get().getLastName());
+        try {
+            Optional<Person> person = persons.stream()
+                    .max(Comparator.comparing(Person::getLastNameSize));
+            return Optional.of(person.get().getLastName());
+        } catch (NoSuchElementException e) {
+            return Optional.empty();
+        }
+
     }
 
     /**
