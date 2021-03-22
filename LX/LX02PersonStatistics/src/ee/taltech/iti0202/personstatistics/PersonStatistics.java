@@ -129,7 +129,7 @@ public class PersonStatistics {
         Set<String> names = persons.stream()
                 .map(Person::getFirstName)
                 .collect(Collectors.toSet());
-        return null;
+        return names;
     }
 
     /**

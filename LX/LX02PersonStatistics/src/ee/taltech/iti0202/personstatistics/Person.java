@@ -7,6 +7,16 @@ public class Person {
     double height;
     Gender gender;
 
+    /**
+     * Constructor.
+     * @param firstName
+     * @param lastName
+     * @param age
+     * @param gender
+     * @param height
+     * @param occupation
+     * @param nation
+     */
     public Person(String firstName, String lastName, int age, Gender gender, double height, String occupation,
                   String nation) {
         this.firstName = firstName;

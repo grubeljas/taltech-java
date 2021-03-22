@@ -73,7 +73,12 @@ public class PersonBuilder {
         return this;
     }
 
-
+    /**
+     * Add gender.
+     *
+     * @param gender
+     * @return
+     */
     public PersonBuilder withGender(Gender gender) {
         this.gender = gender;
         return this;

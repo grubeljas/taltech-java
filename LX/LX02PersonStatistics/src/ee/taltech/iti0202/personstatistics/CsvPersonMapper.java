@@ -16,6 +16,11 @@ public class CsvPersonMapper {
     final int oCCUPATIONINDEX = 5;
     final int nATIONINDEX = 6;
 
+    /**
+     * Make objcets from info.
+     * @param path
+     * @return
+     */
     public List<Person> mapToPersons(String path) {
         List<List<String>> result;
         List<Person> persons = new LinkedList<>();
