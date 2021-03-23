@@ -32,7 +32,7 @@ public class Person {
         return age;
     }
 
-    public double getHeightInMeters() {
+    public double getHeight() {
         return height;
     }
 
