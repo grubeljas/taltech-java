@@ -1,6 +1,14 @@
 package ee.taltech.iti0202.personstatistics;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 /**
@@ -179,9 +187,9 @@ public class PersonStatistics {
         if (countPersons() == 0L) {
             return new HashMap<>();
         }
-        persons.stream()
+        Map<String, List<Person>> jobsMap = persons.stream()
                 .collect(Collectors.groupingBy(Person::getOccupation));
-        return mapOccupationToPersons();
+        return jobsMap;
     }
 
     public static void main(String[] args) {
@@ -189,7 +197,7 @@ public class PersonStatistics {
         List<Person> persons = mapper.mapToPersons("persons.csv");
         PersonStatistics statistics = new PersonStatistics(persons);
         System.out.println(statistics.countPersons());
-        System.out.println(statistics.findAverageHeight());
+        System.out.println(statistics.mapOccupationToPersons());
     }
 
 }
