@@ -36,7 +36,7 @@ public class PersonStatistics {
         }
         double sumOfAll = 0.0;
         Double sum = persons.stream()
-                .mapToDouble(Person::getHeight)
+                .mapToDouble(Person::getHeightInMeters)
                 .sum();
         OptionalDouble average = OptionalDouble.of(sum / persons.size());
         return average;
@@ -91,7 +91,7 @@ public class PersonStatistics {
      */
     public List<Double> getHeightInCm() {
         List<Double> heights = persons.stream()
-                .map(Person::getHeight)
+                .map(Person::getHeightInMeters)
                 .map(p -> p * inCM)
                 .collect(Collectors.toList());
         return heights;
@@ -141,7 +141,7 @@ public class PersonStatistics {
      */
     public List<Person> getReverseOrderedByHeight() {
         List<Person> sorted = persons.stream()
-                .sorted(Comparator.comparingDouble(Person::getHeight)
+                .sorted(Comparator.comparingDouble(Person::getHeightInMeters)
                 .reversed())
                 .collect(Collectors.toList());
         return sorted;
