@@ -87,7 +87,7 @@ public class University {
      */
     public List<Student> getStudentsOrderedByResults() {
         List<Student> ordered = students.stream()
-                .sorted(Comparator.comparing(Student::getEap))
+                .sorted(Comparator.comparing(Student::getEap).reversed())
                 .collect(Collectors.toList());
         return ordered;
 

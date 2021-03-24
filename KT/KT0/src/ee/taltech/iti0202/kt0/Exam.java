@@ -35,7 +35,7 @@ public class Exam {
      */
     public static String repeatSeparator(String word, String sep, int count) {
         String answer = "";
-        if (sep.isBlank()) {
+        if (word.isBlank()) {
             return answer;
         }
         for (int i = 0; i < count - 1; i++) {
