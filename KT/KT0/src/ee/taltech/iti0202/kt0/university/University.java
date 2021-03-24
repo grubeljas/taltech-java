@@ -10,12 +10,23 @@ public class University {
     List<Student> students;
     List<Course> courses;
 
+    /**
+     * Constructor.
+     *
+     * @param name
+     */
     public University(String name) {
         this.name = name;
         this.students = new ArrayList<>();
         this.courses = new ArrayList<>();
     }
 
+    /**
+     * Add to uni.
+     *
+     * @param student
+     * @return
+     */
     public boolean addStudent(Student student) {
         if (!students.contains(student)) {
             students.add(student);
@@ -24,6 +35,13 @@ public class University {
         return false;
     }
 
+    /**
+     * Create course.
+     *
+     * @param name
+     * @param eap
+     * @return
+     */
     public Optional<Course> createCourse(String name, int eap) {
         if (eap > 0 && !name.isBlank()) {
             for (Course c: courses) {
@@ -50,6 +68,11 @@ public class University {
         return name;
     }
 
+    /**
+     * Check finished courses.
+     *
+     * @return
+     */
     public List<Course> getFinishedCourses() {
         List<Course> finished = courses.stream()
                 .filter(Course::isFinished)
@@ -57,6 +80,11 @@ public class University {
         return finished;
     }
 
+    /**
+     * Get students ordered by results.
+     *
+     * @return
+     */
     public List<Student> getStudentsOrderedByResults() {
         List<Student> ordered = students.stream()
                 .sorted(Comparator.comparing(Student::getEap))

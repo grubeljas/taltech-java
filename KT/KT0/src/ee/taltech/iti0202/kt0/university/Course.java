@@ -10,6 +10,13 @@ public class Course {
     int eap;
     String name;
 
+    /**
+     * Constuctor.
+     *
+     * @param name
+     * @param eap
+     * @param uni
+     */
     public Course(String name, int eap, University uni) {
         this.eap = eap;
         this.uni = uni;
@@ -18,6 +25,12 @@ public class Course {
         this.isFinished = false;
     }
 
+    /**
+     * Add student.
+     *
+     * @param student
+     * @return
+     */
     public boolean addStudent(Student student) {
         if (students.contains(student)) {
             return false;
@@ -31,6 +44,11 @@ public class Course {
         return students;
     }
 
+    /**
+     * Finish course.
+     *
+     * @return
+     */
     public boolean finish() {
         if (!isFinished) {
             isFinished = true;
@@ -43,6 +61,11 @@ public class Course {
         return false;
     }
 
+    /**
+     * Check finished.
+     *
+     * @return
+     */
     public boolean isFinished() {
         return isFinished;
     }

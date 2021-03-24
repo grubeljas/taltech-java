@@ -7,12 +7,16 @@ public class Student {
     int eap;
     List<Course> unfinishedCourses;
 
+    /**
+     * Constructor.
+     *
+     * @param name
+     */
     public Student(String name) {
         this.unfinishedCourses = new ArrayList<>();
         this.name = name;
         this.eap = 0;
     }
-
 
     public String getName() {
         return name;
