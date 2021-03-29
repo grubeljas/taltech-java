@@ -6,6 +6,8 @@ public class StudentStrategy implements Strategy {
     private Board board;
     private Random rand;
     private static final int inf = 100;
+    static final int tHREE = 3;
+    static final int numberOfSquares = 9;
 
     public StudentStrategy() {
         this.board = new Board();
@@ -30,11 +32,11 @@ public class StudentStrategy implements Strategy {
         int move;
         if (board.getMoveCounter() == 0) {
             System.out.println("rand");
-            move = rand.nextInt(Game.numberOfSquares);
+            move = rand.nextInt(numberOfSquares);
         } else {
             move = getBestMove(copiedBoard);
         }
-        this.board.move(move / Game.tHREE, move % Game.tHREE);
+        this.board.move(move / tHREE, move % tHREE);
         return move;
     }
 
@@ -42,10 +44,10 @@ public class StudentStrategy implements Strategy {
         int bestMove = 0;
         int bestResult = -10;
         int optionalResult;
-        for (int i = 0; i < Game.numberOfSquares; i++) {
-            if(board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
+        for (int i = 0; i < numberOfSquares; i++) {
+            if(board.isLegal(i / tHREE, i % tHREE)) {
                 Board board1 = new Board(board);
-                board1.move(i / Game.tHREE, i % Game.tHREE);
+                board1.move(i / tHREE, i % tHREE);
                 optionalResult = getMinValue(board1);
                 if (optionalResult > bestResult) {
                     bestResult = optionalResult;
@@ -59,12 +61,12 @@ public class StudentStrategy implements Strategy {
     public int getMinValue(Board board) {
         int bestResult = inf;
         int optionalResult;
-        for (int i = 0; i < Game.numberOfSquares; i++) {
-            if(board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
+        for (int i = 0; i < numberOfSquares; i++) {
+            if(board.isLegal(i / tHREE, i % tHREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / Game.tHREE, i % Game.tHREE);
+                board2.move(i / tHREE, i % tHREE);
                 if (board2.getWinner() == opponent) {
-                    optionalResult = -1 * (Game.numberOfSquares + 1 - board2.getMoveCounter());
+                    optionalResult = -1 * (numberOfSquares + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
@@ -81,12 +83,12 @@ public class StudentStrategy implements Strategy {
     public int getMaxValue(Board board) {
         int bestResult = -inf;
         int optionalResult;
-        for (int i = 0; i < Game.numberOfSquares; i++) {
-            if (board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
+        for (int i = 0; i < numberOfSquares; i++) {
+            if (board.isLegal(i / tHREE, i % tHREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / Game.tHREE, i % Game.tHREE);
+                board2.move(i / tHREE, i % tHREE);
                 if (board2.getWinner() == number) {
-                    optionalResult = 1 * (Game.numberOfSquares + 1 - board2.getMoveCounter());
+                    optionalResult = 1 * (numberOfSquares + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
