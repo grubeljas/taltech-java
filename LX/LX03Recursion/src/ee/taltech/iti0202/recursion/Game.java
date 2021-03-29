@@ -4,8 +4,8 @@ public final class Game {
 
     private Strategy[] players;
     private Board board;
-    static final int tHREE = 3;
-    static final int numberOfSquares = 9;
+    static final int THREE = 3;
+    static final int SQUARES = 9;
 
     /**
      * Constructor.
@@ -28,13 +28,13 @@ public final class Game {
      * @return result of game.
      */
     public int play() {
-        for (int i = 0; i < numberOfSquares; i++) {
+        for (int i = 0; i < SQUARES; i++) {
             System.out.println(board.toStr());
             int move = this.players[i % 2].getMove();
             // System.out.println(move);
-            board.move(move / tHREE, move % tHREE);
+            board.move(move / THREE, move % THREE);
             // System.out.println(board.toStr());
-            this.players[(i + 1) % 2].moveOpponent(move / tHREE, move % tHREE);
+            this.players[(i + 1) % 2].moveOpponent(move / THREE, move % THREE);
             if (board.getWinner() != 0) {
                 return board.getWinner();
             }

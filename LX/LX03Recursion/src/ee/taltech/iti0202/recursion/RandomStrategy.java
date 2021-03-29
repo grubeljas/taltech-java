@@ -6,30 +6,50 @@ public class RandomStrategy implements Strategy {
     private int number;
     private Board board;
     private Random random;
-    static final int tHREE = 3;
-    static final int numberOfSquares = 9;
+    static final int THREE = 3;
+    static final int SQUARES = 9;
 
+    /**
+     * Constructor.
+     *
+     */
     public RandomStrategy() {
         board = new Board();
         random = new Random();
     }
 
+    /**
+     * Set number.
+     *
+     * @param number
+     */
     @Override
     public void setNumber(int number) {
         this.number = number;
     }
 
+    /**
+     * Move opponent.
+     *
+     * @param x
+     * @param y
+     */
     @Override
     public void moveOpponent(int x, int y) {
         board.move(x, y);
     }
 
+    /**
+     * Get random move.
+     *
+     * @return
+     */
     @Override
     public int getMove() {
         while (true) {
-            int move = random.nextInt(numberOfSquares);
-            if (board.getBoard()[move / tHREE][move % tHREE] == 0) {
-                board.move(move / tHREE, move % tHREE);
+            int move = random.nextInt(SQUARES);
+            if (board.getBoard()[move / THREE][move % THREE] == 0) {
+                board.move(move / THREE, move % THREE);
                 return move;
             }
         }

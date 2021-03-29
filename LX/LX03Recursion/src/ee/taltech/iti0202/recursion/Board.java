@@ -3,17 +3,17 @@ public class Board {
     private int[][] board;
     private int nextMove;
     private int moveCounter;
-    static final int tHREE = 3;
-    static final int numberOfSquares = 9;
+    static final int THREE = 3;
+    static final int SQUARES = 9;
 
     /**
      * Construct.
      *
      */
     public Board() {
-        board = new int[tHREE][tHREE];
-        for (int y = 0; y < tHREE; y++) {
-            for (int x = 0; x < tHREE; x++) {
+        board = new int[THREE][THREE];
+        for (int y = 0; y < THREE; y++) {
+            for (int x = 0; x < THREE; x++) {
                 board[x][y] = 0;
             }
         }
@@ -27,10 +27,10 @@ public class Board {
      * @param board
      */
     public Board(Board board) {
-        this.board = new int[tHREE][tHREE];
+        this.board = new int[THREE][THREE];
         int[][] otherBoard = board.getBoard();
-        for (int y = 0; y < tHREE; y++) {
-            for (int x = 0; x < tHREE; x++) {
+        for (int y = 0; y < THREE; y++) {
+            for (int x = 0; x < THREE; x++) {
                 this.board[x][y] = otherBoard[x][y];
             }
         }
@@ -38,6 +38,11 @@ public class Board {
         moveCounter = board.getMoveCounter();
     }
 
+    /**
+     * Get how many move was made.
+     *
+     * @return
+     */
     public int getMoveCounter() {
         return moveCounter;
     }
@@ -49,11 +54,11 @@ public class Board {
      * @return
      */
     public boolean isLegal(int move) {
-        return this.board[move / tHREE][move % tHREE] == 0;
+        return this.board[move / THREE][move % THREE] == 0;
     }
 
     /**
-     * I
+     * Is legal this turn.
      *
      * @param x
      * @param y
@@ -63,6 +68,11 @@ public class Board {
         return this.board[x][y] == 0;
     }
 
+    /**
+     * Get this board.
+     *
+     * @return
+     */
     public int[][] getBoard() {
         return board;
     }
@@ -71,10 +81,15 @@ public class Board {
         return nextMove;
     }
 
+    /**
+     * Show board.
+     *
+     * @return
+     */
     public String toStr() {
         StringBuilder string = new StringBuilder();
-        for (int y = 0; y < tHREE; y++) {
-            for (int x = 0; x < tHREE; x++) {
+        for (int y = 0; y < THREE; y++) {
+            for (int x = 0; x < THREE; x++) {
                 string.append(board[y][x] == 1 ? "X" : (board[y][x] == 2 ? "O" : "_"));
             }
             string.append("\n");
@@ -82,6 +97,12 @@ public class Board {
         return string.toString();
     }
 
+    /**
+     * Move x or o.
+     *
+     * @param x
+     * @param y
+     */
     public void move(int x, int y) {
         if (board[x][y] != 0) {
             throw new IllegalMoveException(x, y);
@@ -91,12 +112,22 @@ public class Board {
         moveCounter += 1;
     }
 
+    /**
+     * Check if board is full.
+     *
+     * @return
+     */
     public boolean isFull() {
-        return moveCounter >= numberOfSquares;
+        return moveCounter >= SQUARES;
     }
 
+    /**
+     * Is somebody won.
+     *
+     * @return
+     */
     public int getWinner() {
-        for (int i = 0; i < tHREE; i++) {
+        for (int i = 0; i < THREE; i++) {
             if (board[i][0] != 0 && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return board[i][0];
             }

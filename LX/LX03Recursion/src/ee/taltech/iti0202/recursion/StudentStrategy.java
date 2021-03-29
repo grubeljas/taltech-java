@@ -6,14 +6,23 @@ public class StudentStrategy implements Strategy {
     private Board board;
     private Random rand;
     private static final int inf = 100;
-    static final int tHREE = 3;
-    static final int numberOfSquares = 9;
+    static final int THREE = 3;
+    static final int SQUARES = 9;
 
+    /**
+     * Constructor.
+     *
+     */
     public StudentStrategy() {
         this.board = new Board();
         this.rand = new Random();
     }
 
+    /**
+     * Set who is player.
+     *
+     * @param number
+     */
     @Override
     public void setNumber(int number) {
         this.number = number;
@@ -21,33 +30,50 @@ public class StudentStrategy implements Strategy {
         System.out.println("me:" + number + " Opponent:" + opponent);
     }
 
+    /**
+     * Move opponent.
+     *
+     * @param x
+     * @param y
+     */
     @Override
     public void moveOpponent(int x, int y) {
         this.board.move(x, y);
     }
 
+    /**
+     * Get move.
+     *
+     * @return move.
+     */
     @Override
     public int getMove() {
         Board copiedBoard = new Board(board);
         int move;
         if (board.getMoveCounter() == 0) {
             System.out.println("rand");
-            move = rand.nextInt(numberOfSquares);
+            move = rand.nextInt(SQUARES);
         } else {
             move = getBestMove(copiedBoard);
         }
-        this.board.move(move / tHREE, move % tHREE);
+        this.board.move(move / THREE, move % THREE);
         return move;
     }
 
+    /**
+     * Get best move.
+     *
+     * @param board
+     * @return number of square.
+     */
     public int getBestMove(Board board) {
         int bestMove = 0;
         int bestResult = -10;
         int optionalResult;
-        for (int i = 0; i < numberOfSquares; i++) {
-            if(board.isLegal(i / tHREE, i % tHREE)) {
+        for (int i = 0; i < SQUARES; i++) {
+            if(board.isLegal(i / THREE, i % THREE)) {
                 Board board1 = new Board(board);
-                board1.move(i / tHREE, i % tHREE);
+                board1.move(i / THREE, i % THREE);
                 optionalResult = getMinValue(board1);
                 if (optionalResult > bestResult) {
                     bestResult = optionalResult;
@@ -58,15 +84,21 @@ public class StudentStrategy implements Strategy {
         return bestMove;
     }
 
+    /**
+     * Get best move for opponent.
+     *
+     * @param board
+     * @return
+     */
     public int getMinValue(Board board) {
         int bestResult = inf;
         int optionalResult;
-        for (int i = 0; i < numberOfSquares; i++) {
-            if(board.isLegal(i / tHREE, i % tHREE)) {
+        for (int i = 0; i < SQUARES; i++) {
+            if(board.isLegal(i / THREE, i % THREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / tHREE, i % tHREE);
+                board2.move(i / THREE, i % THREE);
                 if (board2.getWinner() == opponent) {
-                    optionalResult = -1 * (numberOfSquares + 1 - board2.getMoveCounter());
+                    optionalResult = -1 * (SQUARES + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
@@ -80,15 +112,21 @@ public class StudentStrategy implements Strategy {
         return bestResult;
     }
 
+    /**
+     * Get best move for you.
+     *
+     * @param board
+     * @return
+     */
     public int getMaxValue(Board board) {
         int bestResult = -inf;
         int optionalResult;
-        for (int i = 0; i < numberOfSquares; i++) {
-            if (board.isLegal(i / tHREE, i % tHREE)) {
+        for (int i = 0; i < SQUARES; i++) {
+            if (board.isLegal(i / THREE, i % THREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / tHREE, i % tHREE);
+                board2.move(i / THREE, i % THREE);
                 if (board2.getWinner() == number) {
-                    optionalResult = 1 * (numberOfSquares + 1 - board2.getMoveCounter());
+                    optionalResult = 1 * (SQUARES + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
