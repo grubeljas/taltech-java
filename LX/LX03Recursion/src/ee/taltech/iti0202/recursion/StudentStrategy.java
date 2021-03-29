@@ -9,7 +9,11 @@ public class StudentStrategy implements Strategy {
     /**
      * Bruh.
      */
-    private int number, opponent;
+    private int number;
+    /**
+     * Bruh.
+     */
+    private int opponent;
     /**
      * Bruh.
      */
@@ -42,11 +46,11 @@ public class StudentStrategy implements Strategy {
     /**
      * Set who is player.
      *
-     * @param number
+     * @param number1
      */
     @Override
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNumber(int number1) {
+        this.number = number1;
         this.opponent = number == 1 ? 2 : 1;
         System.out.println("me:" + number + " Opponent:" + opponent);
     }
@@ -58,7 +62,7 @@ public class StudentStrategy implements Strategy {
      * @param y
      */
     @Override
-    public void moveOpponent(int x, int y) {
+    public void moveOpponent(final int x, final int y) {
         this.board.move(x, y);
     }
 
@@ -87,12 +91,12 @@ public class StudentStrategy implements Strategy {
      * @param board
      * @return number of square.
      */
-    public int getBestMove(Board board) {
+    public int getBestMove(final Board board) {
         int bestMove = 0;
         int bestResult = -INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {
-            if(board.isLegal(i / THREE, i % THREE)) {
+            if (board.isLegal(i / THREE, i % THREE)) {
                 Board board1 = new Board(board);
                 board1.move(i / THREE, i % THREE);
                 optionalResult = getMinValue(board1);
@@ -111,11 +115,11 @@ public class StudentStrategy implements Strategy {
      * @param board
      * @return best result for enemy.
      */
-    public int getMinValue(Board board) {
+    public int getMinValue(final Board board) {
         int bestResult = INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {
-            if(board.isLegal(i / THREE, i % THREE)) {
+            if (board.isLegal(i / THREE, i % THREE)) {
                 Board board2 = new Board(board);
                 board2.move(i / THREE, i % THREE);
                 if (board2.getWinner() == opponent) {
@@ -140,7 +144,7 @@ public class StudentStrategy implements Strategy {
      * @param board
      * @return best result for you.
      */
-    public int getMaxValue(Board board) {
+    public int getMaxValue(final Board board) {
         int bestResult = -INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {

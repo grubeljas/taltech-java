@@ -1,5 +1,5 @@
 /**
- * Info about this package.
+ * Package.
  */
 package ee.taltech.iti0202.recursion;
 

@@ -73,7 +73,7 @@ public class Board {
      * @param move
      * @return is possible move.
      */
-    public boolean isLegal(int move) {
+    public boolean isLegal(final int move) {
         return this.board[move / THREE][move % THREE] == 0;
     }
 
@@ -100,7 +100,7 @@ public class Board {
     /**
      * Get who's gonna move O or X.
      *
-     * @return
+     * @return next move.
      */
     public int getNextMove() {
         return nextMove;
@@ -109,13 +109,14 @@ public class Board {
     /**
      * Show board.
      *
-     * @return
+     * @return game to string.
      */
     public String toStr() {
         StringBuilder string = new StringBuilder();
         for (int y = 0; y < THREE; y++) {
             for (int x = 0; x < THREE; x++) {
-                string.append(board[y][x] == 1 ? "X" : (board[y][x] == 2 ? "O" : "_"));
+                string.append(board[y][x] == 1 ? "X" :
+                        (board[y][x] == 2 ? "O" : "_"));
             }
             string.append("\n");
         }
@@ -140,7 +141,7 @@ public class Board {
     /**
      * Check if board is full.
      *
-     * @return
+     * @return is game is full.
      */
     public boolean isFull() {
         return moveCounter >= SQUARES;
@@ -149,7 +150,7 @@ public class Board {
     /**
      * Is somebody won.
      *
-     * @return
+     * @return who is winner.
      */
     public int getWinner() {
         for (int i = 0; i < THREE; i++) {
