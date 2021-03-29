@@ -49,6 +49,11 @@ public final class Game {
         return 0;
     }
 
+    /**
+     * Main function.
+     *
+     * @param args
+     */
     public static void main(final String[] args) {
         Strategy b = new RandomStrategy();
         Strategy a = new StudentStrategy();
