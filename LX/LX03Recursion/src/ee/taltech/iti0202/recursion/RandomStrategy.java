@@ -6,10 +6,25 @@ import java.util.Random;
 
 public class RandomStrategy implements Strategy {
 
+    /** Number of player
+     *
+     */
     private int number;
+    /**
+     * This board.
+     */
     private Board board;
+    /**
+     * Random lib.
+     */
     private Random random;
+    /**
+     * Three in a row.
+     */
     static final int THREE = 3;
+    /**
+     * Nine squares.
+     */
     static final int SQUARES = 9;
 
     /**
@@ -24,11 +39,11 @@ public class RandomStrategy implements Strategy {
     /**
      * Set number.
      *
-     * @param number
+     * @param number1
      */
     @Override
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNumber(int number1) {
+        this.number = number1;
     }
 
     /**
@@ -38,7 +53,7 @@ public class RandomStrategy implements Strategy {
      * @param y
      */
     @Override
-    public void moveOpponent(int x, int y) {
+    public void moveOpponent(final int x, final int y) {
         board.move(x, y);
     }
 
