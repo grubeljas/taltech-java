@@ -1,5 +1,5 @@
 /**
- * Package.
+ * File with main method.
  */
 package ee.taltech.iti0202.recursion;
 

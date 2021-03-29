@@ -115,8 +115,8 @@ public class Board {
         StringBuilder string = new StringBuilder();
         for (int y = 0; y < THREE; y++) {
             for (int x = 0; x < THREE; x++) {
-                string.append(board[y][x] == 1 ? "X" :
-                        (board[y][x] == 2 ? "O" : "_"));
+                string.append(board[y][x] == 1 ? "X"
+                        : (board[y][x] == 2 ? "O" : "_"));
             }
             string.append("\n");
         }
