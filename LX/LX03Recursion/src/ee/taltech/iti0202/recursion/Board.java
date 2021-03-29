@@ -3,15 +3,17 @@ public class Board {
     private int[][] board;
     private int nextMove;
     private int moveCounter;
+    static final int tHREE = 3;
+    static final int numberOfSquares = 9;
 
     /**
      * Construct.
      *
      */
     public Board() {
-        board = new int[Game.tHREE][Game.tHREE];
-        for (int y = 0; y < Game.tHREE; y++) {
-            for (int x = 0; x < Game.tHREE; x++) {
+        board = new int[tHREE][tHREE];
+        for (int y = 0; y < tHREE; y++) {
+            for (int x = 0; x < tHREE; x++) {
                 board[x][y] = 0;
             }
         }
@@ -25,10 +27,10 @@ public class Board {
      * @param board
      */
     public Board(Board board) {
-        this.board = new int[Game.tHREE][Game.tHREE];
+        this.board = new int[tHREE][tHREE];
         int[][] otherBoard = board.getBoard();
-        for (int y = 0; y < Game.tHREE; y++) {
-            for (int x = 0; x < Game.tHREE; x++) {
+        for (int y = 0; y < tHREE; y++) {
+            for (int x = 0; x < tHREE; x++) {
                 this.board[x][y] = otherBoard[x][y];
             }
         }
@@ -47,7 +49,7 @@ public class Board {
      * @return
      */
     public boolean isLegal(int move) {
-        return this.board[move / Game.tHREE][move % Game.tHREE] == 0;
+        return this.board[move / tHREE][move % tHREE] == 0;
     }
 
     /**
@@ -71,8 +73,8 @@ public class Board {
 
     public String toStr() {
         StringBuilder string = new StringBuilder();
-        for (int y = 0; y < Game.tHREE; y++) {
-            for (int x = 0; x < Game.tHREE; x++) {
+        for (int y = 0; y < tHREE; y++) {
+            for (int x = 0; x < tHREE; x++) {
                 string.append(board[y][x] == 1 ? "X" : (board[y][x] == 2 ? "O" : "_"));
             }
             string.append("\n");
@@ -90,11 +92,11 @@ public class Board {
     }
 
     public boolean isFull() {
-        return moveCounter >= Game.numberOfSquares;
+        return moveCounter >= numberOfSquares;
     }
 
     public int getWinner() {
-        for (int i = 0; i < Game.tHREE; i++) {
+        for (int i = 0; i < tHREE; i++) {
             if (board[i][0] != 0 && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return board[i][0];
             }

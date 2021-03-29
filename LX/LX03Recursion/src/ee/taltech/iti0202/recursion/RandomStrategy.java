@@ -6,6 +6,8 @@ public class RandomStrategy implements Strategy {
     private int number;
     private Board board;
     private Random random;
+    static final int tHREE = 3;
+    static final int numberOfSquares = 9;
 
     public RandomStrategy() {
         board = new Board();
@@ -25,9 +27,9 @@ public class RandomStrategy implements Strategy {
     @Override
     public int getMove() {
         while (true) {
-            int move = random.nextInt(9);
-            if (board.getBoard()[move / Game.tHREE][move % Game.tHREE] == 0) {
-                board.move(move / Game.tHREE, move % Game.tHREE);
+            int move = random.nextInt(numberOfSquares);
+            if (board.getBoard()[move / tHREE][move % tHREE] == 0) {
+                board.move(move / tHREE, move % tHREE);
                 return move;
             }
         }
