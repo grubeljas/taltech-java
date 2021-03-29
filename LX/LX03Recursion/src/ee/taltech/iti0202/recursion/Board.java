@@ -75,7 +75,7 @@ public class Board {
      * @param y
      * @return
      */
-    public boolean isLegal(int x, int y) {
+    public boolean isLegal(final int x, final int y) {
         return this.board[x][y] == 0;
     }
 
@@ -114,7 +114,7 @@ public class Board {
      * @param x
      * @param y
      */
-    public void move(int x, int y) {
+    public void move(final int x, final int y) {
         if (board[x][y] != 0) {
             throw new IllegalMoveException(x, y);
         }
