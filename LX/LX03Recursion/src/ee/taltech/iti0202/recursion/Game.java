@@ -10,8 +10,17 @@ public final class Game {
      *
      */
     private Strategy[] players;
+    /**
+     * Bruh.
+     */
     private Board board;
+    /**
+     * Bruh.
+     */
     static final int THREE = 3;
+    /**
+     * Bruh.
+     */
     static final int SQUARES = 9;
 
     /**

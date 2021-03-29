@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class RandomStrategy implements Strategy {
 
-    /** Number of player
+    /** Number of player.
      *
      */
     private int number;
@@ -42,7 +42,7 @@ public class RandomStrategy implements Strategy {
      * @param number1
      */
     @Override
-    public void setNumber(int number1) {
+    public void setNumber(final int number1) {
         this.number = number1;
     }
 

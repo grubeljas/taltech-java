@@ -1,7 +1,5 @@
 /**
  * Info about this package.
- *
- *
  */
 package ee.taltech.iti0202.recursion;
 
@@ -9,12 +7,23 @@ public class Board {
 
     /**
      * Field with board and moves.
-     *
      */
     private int[][] board;
+    /**
+     * Bruh.
+     */
     private int nextMove;
+    /**
+     * Bruh.
+     */
     private int moveCounter;
+    /**
+     * Bruh.
+     */
     static final int THREE = 3;
+    /**
+     * Bruh.
+     */
     static final int SQUARES = 9;
 
     /**
@@ -139,21 +148,21 @@ public class Board {
      */
     public int getWinner() {
         for (int i = 0; i < THREE; i++) {
-            if (board[i][0] != 0 && board[i][0] == board[i][1] &&
-                    board[i][1] == board[i][2]) {
+            if (board[i][0] != 0 && board[i][0] == board[i][1]
+                    && board[i][1] == board[i][2]) {
                 return board[i][0];
             }
-            if (board[0][i] != 0 && board[0][i] == board[1][i] &&
-                    board[1][i] == board[2][i]) {
+            if (board[0][i] != 0 && board[0][i] == board[1][i]
+                    && board[1][i] == board[2][i]) {
                 return board[0][i];
             }
         }
-        if (board[0][0] != 0 && board[0][0] == board[1][1] &&
-                board[1][1] == board[2][2]) {
+        if (board[0][0] != 0 && board[0][0] == board[1][1]
+                && board[1][1] == board[2][2]) {
             return board[1][1];
         }
-        if (board[2][0] != 0 && board[2][0] == board[1][1] &&
-                board[1][1] == board[0][2]) {
+        if (board[2][0] != 0 && board[2][0] == board[1][1]
+                && board[1][1] == board[0][2]) {
             return board[1][1];
         }
         return 0;

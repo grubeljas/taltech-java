@@ -3,13 +3,32 @@
  */
 package ee.taltech.iti0202.recursion;
 import java.util.Random;
+
 public class StudentStrategy implements Strategy {
 
+    /**
+     * Bruh.
+     */
     private int number, opponent;
+    /**
+     * Bruh.
+     */
     private Board board;
+    /**
+     * Bruh.
+     */
     private Random rand;
+    /**
+     * Bruh.
+     */
     private static final int inf = 100;
+    /**
+     * Bruh.
+     */
     static final int THREE = 3;
+    /**
+     * Bruh.
+     */
     static final int SQUARES = 9;
 
     /**
