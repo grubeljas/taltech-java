@@ -5,6 +5,10 @@ package ee.taltech.iti0202.recursion;
 
 public final class Game {
 
+    /**
+     * Field with board with players.
+     *
+     */
     private Strategy[] players;
     private Board board;
     static final int THREE = 3;
