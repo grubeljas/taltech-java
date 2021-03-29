@@ -1,3 +1,6 @@
+/**
+ * Info about this package.
+ */
 package ee.taltech.iti0202.recursion;
 public class Board {
     private int[][] board;

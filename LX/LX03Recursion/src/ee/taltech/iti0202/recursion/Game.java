@@ -1,3 +1,6 @@
+/**
+ * Info about this package.
+ */
 package ee.taltech.iti0202.recursion;
 
 public final class Game {
@@ -42,7 +45,7 @@ public final class Game {
         return 0;
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Strategy b = new RandomStrategy();
         Strategy a = new StudentStrategy();
         Game game = new Game(b, a);
