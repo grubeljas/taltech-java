@@ -22,7 +22,7 @@ public interface Strategy {
     /**
      * Get move.
      *
-     * @return
+     * @return move.
      */
     int getMove();
 

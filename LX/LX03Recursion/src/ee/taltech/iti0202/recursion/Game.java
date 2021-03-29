@@ -7,7 +7,6 @@ public final class Game {
 
     /**
      * Field with board with players.
-     *
      */
     private Strategy[] players;
     /**

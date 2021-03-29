@@ -21,7 +21,7 @@ public class StudentStrategy implements Strategy {
     /**
      * Bruh.
      */
-    private static final int inf = 100;
+    private static final int INF = 100;
     /**
      * Bruh.
      */
@@ -33,7 +33,6 @@ public class StudentStrategy implements Strategy {
 
     /**
      * Constructor.
-     *
      */
     public StudentStrategy() {
         this.board = new Board();
@@ -90,7 +89,7 @@ public class StudentStrategy implements Strategy {
      */
     public int getBestMove(Board board) {
         int bestMove = 0;
-        int bestResult = -10;
+        int bestResult = -INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {
             if(board.isLegal(i / THREE, i % THREE)) {
@@ -110,17 +109,18 @@ public class StudentStrategy implements Strategy {
      * Get best move for opponent.
      *
      * @param board
-     * @return
+     * @return best result for enemy.
      */
     public int getMinValue(Board board) {
-        int bestResult = inf;
+        int bestResult = INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {
             if(board.isLegal(i / THREE, i % THREE)) {
                 Board board2 = new Board(board);
                 board2.move(i / THREE, i % THREE);
                 if (board2.getWinner() == opponent) {
-                    optionalResult = -1 * (SQUARES + 1 - board2.getMoveCounter());
+                    optionalResult = -1 * (SQUARES + 1
+                            - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
@@ -138,10 +138,10 @@ public class StudentStrategy implements Strategy {
      * Get best move for you.
      *
      * @param board
-     * @return
+     * @return best result for you.
      */
     public int getMaxValue(Board board) {
-        int bestResult = -inf;
+        int bestResult = -INF;
         int optionalResult;
         for (int i = 0; i < SQUARES; i++) {
             if (board.isLegal(i / THREE, i % THREE)) {

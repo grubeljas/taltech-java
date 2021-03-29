@@ -44,24 +44,24 @@ public class Board {
     /**
      * Constructor but epic.
      *
-     * @param board
+     * @param board1
      */
-    public Board(Board board) {
+    public Board(final Board board1) {
         this.board = new int[THREE][THREE];
-        int[][] otherBoard = board.getBoard();
+        int[][] otherBoard = board1.getBoard();
         for (int y = 0; y < THREE; y++) {
             for (int x = 0; x < THREE; x++) {
                 this.board[x][y] = otherBoard[x][y];
             }
         }
-        nextMove = board.getNextMove();
-        moveCounter = board.getMoveCounter();
+        nextMove = board1.getNextMove();
+        moveCounter = board1.getMoveCounter();
     }
 
     /**
      * Get how many move was made.
      *
-     * @return
+     * @return how many moves were.
      */
     public int getMoveCounter() {
         return moveCounter;
@@ -71,7 +71,7 @@ public class Board {
      * Is possible move.
      *
      * @param move
-     * @return
+     * @return is possible move.
      */
     public boolean isLegal(int move) {
         return this.board[move / THREE][move % THREE] == 0;
@@ -82,7 +82,7 @@ public class Board {
      *
      * @param x
      * @param y
-     * @return
+     * @return is possible move.
      */
     public boolean isLegal(final int x, final int y) {
         return this.board[x][y] == 0;
@@ -91,12 +91,17 @@ public class Board {
     /**
      * Get this board.
      *
-     * @return
+     * @return board.
      */
     public int[][] getBoard() {
         return board;
     }
 
+    /**
+     * Get who's gonna move O or X.
+     *
+     * @return
+     */
     public int getNextMove() {
         return nextMove;
     }
