@@ -26,8 +26,8 @@ public class RandomStrategy implements Strategy {
     public int getMove() {
         while (true) {
             int move = random.nextInt(9);
-            if (board.getBoard()[move / 3][move % 3] == 0) {
-                board.move(move / 3, move % 3);
+            if (board.getBoard()[move / Game.tHREE][move % Game.tHREE] == 0) {
+                board.move(move / Game.tHREE, move % Game.tHREE);
                 return move;
             }
         }

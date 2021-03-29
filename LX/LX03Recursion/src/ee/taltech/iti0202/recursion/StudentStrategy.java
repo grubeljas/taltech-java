@@ -5,6 +5,7 @@ public class StudentStrategy implements Strategy {
     private int number, opponent;
     private Board board;
     private Random rand;
+    private static final int inf = 100;
 
     public StudentStrategy() {
         this.board = new Board();
@@ -29,11 +30,11 @@ public class StudentStrategy implements Strategy {
         int move;
         if (board.getMoveCounter() == 0) {
             System.out.println("rand");
-            move = rand.nextInt(9);
+            move = rand.nextInt(Game.numberOfSquares);
         } else {
             move = getBestMove(copiedBoard);
         }
-        this.board.move(move / 3, move % 3);
+        this.board.move(move / Game.tHREE, move % Game.tHREE);
         return move;
     }
 
@@ -41,12 +42,11 @@ public class StudentStrategy implements Strategy {
         int bestMove = 0;
         int bestResult = -10;
         int optionalResult;
-        for (int i = 0; i < 9; i++) {
-            if(board.isLegal(i / 3, i % 3)) {
+        for (int i = 0; i < Game.numberOfSquares; i++) {
+            if(board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
                 Board board1 = new Board(board);
-                board1.move(i / 3, i % 3);
+                board1.move(i / Game.tHREE, i % Game.tHREE);
                 optionalResult = getMinValue(board1);
-                System.out.println(optionalResult);
                 if (optionalResult > bestResult) {
                     bestResult = optionalResult;
                     bestMove = i;
@@ -57,15 +57,14 @@ public class StudentStrategy implements Strategy {
     }
 
     public int getMinValue(Board board) {
-        // Iterate through all legal moves, recursively (using getMaxValue) get value of each move and return the min of those values
-        int bestResult = 100;
+        int bestResult = inf;
         int optionalResult;
-        for (int i = 0; i < 9; i++) {
-            if(board.isLegal(i / 3, i % 3)) {
+        for (int i = 0; i < Game.numberOfSquares; i++) {
+            if(board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / 3, i % 3);
+                board2.move(i / Game.tHREE, i % Game.tHREE);
                 if (board2.getWinner() == opponent) {
-                    optionalResult = -1 * (10 - board2.getMoveCounter());
+                    optionalResult = -1 * (Game.numberOfSquares + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {
@@ -80,15 +79,14 @@ public class StudentStrategy implements Strategy {
     }
 
     public int getMaxValue(Board board) {
-        // Iterate through all legal moves, recursively (using getMinValue) get value of each move and return the max of those values
-        int bestResult = -100;
+        int bestResult = -inf;
         int optionalResult;
-        for (int i = 0; i < 9; i++) {
-            if(board.isLegal(i / 3, i % 3)) {
+        for (int i = 0; i < Game.numberOfSquares; i++) {
+            if (board.isLegal(i / Game.tHREE, i % Game.tHREE)) {
                 Board board2 = new Board(board);
-                board2.move(i / 3, i % 3);
+                board2.move(i / Game.tHREE, i % Game.tHREE);
                 if (board2.getWinner() == number) {
-                    optionalResult = 1 * (10 - board2.getMoveCounter());
+                    optionalResult = 1 * (Game.numberOfSquares + 1 - board2.getMoveCounter());
                 } else if (board2.isFull()) {
                     optionalResult = 0;
                 } else {

@@ -4,10 +4,14 @@ public class Board {
     private int nextMove;
     private int moveCounter;
 
+    /**
+     * Construct.
+     *
+     */
     public Board() {
-        board = new int[3][3];
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
+        board = new int[Game.tHREE][Game.tHREE];
+        for (int y = 0; y < Game.tHREE; y++) {
+            for (int x = 0; x < Game.tHREE; x++) {
                 board[x][y] = 0;
             }
         }
@@ -15,11 +19,16 @@ public class Board {
         moveCounter = 0;
     }
 
+    /**
+     * Constructor but epic.
+     *
+     * @param board
+     */
     public Board(Board board) {
-        this.board = new int[3][3];
+        this.board = new int[Game.tHREE][Game.tHREE];
         int[][] otherBoard = board.getBoard();
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
+        for (int y = 0; y < Game.tHREE; y++) {
+            for (int x = 0; x < Game.tHREE; x++) {
                 this.board[x][y] = otherBoard[x][y];
             }
         }
@@ -31,10 +40,23 @@ public class Board {
         return moveCounter;
     }
 
+    /**
+     * Is possible move.
+     *
+     * @param move
+     * @return
+     */
     public boolean isLegal(int move) {
-        return this.board[move / 3][move % 3] == 0;
+        return this.board[move / Game.tHREE][move % Game.tHREE] == 0;
     }
 
+    /**
+     * I
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean isLegal(int x, int y) {
         return this.board[x][y] == 0;
     }
@@ -49,9 +71,9 @@ public class Board {
 
     public String toStr() {
         StringBuilder string = new StringBuilder();
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3; x++) {
-                string.append(board[x][y] == 1 ? "X" : (board[x][y] == 2 ? "O" : "_"));
+        for (int y = 0; y < Game.tHREE; y++) {
+            for (int x = 0; x < Game.tHREE; x++) {
+                string.append(board[y][x] == 1 ? "X" : (board[y][x] == 2 ? "O" : "_"));
             }
             string.append("\n");
         }
@@ -68,11 +90,11 @@ public class Board {
     }
 
     public boolean isFull() {
-        return moveCounter >= 9;
+        return moveCounter >= Game.numberOfSquares;
     }
 
     public int getWinner() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Game.tHREE; i++) {
             if (board[i][0] != 0 && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
                 return board[i][0];
             }
