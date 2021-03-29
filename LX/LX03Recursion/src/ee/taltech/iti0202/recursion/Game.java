@@ -1,4 +1,6 @@
-// This package has non null parameters and is documented.
+/**
+ * Info about this package.
+ */
 package ee.taltech.iti0202.recursion;
 
 public final class Game {
