@@ -36,7 +36,7 @@ public class HotelTest {
         hotel.addRoom(room1);
         Room room2 = new Room(2, 9, true);
         hotel.addRoom(room2);
-        Room room3 = new Room(3, 38, false);
+        Room room3 = new Room(3, 8, false);
         hotel.addRoom(room3);
         Room room4 = new Room(4, 2, false);
         hotel.addRoom(room4);
