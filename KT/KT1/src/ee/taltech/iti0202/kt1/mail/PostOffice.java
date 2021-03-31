@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.kt1.mail;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class PostOffice {
 
