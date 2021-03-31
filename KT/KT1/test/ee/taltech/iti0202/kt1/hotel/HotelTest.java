@@ -2,10 +2,12 @@ package ee.taltech.iti0202.kt1.hotel;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HotelTest {
 
+    /**
+     * Test all methods of hotel.
+     */
     @Test
     public void testNewHotel() {
         Hotel hotel = new Hotel("noob");

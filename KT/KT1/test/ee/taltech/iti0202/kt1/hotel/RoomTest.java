@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoomTest {
 
+    /**
+     * Test all methods of room.
+     */
     @Test
     public void testUsualRoom() {
         Hotel testHotel = new Hotel("test");

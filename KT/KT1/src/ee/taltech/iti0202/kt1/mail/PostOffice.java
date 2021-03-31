@@ -34,12 +34,12 @@ public class PostOffice {
      * Otherwise postman is added to the office.
      */
     public void addPostman(Postman postman) {
-        Optional<Postman> impostor = getPostmen().stream()
-                .filter(postman1 -> postman1.name.charAt(0) == postman.name.charAt(0))
-                .findFirst();
-        if (impostor.isEmpty()) {
-            postmen.add(postman);
+        for (Postman postman1 : postmen) {
+            if (postman1.name.charAt(0) == postman.name.charAt(0)) {
+                return;
+            }
         }
+        postmen.add(postman);
     }
 
     /**
