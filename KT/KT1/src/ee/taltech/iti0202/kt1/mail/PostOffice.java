@@ -77,12 +77,13 @@ public class PostOffice {
     public static void main(String[] args) {
         PostOffice postOffice = new PostOffice("Tallinn");
 
-        Postman postman = new Postman("Martin", 1);
+        Postman postman = new Postman("Artin", 1);
 
         postOffice.addPostman(postman);
+        System.out.println(postman.limit);
 
         postOffice.addLetter(new Letter("Toomas", "Tartu", "Rahu tn"));
-        postOffice.addLetter(new Letter("Erki", "Tallinn", "Männi tee"));
+        postOffice.addLetter(new Letter("Erki", "Tallinn", "Aänni tee"));
 
         postOffice.divideLetters();
 

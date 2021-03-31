@@ -51,6 +51,6 @@ public class Room {
      */
     public boolean unBook() {
         if (lux || !booking) return false;
-        return bookRoom();
+        return !bookRoom();
     }
 }
