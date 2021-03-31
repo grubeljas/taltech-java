@@ -14,16 +14,31 @@ public class Letter {
     public String getDestinationCity() {
         return destination;
     }
+
+    /**
+     * Set dest.
+     * @param destinationCity
+     */
     public void setDestinationCity(String destinationCity) {
     }
     public String getAddress() {
         return address;
     }
+
+    /**
+     * Set address.
+     * @param address
+     */
     public void setAddress(String address) {
     }
     public String getRecipient() {
         return recipient;
     }
+
+    /**
+     * Set recipient.
+     * @param recipient
+     */
     public void setRecipient(String recipient) {
     }
 

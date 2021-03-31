@@ -7,6 +7,7 @@ public class Postman {
     String name;
     Integer age, limit;
     List<Letter> letters;
+    static final Integer AGEOFCHANGING = 40;
     /**
      * Create a postman with the name and the age.
      */
@@ -14,7 +15,7 @@ public class Postman {
         this.age = age;
         this.letters = new ArrayList<>();
         this.name = name;
-        if (age < 40) {
+        if (age < AGEOFCHANGING) {
             this.limit = age + name.length();
         } else {
             this.limit = age - name.length();

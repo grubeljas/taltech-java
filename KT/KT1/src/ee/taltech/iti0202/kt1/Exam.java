@@ -1,10 +1,7 @@
 package ee.taltech.iti0202.kt1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Exam {
     /**

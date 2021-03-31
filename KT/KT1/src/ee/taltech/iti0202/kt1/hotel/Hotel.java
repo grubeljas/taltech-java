@@ -10,11 +10,20 @@ public class Hotel {
     String name;
     List<Room> rooms;
 
+    /**
+     * Constructor.
+     * @param name ma,e
+     */
     public Hotel(String name) {
         this.name = name;
         this.rooms = new ArrayList<>();
     }
 
+    /**
+     * Add room if there is no room with same number.
+     * @param room
+     * @return
+     */
     public boolean addRoom(Room room) {
         for (Room room1: rooms) {
             if (room.number == room1.number) {
@@ -26,6 +35,11 @@ public class Hotel {
         return true;
     }
 
+    /**
+     * Cancel booking.
+     * @param room
+     * @return
+     */
     public boolean unBookRoom(Room room) {
         if (room.booking) {
             room.bookRoom();
@@ -34,6 +48,12 @@ public class Hotel {
         return false;
     }
 
+    /**
+     * Order book with that size and type.
+     * @param lux
+     * @param size
+     * @return
+     */
     public boolean orderRoom(boolean lux, Integer size) {
         Optional<Room> wishedRoom = rooms.stream()
                 .filter(room -> room.lux == lux)
