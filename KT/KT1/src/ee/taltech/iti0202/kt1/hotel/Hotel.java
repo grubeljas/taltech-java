@@ -9,6 +9,8 @@ public class Hotel {
 
     String name;
     List<Room> rooms;
+    List<Room> booked;
+    List<Room> empty;
 
     /**
      * Constructor.
@@ -17,6 +19,8 @@ public class Hotel {
     public Hotel(String name) {
         this.name = name;
         this.rooms = new ArrayList<>();
+        this.booked = new ArrayList<>();
+        this.empty = new ArrayList<>();
     }
 
     /**
@@ -31,8 +35,17 @@ public class Hotel {
             }
         }
         rooms.add(room);
+        empty.add(room);
         room.setHotel(this);
         return true;
+    }
+
+    public List<Room> getBooked() {
+        return booked;
+    }
+
+    public List<Room> getEmpty() {
+        return empty;
     }
 
     /**
@@ -43,6 +56,8 @@ public class Hotel {
     public boolean unBookRoom(Room room) {
         if (room.booking) {
             room.bookRoom();
+            booked.remove(room);
+            empty.remove(room);
             return true;
         }
         return false;
@@ -55,12 +70,13 @@ public class Hotel {
      * @return
      */
     public boolean orderRoom(boolean lux, Integer size) {
-        Optional<Room> wishedRoom = rooms.stream()
+        Optional<Room> wishedRoom = empty.stream()
                 .filter(room -> room.lux == lux)
-                .filter(room -> !room.booking)
                 .min(Comparator.comparing(room -> Math.abs(room.size - size)));
         if (wishedRoom.isPresent()) {
             wishedRoom.get().bookRoom();
+            getBooked().add(wishedRoom.get());
+            getEmpty().remove(wishedRoom.get());
             return true;
         }
         return false;
