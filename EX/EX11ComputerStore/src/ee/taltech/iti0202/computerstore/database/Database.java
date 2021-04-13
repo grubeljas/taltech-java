@@ -19,7 +19,7 @@ public final class Database {
     private final Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
-    private static final Type REVIEW_TYPE = new TypeToken<Map<Integer, Component>>() {
+    private static final Type REVIEW_TYPE = new TypeToken<Database>() {
     }.getType();
 
     private Database() { }
@@ -113,8 +113,7 @@ public final class Database {
      */
     public void saveToFile(String location) {
         Gson gson = new Gson();
-        gson.toJson(this);
-        String file = gson.toJson(components);
+        String file = gson.toJson(this);
         try {
             FileWriter writer = new FileWriter(location);
             writer.write(file);
@@ -142,7 +141,9 @@ public final class Database {
     public static void main(String[] args) throws ProductAlreadyExistsException, IOException {
         Database database = getInstance();
         Component spu = new Component("cpu", Component.Type.CPU, 10, "shit", 10, 10);
+        Component cpu = new Component("cpu", Component.Type.CPU, 14, "shit", 10, 10);
         database.saveComponent(spu);
+        database.saveComponent(cpu);
         database.saveToFile("gen.json");
         database.loadFromFile("gen.json");
     }
