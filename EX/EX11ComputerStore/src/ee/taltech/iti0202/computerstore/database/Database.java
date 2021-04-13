@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.computerstore.database;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import ee.taltech.iti0202.computerstore.components.Component;
