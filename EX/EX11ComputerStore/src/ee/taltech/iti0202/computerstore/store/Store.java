@@ -53,6 +53,7 @@ public class Store {
                 database.decreaseComponentStock(id, 1);
             }
             balance += price;
+            customer.setBalance(customer.getBalance() - price);
             customer.getComponents().add(component);
         }
         return component;
@@ -63,7 +64,10 @@ public class Store {
      * @return
      */
     public List<Component> getAvailableComponents() {
-        return (List<Component>) database.getComponents().values();
+        List<Component> components = database.getComponents().values().stream()
+                .filter(component -> component.getAmount() > 0)
+                .collect(Collectors.toList());
+        return components;
     }
 
     /**
