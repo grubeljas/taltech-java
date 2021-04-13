@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public final class Database {
-    private Map<Integer, Component> components = new HashMap<>();
+    private final Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
     private static final Type REVIEW_TYPE = new TypeToken<Map<Integer, Component>>() {
@@ -31,6 +31,10 @@ public final class Database {
     public static Database getInstance() {
         if (instance == null) instance = new Database();
         return instance;
+    }
+
+    public static void setInstance(Database instance) {
+        Database.instance = instance;
     }
 
     /**
@@ -109,7 +113,7 @@ public final class Database {
      */
     public void saveToFile(String location) {
         Gson gson = new Gson();
-        gson.toJson(components.values());
+        gson.toJson(this);
         String file = gson.toJson(components);
         try {
             FileWriter writer = new FileWriter(location);
@@ -129,10 +133,17 @@ public final class Database {
         resetEntireDatabase();
         try {
             JsonReader reader = new JsonReader(new FileReader(location));
-            Map<Integer, Component> data = gson.fromJson(reader, REVIEW_TYPE);
-            this.components = data;
+            setInstance(gson.fromJson(reader, REVIEW_TYPE));
         } catch (FileNotFoundException e) {
             e.getMessage();
         }
+    }
+
+    public static void main(String[] args) throws ProductAlreadyExistsException, IOException {
+        Database database = getInstance();
+        Component spu = new Component("cpu", Component.Type.CPU, 10, "shit", 10, 10);
+        database.saveComponent(spu);
+        database.saveToFile("gen.json");
+        database.loadFromFile("gen.json");
     }
 }
