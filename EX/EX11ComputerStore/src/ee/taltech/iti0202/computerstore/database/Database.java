@@ -12,15 +12,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public final class Database {
-    private final Map<Integer, Component> components = new HashMap<>();
+    private Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
-    private static final Type REVIEW_TYPE = new TypeToken<List<Component>>() {
+    private static final Type REVIEW_TYPE = new TypeToken<Map<Integer, Component>>() {
     }.getType();
 
     private Database() { }
@@ -94,6 +93,8 @@ public final class Database {
         return components;
     }
 
+
+
     /**
      * Reset data.
      */
@@ -109,7 +110,7 @@ public final class Database {
     public void saveToFile(String location) {
         Gson gson = new Gson();
         gson.toJson(components.values());
-        String file = gson.toJson(components.values());
+        String file = gson.toJson(components);
         try {
             FileWriter writer = new FileWriter(location);
             writer.write(file);
@@ -128,10 +129,8 @@ public final class Database {
         resetEntireDatabase();
         try {
             JsonReader reader = new JsonReader(new FileReader(location));
-            List<Component> data = gson.fromJson(reader, REVIEW_TYPE);
-            for (Component component : data) {
-                components.put(component.getId(), component);
-            }
+            Map<Integer, Component> data = gson.fromJson(reader, REVIEW_TYPE);
+            this.components = data;
         } catch (FileNotFoundException e) {
             e.getMessage();
         }
