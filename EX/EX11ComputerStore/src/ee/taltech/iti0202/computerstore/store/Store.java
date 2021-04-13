@@ -6,6 +6,7 @@ import ee.taltech.iti0202.computerstore.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,9 +65,19 @@ public class Store {
      * @return
      */
     public List<Component> getAvailableComponents() {
+        List<Component> available = new ArrayList<>();
         List<Component> components = database.getComponents().values().stream()
                 .filter(component -> component.getAmount() > 0)
                 .collect(Collectors.toList());
+        for (Component component: components) {
+            if (component.getAmount() > 9) {
+                available.add(component);
+            } else {
+                for (int i = 0; i < component.getAmount(); ++i) {
+                    available.add(component);
+                }
+            }
+        }
         return components;
     }
 
@@ -120,8 +131,12 @@ public class Store {
      * @return
      */
     public double getInventoryValue() {
-        Double sum = database.getComponents().values().stream()
-                .collect(Collectors.summingDouble(Component::getPrice));
+        Double sum = 0.0;
+        for (Component component: getDatabase().getComponents().values()) {
+            if (component.getAmount() > 0) {
+                sum += component.getPrice() * component.getAmount();
+            }
+        }
         return sum * profitMargin + balance;
     }
 
