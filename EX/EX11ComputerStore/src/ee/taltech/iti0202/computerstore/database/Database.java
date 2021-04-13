@@ -45,12 +45,23 @@ public final class Database {
         }
     }
 
+    /**
+     * Delete component.
+     * @param id
+     * @throws ProductNotFoundException
+     */
     public void deleteComponent(int id) throws ProductNotFoundException {
         if (components.containsKey(id)) {
             components.remove(id);
         } else throw new ProductNotFoundException();
     }
 
+    /**
+     * Make bigger.
+     * @param id
+     * @param amount
+     * @throws ProductNotFoundException
+     */
     public void increaseComponentStock(int id, int amount) throws ProductNotFoundException {
         if (components.containsKey(id)) {
             if (amount <= 0) {
@@ -59,6 +70,13 @@ public final class Database {
         } else throw new ProductNotFoundException();
     }
 
+    /**
+     * Make smaller.
+     * @param id
+     * @param amount
+     * @throws OutOfStockException
+     * @throws ProductNotFoundException
+     */
     public void decreaseComponentStock(int id, int amount) throws OutOfStockException, ProductNotFoundException {
         if (components.containsKey(id)) {
             if (amount <= 0) {
@@ -73,11 +91,18 @@ public final class Database {
         return components;
     }
 
+    /**
+     * Reset data.
+     */
     public void resetEntireDatabase() {
         Component.idCount = 0;
         components.clear();
     }
 
+    /**
+     * Save file.
+     * @param location
+     */
     public void saveToFile(String location) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting().create();
@@ -92,6 +117,10 @@ public final class Database {
         }
     }
 
+    /**
+     * Load file.
+     * @param location
+     */
     public void loadFromFile(String location) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting().create();

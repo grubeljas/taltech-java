@@ -32,6 +32,15 @@ public class Store {
         } else this.profitMargin = profitMargin;
     }
 
+    /**
+     * Buy component if enough money.
+     * @param id
+     * @param customer
+     * @return
+     * @throws OutOfStockException
+     * @throws ProductNotFoundException
+     * @throws NotEnoughMoneyException
+     */
     public Component purchaseComponent(int id, Customer customer) throws OutOfStockException,
             ProductNotFoundException,
             NotEnoughMoneyException {
@@ -42,7 +51,7 @@ public class Store {
         } else {
             component.setAmount(component.getAmount() - 1);
             if (component.getAmount() == 0) {
-                database.deleteComponent(id);
+                database.decreaseComponentStock(id, 1);
             }
             balance += price;
             customer.getComponents().add(component);
@@ -50,10 +59,18 @@ public class Store {
         return component;
     }
 
+    /**
+     * Get components.
+     * @return
+     */
     public List<Component> getAvailableComponents() {
         return (List<Component>) database.getComponents().values();
     }
 
+    /**
+     * Sort by amount.
+     * @return
+     */
     public List<Component> getComponentsSortedByAmount() {
         List<Component> components = database.getComponents().values().stream()
                 .sorted(Comparator.comparing(component -> component.getAmount()))
@@ -61,6 +78,10 @@ public class Store {
         return components;
     }
 
+    /**
+     * Get by name.
+     * @return
+     */
     public List<Component> getComponentsSortedByName() {
         List<Component> components = database.getComponents().values().stream()
                 .sorted(Comparator.comparing(component -> component.getName()))
@@ -68,6 +89,10 @@ public class Store {
         return components;
     }
 
+    /**
+     * Get by price.
+     * @return
+     */
     public List<Component> getComponentsSortedByPrice() {
         List<Component> components = database.getComponents().values().stream()
                 .sorted(Comparator.comparing(component -> component.getPrice()))
@@ -75,6 +100,11 @@ public class Store {
         return components;
     }
 
+    /**
+     * Filter by type.
+     * @param type
+     * @return
+     */
     public List<Component> filterByType(Component.Type type) {
         List<Component> components = database.getComponents().values().stream()
                 .filter(component -> component.getType().equals(type))
@@ -82,6 +112,10 @@ public class Store {
         return components;
     }
 
+    /**
+     * Get value.
+     * @return
+     */
     public double getInventoryValue() {
         Double sum = database.getComponents().values().stream()
                 .collect(Collectors.summingDouble(Component::getPrice));
