@@ -78,7 +78,7 @@ public final class Database {
         components.clear();
     }
 
-    public void saveToFile(String location) throws IOException {
+    public void saveToFile(String location) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting().create();
         gson.toJson(components.values());
@@ -88,11 +88,11 @@ public final class Database {
             writer.write(file);
             writer.close();
         } catch (IOException e) {
-            throw e;
+            e.getMessage();
         }
     }
 
-    public void loadFromFile(String location) throws FileNotFoundException {
+    public void loadFromFile(String location) {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting().create();
         resetEntireDatabase();
@@ -103,7 +103,7 @@ public final class Database {
                 components.put(component.getId(), component);
             }
         } catch (FileNotFoundException e) {
-            throw e;
+            e.getMessage();
         }
     }
 }
