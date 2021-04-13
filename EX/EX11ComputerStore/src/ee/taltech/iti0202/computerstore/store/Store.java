@@ -49,7 +49,6 @@ public class Store {
         if (customer.getBalance() < price) {
             throw new NotEnoughMoneyException();
         } else {
-            component.setAmount(component.getAmount() - 1);
             if (component.getAmount() == 0) {
                 database.decreaseComponentStock(id, 1);
             }

@@ -9,6 +9,11 @@ public class Customer {
     private double balance;
     private final List<Component> components = new ArrayList<>();
 
+    /**
+     * Constructor.
+     * @param name
+     * @param balance
+     */
     public Customer(String name, double balance) {
         this.name = name;
         this.balance = balance;

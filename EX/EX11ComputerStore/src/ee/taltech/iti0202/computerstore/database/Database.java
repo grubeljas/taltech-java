@@ -26,6 +26,10 @@ public final class Database {
 
     private Database() { }
 
+    /**
+     * Instant.
+     * @return
+     */
     public static Database getInstance() {
         if (instance == null) instance = new Database();
         return instance;
