@@ -8,24 +8,35 @@ import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductAlreadyExistsException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
-public class Database {
+public final class Database {
     private final Map<Integer, Component> components = new HashMap<>();
     private static Database instance = null;
 
     private static final Type REVIEW_TYPE = new TypeToken<List<Component>>() {
     }.getType();
 
-    private Database() {}
+    private Database() { }
 
     public static Database getInstance() {
         if (instance == null) instance = new Database();
         return instance;
     }
 
+    /**
+     * Save comp.
+     *
+     * @param component
+     * @throws ProductAlreadyExistsException
+     */
     public void saveComponent(Component component) throws ProductAlreadyExistsException {
         if (components.containsKey(component.getId())) {
             throw new ProductAlreadyExistsException();
@@ -72,22 +83,27 @@ public class Database {
                 .setPrettyPrinting().create();
         gson.toJson(components.values());
         String file = gson.toJson(components.values());
-        FileWriter writer = new FileWriter(location);
-        writer.write(file);
-        writer.close();
-        System.out.println(file);
+        try {
+            FileWriter writer = new FileWriter(location);
+            writer.write(file);
+            writer.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
 
     public void loadFromFile(String location) throws FileNotFoundException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting().create();
         resetEntireDatabase();
-
-        JsonReader reader = new JsonReader(new FileReader(location));
-        List<Component> data = gson.fromJson(reader, REVIEW_TYPE);
-        for (Component component: data) {
-            components.put(component.getId(), component);
+        try {
+            JsonReader reader = new JsonReader(new FileReader(location));
+            List<Component> data = gson.fromJson(reader, REVIEW_TYPE);
+            for (Component component : data) {
+                components.put(component.getId(), component);
+            }
+        } catch (FileNotFoundException e) {
+            e.getMessage();
         }
-
     }
 }

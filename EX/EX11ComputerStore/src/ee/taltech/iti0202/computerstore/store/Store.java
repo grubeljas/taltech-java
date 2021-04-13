@@ -16,7 +16,15 @@ public class Store {
     private double balance, profitMargin;
     private Database database = Database.getInstance();
 
-    public Store(String name, double balance, double profitMargin) throws IllegalArgumentException{
+    /**
+     * Constructor.
+     *
+     * @param name
+     * @param balance
+     * @param profitMargin
+     * @throws IllegalArgumentException
+     */
+    public Store(String name, double balance, double profitMargin) throws IllegalArgumentException {
         this.name = name;
         this.balance = balance;
         if (profitMargin < 1) {
