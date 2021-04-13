@@ -108,8 +108,7 @@ public final class Database {
      * @param location
      */
     public void saveToFile(String location) {
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting().create();
+        Gson gson = new Gson();
         gson.toJson(components.values());
         String file = gson.toJson(components.values());
         try {
@@ -126,8 +125,7 @@ public final class Database {
      * @param location
      */
     public void loadFromFile(String location) {
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting().create();
+        Gson gson = new Gson();
         resetEntireDatabase();
         try {
             JsonReader reader = new JsonReader(new FileReader(location));
