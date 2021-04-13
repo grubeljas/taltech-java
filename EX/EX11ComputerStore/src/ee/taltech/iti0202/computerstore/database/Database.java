@@ -88,7 +88,7 @@ public final class Database {
             writer.write(file);
             writer.close();
         } catch (IOException e) {
-            e.getMessage();
+            throw e;
         }
     }
 
@@ -103,7 +103,7 @@ public final class Database {
                 components.put(component.getId(), component);
             }
         } catch (FileNotFoundException e) {
-            e.getMessage();
+            throw e;
         }
     }
 }
