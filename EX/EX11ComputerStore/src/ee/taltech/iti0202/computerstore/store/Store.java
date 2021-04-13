@@ -70,7 +70,7 @@ public class Store {
                 .filter(component -> component.getAmount() > 0)
                 .collect(Collectors.toList());
         for (Component component: components) {
-            if (component.getAmount() > 9) {
+            if (component.getAmount() == 10) {
                 available.add(component);
             } else {
                 for (int i = 0; i < component.getAmount(); ++i) {
@@ -137,7 +137,7 @@ public class Store {
                 sum += component.getPrice() * component.getAmount();
             }
         }
-        return sum * profitMargin + balance;
+        return (sum + balance) * profitMargin;
     }
 
     public String getName() {
