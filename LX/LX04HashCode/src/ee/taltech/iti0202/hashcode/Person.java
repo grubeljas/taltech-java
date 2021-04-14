@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.hashcode;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Person {
@@ -37,7 +36,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-            return ( (int) firstName.charAt(0) * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
+            return ((int) firstName.charAt(0) * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
     }
 
     @Override
