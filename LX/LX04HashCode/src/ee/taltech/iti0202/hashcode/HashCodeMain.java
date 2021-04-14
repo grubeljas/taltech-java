@@ -5,8 +5,8 @@ import java.util.Map;
 class HashCodeMain {
     public static void main(String[] args) {
 
-        //
         Map<Person, Integer> numbers = new HashMap<>();
+        /**
         Person person1 = new Person("Ago", "von", "Luberg", 20);
         Person person2 = new Person("Ago", "von", "Luberg", 20);
         Person person3 = new Person("Ago", "", "Luberg", 20);
@@ -24,6 +24,6 @@ class HashCodeMain {
         System.out.println(person1.equals(person5));  // true
         System.out.println(person1.equals(person6));  // false
         System.out.println(numbers);
-        // {Person{firstName='Ago', lastName='Luberg', middleName='von', age=35}=8, Person{firstName='Ago', lastName='Luberg', middleName='von', age=20}=7, Person{firstName='Ago', lastName='Luberg', middleName='blah', age=20}=6}
+         */
     }
 }
