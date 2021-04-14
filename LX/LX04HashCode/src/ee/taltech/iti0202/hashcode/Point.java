@@ -16,7 +16,7 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return x * 2 + y;
+        return Math.abs(x * (x - y) + y);
     }
 
     @Override

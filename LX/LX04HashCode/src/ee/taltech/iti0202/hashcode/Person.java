@@ -7,7 +7,7 @@ public class Person {
     private String lastName;
     private String middleName;
     private int age;
-    private final int DECADE = 10;
+    private final int dECADE = 10;
 
     /**
      * Construct.
@@ -28,7 +28,8 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age / DECADE == person.age / DECADE && Objects.equals(firstName.charAt(0), person.firstName.charAt(0))
+        return age / dECADE == person.age / dECADE && Objects.equals(firstName.substring(0, 1),
+                person.firstName.substring(0, 1))
                 && Objects.equals(lastName, person.lastName)
                 && (Objects.equals(middleName, person.middleName)
                 || middleName.isEmpty() || person.middleName.isEmpty());
@@ -36,13 +37,12 @@ public class Person {
 
     @Override
     public int hashCode() {
-            return (firstName.length() * DECADE * DECADE + lastName.length() * DECADE) * (1 + age / DECADE);
+            return (firstName.length() * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
     }
 
     @Override
     public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+        return "Person{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
                 + ", middleName='" + middleName + '\'' + ", age=" + age + '}';
     }
 }
