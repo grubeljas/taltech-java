@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.hashcode;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Person {
@@ -28,8 +29,7 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age / dECADE == person.age / dECADE && Objects.equals(firstName.substring(0, 1).toLowerCase(),
-                person.firstName.substring(0, 1).toLowerCase())
+        return age / dECADE == person.age / dECADE && Objects.equals(firstName.charAt(0), person.firstName.charAt(0))
                 && Objects.equals(lastName, person.lastName)
                 && (Objects.equals(middleName, person.middleName)
                 || middleName.isEmpty() || person.middleName.isEmpty());
@@ -37,7 +37,8 @@ public class Person {
 
     @Override
     public int hashCode() {
-            return (firstName.length() * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
+            return (firstName.substring(0, 1).getBytes(StandardCharsets.UTF_8).hashCode()
+                    * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
     }
 
     @Override
