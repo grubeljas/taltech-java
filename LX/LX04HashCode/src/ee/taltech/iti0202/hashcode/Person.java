@@ -28,8 +28,8 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return age / dECADE == person.age / dECADE && Objects.equals(firstName.substring(0, 1),
-                person.firstName.substring(0, 1))
+        return age / dECADE == person.age / dECADE && Objects.equals(firstName.substring(0, 1).toLowerCase(),
+                person.firstName.substring(0, 1).toLowerCase())
                 && Objects.equals(lastName, person.lastName)
                 && (Objects.equals(middleName, person.middleName)
                 || middleName.isEmpty() || person.middleName.isEmpty());
