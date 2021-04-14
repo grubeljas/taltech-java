@@ -37,8 +37,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-            return (firstName.substring(0, 1).getBytes(StandardCharsets.UTF_8).hashCode()
-                    * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
+            return ( (int) firstName.charAt(0) * dECADE * dECADE + lastName.length() * dECADE) * (1 + age / dECADE);
     }
 
     @Override
