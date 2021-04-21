@@ -3,6 +3,7 @@ package ee.taltech.iti0202.hello;
  * Simple class to test whether you get feedback.
  */
 public class Hello {
+
     /**
      * Returns a greeting for the given person.
      *
@@ -20,6 +21,15 @@ public class Hello {
         }
     }
 
+    public static float random(float n) {
+        float x = n;
+        for (int i = 0; i < 10; i++) {
+            x = 1 + 1 / x;
+            System.out.println(x);
+        }
+        return x;
+    }
+
     /**
      * The main method which is executed when the program is executed.
      * @param args Arguments from command line
@@ -27,5 +37,6 @@ public class Hello {
     public static void main(String[] args) {
         System.out.println(getGreeting(""));
         System.out.println(getGreeting("Java"));
+        System.out.println(random(-0.618f));
     }
 }
