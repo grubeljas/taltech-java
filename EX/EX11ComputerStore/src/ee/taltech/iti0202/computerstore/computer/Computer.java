@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.computerstore.computer;
 
-import ee.taltech.iti0202.computerstore.components.*;
+import ee.taltech.iti0202.computerstore.components.Component;
 
 import java.util.ArrayList;
 import java.util.List;

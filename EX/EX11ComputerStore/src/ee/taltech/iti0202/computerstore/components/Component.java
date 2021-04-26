@@ -1,4 +1,5 @@
 package ee.taltech.iti0202.computerstore.components;
+
 public class Component {
     private int id;
     public static int idCount = 0;
@@ -14,7 +15,17 @@ public class Component {
         CPU, GPU, RAM, MOTHERBOARD, HDD, SSD, PSU, KEYBOARD, TOUCHPAD, SCREEN, BATTERY, FAN, CASE
     }
 
-    public Component(String name, Type type, double price, String manufacturer, int performancePoints, int powerConsumption) {
+    /**
+     * Constructor.
+     * @param name
+     * @param type
+     * @param price
+     * @param manufacturer
+     * @param performancePoints
+     * @param powerConsumption
+     */
+    public Component(String name, Type type, double price, String manufacturer,
+                     int performancePoints, int powerConsumption) {
         this.id = idCount++;
         this.name = name;
         this.type = type;

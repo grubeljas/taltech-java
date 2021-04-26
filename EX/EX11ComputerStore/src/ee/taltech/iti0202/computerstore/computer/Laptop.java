@@ -5,13 +5,22 @@ import ee.taltech.iti0202.computerstore.components.Component;
 public class Laptop extends Computer{
     private Component keyboard, screen, battery, touchpad;
 
-    public Laptop(Component screen, Component keyboard, Component battery,
-                  Component touchpad, Component cpu, Component gpu, Component ram, Component motherboard,
+    /**
+     * Laptop.
+     * @param screen
+     * @param keyboard
+     * @param battery
+     * @param touchpad
+     * @param cpu
+     * @param gpu
+     * @param ram
+     * @param motherboard
+     * @param harddisk
+     * @param psu
+     * @param case1
+     */
+    public Laptop(Component cpu, Component gpu, Component ram, Component motherboard,
                   Component harddisk, Component psu, Component case1) {
-        this.keyboard = keyboard;
-        this.screen = screen;
-        this.battery = battery;
-        this.touchpad = touchpad;
         this.setCase1(case1);
         this.setCpu(cpu);
         this.setGpu(gpu);
@@ -20,8 +29,6 @@ public class Laptop extends Computer{
         this.setHarddisk(harddisk);
         this.setPsu(psu);
     }
-
-    public Laptop() {}
 
     public Component getTouchpad() {
         return touchpad;

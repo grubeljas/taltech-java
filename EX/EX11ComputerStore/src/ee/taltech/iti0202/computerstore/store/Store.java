@@ -1,6 +1,9 @@
 package ee.taltech.iti0202.computerstore.store;
 import ee.taltech.iti0202.computerstore.Customer;
-import ee.taltech.iti0202.computerstore.computer.*;
+import ee.taltech.iti0202.computerstore.computer.Computer;
+import ee.taltech.iti0202.computerstore.computer.ComputerFactory;
+import ee.taltech.iti0202.computerstore.computer.ComputerType;
+import ee.taltech.iti0202.computerstore.computer.Preferences;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.database.Database;
 import ee.taltech.iti0202.computerstore.exceptions.CannotBuildComputerException;
@@ -62,7 +65,18 @@ public class Store {
         return component;
     }
 
-    public Computer purchaseComputer(Customer customer, int budget, Preferences preferences, ComputerType type) throws CannotBuildComputerException {
+    /**
+     * Purchase computer.
+     *
+     * @param customer
+     * @param budget
+     * @param preferences
+     * @param type
+     * @return
+     * @throws CannotBuildComputerException
+     */
+    public Computer purchaseComputer(Customer customer, int budget, Preferences preferences, ComputerType type)
+            throws CannotBuildComputerException {
         Computer computer = computerFactory.buildComputer(budget, preferences, type);
         return computer;
     }
@@ -184,6 +198,8 @@ public class Store {
         }
         this.profitMargin = profitMargin;
     }
+
+    public void setDatabase(Database database) { this.database = database; }
 
     public Database getDatabase() {
         return database;

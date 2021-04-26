@@ -41,5 +41,7 @@ public class Customer {
         return components;
     }
 
-    public List<Computer> getComputers() { return computers; }
+    public List<Computer> getComputers() {
+        return computers;
+    }
 }

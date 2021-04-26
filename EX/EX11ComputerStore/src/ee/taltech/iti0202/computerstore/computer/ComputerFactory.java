@@ -1,6 +1,6 @@
 package ee.taltech.iti0202.computerstore.computer;
 
-import ee.taltech.iti0202.computerstore.components.*;
+import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.exceptions.CannotBuildComputerException;
 import ee.taltech.iti0202.computerstore.store.Store;
 
@@ -13,10 +13,14 @@ public class ComputerFactory {
     public Store store;
     float processorWeight = 1.0f;
     float gpuWeight = 1.0f;
-    final float WEIGHT = 1.3f;
+    final float wEIGHT = 1.3f;
     List<Component> psuList, gpuList, cpuList, ramList, motherboardList, casesList, harddiskList, keyboardList,
             screenList, batteryList, touchpadList;
 
+    /**
+     * Constructor.
+     * @param store
+     */
     public ComputerFactory(Store store) {
         this.store = store;
     }
@@ -24,21 +28,26 @@ public class ComputerFactory {
     public void setWeights(Preferences preferences) {
         switch (preferences) {
             case WORKSTATION:
-                processorWeight = WEIGHT;
+                processorWeight = wEIGHT;
                 gpuWeight = 1.0f;
                 break;
             case GAMING:
-                gpuWeight = WEIGHT;
+                gpuWeight = wEIGHT;
                 processorWeight = 1.0f;
                 break;
-            case NONE:
+            default:
                 gpuWeight = 1.0f;
                 processorWeight = 1.0f;
-                break;
         }
     }
 
-    public List<Component> getComponentsSortedByPerformance(List<Component> list) throws CannotBuildComputerException{
+    /**
+     * Sort list by performance.
+     * @param list
+     * @return
+     * @throws CannotBuildComputerException
+     */
+    public List<Component> getComponentsSortedByPerformance(List<Component> list) throws CannotBuildComputerException {
         if (list.isEmpty()) {
             throw new CannotBuildComputerException();
         }
@@ -48,7 +57,16 @@ public class ComputerFactory {
         return components;
     }
 
-    public Computer buildComputer(int budget, Preferences preferences, ComputerType type) throws CannotBuildComputerException {
+    /**
+     * Build computer according to budget and type.
+     * @param budget
+     * @param preferences
+     * @param type
+     * @return
+     * @throws CannotBuildComputerException
+     */
+    public Computer buildComputer(int budget, Preferences preferences, ComputerType type)
+            throws CannotBuildComputerException {
         setWeights(preferences);
         Computer computer = null;
         psuList = store.filterByType(Component.Type.PSU);
@@ -67,10 +85,18 @@ public class ComputerFactory {
             case PC:
                 computer = buildLaptop(budget);
                 break;
+            default:
+                break;
         }
         return computer;
     }
 
+    /**
+     * Build PC.
+     * @param budget
+     * @return
+     * @throws CannotBuildComputerException
+     */
     public Computer buildPC(int budget) throws CannotBuildComputerException {
         List<Component> combination = null;
         int bestPerformance = 0;
@@ -111,6 +137,12 @@ public class ComputerFactory {
                 combination.get(4), combination.get(5), combination.get(6));
     }
 
+    /**
+     * Build Laptop.
+     * @param budget
+     * @return
+     * @throws CannotBuildComputerException
+     */
     public Computer buildLaptop(int budget) throws CannotBuildComputerException {
         List<Component> combination = null;
         int bestPerformance = 0;
@@ -144,8 +176,10 @@ public class ComputerFactory {
                                                             + cpu.getPrice() + ram.getPrice() + motherboard.getPrice()
                                                             + harddisk.getPrice()) * store.getProfitMargin()) {
                                                         performanceOfCombination = psu.getPerformancePoints()
-                                                                + gpu.getPerformancePoints() + cpu.getPerformancePoints()
-                                                                + ram.getPerformancePoints() + motherboard.getPerformancePoints()
+                                                                + gpu.getPerformancePoints()
+                                                                + cpu.getPerformancePoints()
+                                                                + ram.getPerformancePoints()
+                                                                + motherboard.getPerformancePoints()
                                                                 + harddisk.getPerformancePoints();
                                                         if (performanceOfCombination > bestPerformance) {
                                                             bestPerformance = performanceOfCombination;
