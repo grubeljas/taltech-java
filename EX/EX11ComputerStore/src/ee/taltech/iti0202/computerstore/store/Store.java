@@ -99,7 +99,7 @@ public class Store {
                 }
             }
         }
-        return components;
+        return available;
     }
 
     /**
