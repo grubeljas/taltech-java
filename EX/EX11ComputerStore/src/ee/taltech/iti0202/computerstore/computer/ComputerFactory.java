@@ -201,8 +201,8 @@ public class ComputerFactory {
         if (combination.isEmpty()) {
             throw new CannotBuildComputerException();
         }
-        Laptop laptop = new Laptop(combination.get(4), combination.get(5), combination.get(6), combination.get(7), combination.get(8),
-                combination.get(9), combination.get(10))
+        Laptop laptop = new Laptop(combination.get(4), combination.get(5), combination.get(6), combination.get(7),
+                combination.get(8), combination.get(9), combination.get(10))
                 .setScreen(combination.get(0))
                 .setKeyboard(combination.get(1))
                 .setBattery(combination.get(2))
