@@ -1,5 +1,6 @@
 package ee.taltech.iti0202.computerstore.database;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import ee.taltech.iti0202.computerstore.components.Component;
@@ -112,7 +113,7 @@ public final class Database {
      * @param location
      */
     public void saveToFile(String location) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String file = gson.toJson(this);
         try {
             FileWriter writer = new FileWriter(location);
@@ -128,7 +129,7 @@ public final class Database {
      * @param location
      */
     public void loadFromFile(String location) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         resetEntireDatabase();
         try {
             JsonReader reader = new JsonReader(new FileReader(location));
@@ -136,15 +137,5 @@ public final class Database {
         } catch (FileNotFoundException e) {
             e.getMessage();
         }
-    }
-
-    public static void main(String[] args) throws ProductAlreadyExistsException, IOException {
-        Database database = getInstance();
-        Component spu = new Component("cpu", Component.Type.CPU, 10, "shit", 10, 10);
-        Component cpu = new Component("cpu", Component.Type.CPU, 14, "shit", 10, 10);
-        database.saveComponent(spu);
-        database.saveComponent(cpu);
-        database.saveToFile("gen.json");
-        database.loadFromFile("gen.json");
     }
 }
