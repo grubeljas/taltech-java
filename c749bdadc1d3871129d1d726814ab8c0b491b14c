@@ -1,0 +1,10 @@
+[ver:1,total:780,branch:master]
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/ComputerFactory.java:316,1619460000:316,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/store/Store.java:140,1619460000:140,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Laptop.java:94,1619460000:94,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/PC.java:74,1619460000:74,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/Customer.java:62,1619460000:62,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/components/Component.java:42,1619460000:42,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Computer.java:20,1619460000:20,m
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/StoreTest.java:20,1619460000:20,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/exceptions/CannotBuildComputerException.java:12,1619460000:12,m
