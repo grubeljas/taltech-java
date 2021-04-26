@@ -1,7 +1,9 @@
 package ee.taltech.iti0202.computerstore.store;
 import ee.taltech.iti0202.computerstore.Customer;
+import ee.taltech.iti0202.computerstore.computer.*;
 import ee.taltech.iti0202.computerstore.components.Component;
 import ee.taltech.iti0202.computerstore.database.Database;
+import ee.taltech.iti0202.computerstore.exceptions.CannotBuildComputerException;
 import ee.taltech.iti0202.computerstore.exceptions.NotEnoughMoneyException;
 import ee.taltech.iti0202.computerstore.exceptions.OutOfStockException;
 import ee.taltech.iti0202.computerstore.exceptions.ProductNotFoundException;
@@ -16,6 +18,7 @@ public class Store {
     private String name;
     private double balance, profitMargin;
     private Database database = Database.getInstance();
+    ComputerFactory computerFactory;
 
     /**
      * Constructor.
@@ -28,6 +31,7 @@ public class Store {
     public Store(String name, double balance, double profitMargin) throws IllegalArgumentException {
         this.name = name;
         this.balance = balance;
+        this.computerFactory = new ComputerFactory(this);
         if (profitMargin < 1) {
             throw new IllegalArgumentException();
         } else this.profitMargin = profitMargin;
@@ -50,14 +54,17 @@ public class Store {
         if (customer.getBalance() < price) {
             throw new NotEnoughMoneyException();
         } else {
-            if (component.getAmount() == 0) {
-                database.decreaseComponentStock(id, 1);
-            }
             balance += price;
+            database.decreaseComponentStock(id, 1);
             customer.setBalance(customer.getBalance() - price);
             customer.getComponents().add(component);
         }
         return component;
+    }
+
+    public Computer purchaseComputer(Customer customer, int budget, Preferences preferences, ComputerType type) throws CannotBuildComputerException {
+        Computer computer = computerFactory.buildComputer(budget, preferences, type);
+        return computer;
     }
 
     /**
@@ -109,6 +116,17 @@ public class Store {
      */
     public List<Component> getComponentsSortedByPrice() {
         List<Component> components = database.getComponents().values().stream()
+                .sorted(Comparator.comparing(component -> component.getPrice()))
+                .collect(Collectors.toList());
+        return components;
+    }
+
+    /**
+     * Get by price for EX12.
+     * @return
+     */
+    public List<Component> getComponentsSortedByPrice(List<Component> componentsList) {
+        List<Component> components = componentsList.stream()
                 .sorted(Comparator.comparing(component -> component.getPrice()))
                 .collect(Collectors.toList());
         return components;
@@ -169,9 +187,5 @@ public class Store {
 
     public Database getDatabase() {
         return database;
-    }
-
-    public void setDatabase(Database database) {
-        this.database = database;
     }
 }
