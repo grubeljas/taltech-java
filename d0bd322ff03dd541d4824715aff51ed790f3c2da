@@ -1,0 +1,31 @@
+[ver:1,total:20888,branch:master]
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/ComputerFactory.java:9716,1619035200:500,1619103600:180,1619110800:195,1619114400:1320,1619118000:360,1619132400:1156,1619136000:410,1619186400:1635,1619190000:1260,1619193600:1440,1619204400:600,1619208000:420,1619215200:210,1619218800:30,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/StoreTest.java:3105,1619222400:280,1619226000:188,1619434800:60,1619438400:140,1619445600:373,1619452800:847,1619456400:1217,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/store/Store.java:2150,1619010000:120,1619046000:297,1619089200:180,1619114400:252,1619118000:180,1619121600:180,1619132400:80,1619186400:345,1619438400:240,1619456400:240,1619460000:36,m
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Computer.java:1315,1619035200:614,1619096400:180,1619103600:120,1619110800:120,1619114400:281,r
+EX/EX11ComputerStore/test/ee.taltech.iti0202.computerstore/CustomerTest.java:792,1619215200:655,1619218800:137,d
+.gtm/JUnit-> StoreTest.app:624,1619226000:160,1619438400:40,1619445600:152,1619452800:206,1619456400:66,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Laptop.java:604,1619035200:371,1619114400:233,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/ComputerType.java:559,1619010000:240,1619046000:183,1619110800:45,1619114400:91,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/CustomerTest.java:384,1619218800:222,1619222400:140,1619445600:15,1619456400:7,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/PC.java:360,1619035200:135,1619114400:165,1619204400:60,r
+.gtm/JUnit-> All in EX11ComputerStore.app:292,1619218800:172,1619222400:120,r
+.gtm/JUnit-> StoreTest.basicDatabase.app:170,1619456400:170,r
+gen.json:135,1619132400:135,r
+.gtm/JUnit-> StoreTest.basicStore.app:104,1619456400:80,1619460000:24,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/ComponentTest.java:90,1619218800:90,d
+.gtm/Application-> Database.app:87,1619132400:87,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/components/ComponentTest.java:70,1619215200:10,1619222400:60,d
+.gtm/JUnit-> ee.taltech.iti0202.computerstore in EX11ComputerStore.app:66,1619456400:66,r
+EX/EX05MysticOrbs/test/ee/taltech/iti0202/mysticorbs/factory/OrbFactoryTest.java:60,1619452800:60,r
+.gtm/TestNG-> CustomerTest.app:36,1619218800:36,r
+EX/EX11ComputerStore/test/CustomerTest.java:32,1619218800:32,d
+.gtm/TestNG-> CustomerTest.testCustomer.app:25,1619218800:25,r
+.gtm/JUnit-> KitchenTest.app:24,1619218800:24,r
+EX/EX06Files/test/ee/taltech/iti0202/files/input/InputFilesReadersTest.java:20,1619215200:20,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/exceptions/OutOfStockException.java:12,1619215200:12,r
+EX/EX05MysticOrbs/test/ee/taltech/iti0202/mysticorbs/orb/MagicOrbTest.java:12,1619452800:12,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/exceptions/CannotBuildComputerException.java:12,1619132400:12,r
+.gtm/Application-> HashCodeMain.app:12,1619114400:12,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Preferences.java:10,1619114400:10,r
+EX/EX06Files/test/ee/taltech/iti0202/files/output/OutputFilesWriterTest.java:10,1619215200:10,r
