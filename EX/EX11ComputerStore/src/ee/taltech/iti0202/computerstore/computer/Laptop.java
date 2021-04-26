@@ -2,15 +2,11 @@ package ee.taltech.iti0202.computerstore.computer;
 
 import ee.taltech.iti0202.computerstore.components.Component;
 
-public class Laptop extends Computer{
+public class Laptop extends Computer {
     private Component keyboard, screen, battery, touchpad;
 
     /**
      * Laptop.
-     * @param screen
-     * @param keyboard
-     * @param battery
-     * @param touchpad
      * @param cpu
      * @param gpu
      * @param ram
@@ -34,7 +30,7 @@ public class Laptop extends Computer{
         return touchpad;
     }
 
-    public Computer setTouchpad(Component touchpad) {
+    public Laptop setTouchpad(Component touchpad) {
         this.touchpad = touchpad;
         componentList.add(touchpad);
         return this;
@@ -44,7 +40,7 @@ public class Laptop extends Computer{
         return battery;
     }
 
-    public Computer setBattery(Component battery) {
+    public Laptop setBattery(Component battery) {
         this.battery = battery;
         componentList.add(battery);
         return this;
@@ -54,7 +50,7 @@ public class Laptop extends Computer{
         return screen;
     }
 
-    public Computer setScreen(Component screen) {
+    public Laptop setScreen(Component screen) {
         this.screen = screen;
         componentList.add(screen);
         return this;
@@ -64,7 +60,7 @@ public class Laptop extends Computer{
         return keyboard;
     }
 
-    public Computer setKeyboard(Component keyboard) {
+    public Laptop setKeyboard(Component keyboard) {
         this.keyboard = keyboard;
         componentList.add(keyboard);
         return this;

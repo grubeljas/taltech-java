@@ -199,7 +199,9 @@ public class Store {
         this.profitMargin = profitMargin;
     }
 
-    public void setDatabase(Database database) { this.database = database; }
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
 
     public Database getDatabase() {
         return database;
