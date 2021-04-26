@@ -1,0 +1,4 @@
+[ver:1,total:140,branch:master]
+.gtm/JUnit-> StoreTest.basicStore.app:62,1619460000:62,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/StoreTest.java:48,1619460000:48,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/store/Store.java:30,1619460000:30,m
