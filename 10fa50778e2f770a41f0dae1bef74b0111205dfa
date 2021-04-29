@@ -1,0 +1,13 @@
+[ver:1,total:8857,branch:master]
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/ComputerTest.java:2534,1619467200:1033,1619470800:460,1619478000:8,1619481600:741,1619485200:292,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/StoreTest.java:2340,1619460000:227,1619463600:1579,1619467200:190,1619470800:10,1619481600:190,1619485200:144,r
+.gtm/JUnit-> ee.taltech.iti0202.computerstore in EX11ComputerStore.app:2053,1619463600:612,1619467200:23,1619470800:10,1619478000:709,1619481600:349,1619485200:350,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/ComponentTest.java:1065,1619481600:825,1619485200:240,r
+.gtm/JUnit-> StoreTest.jsonTest.app:332,1619463600:136,1619467200:196,r
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/Action.java:180,1619701200:180,m
+gen.json:105,1619463600:105,d
+.gtm/JUnit-> StoreTest.basicStore.app:96,1619460000:9,1619463600:87,r
+EX/EX11ComputerStore/gen.json:81,1619463600:59,1619467200:22,r
+.gtm/JUnit-> StoreTest.basicDatabase.app:39,1619463600:39,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/CustomerTest.java:22,1619467200:7,1619481600:15,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Laptop.java:10,1619481600:10,r
