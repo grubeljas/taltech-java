@@ -1,4 +1,6 @@
-package ee.taltech.iti0202.delivery;
+package ee.taltech.iti0202.delivery.strategy;
+
+import ee.taltech.iti0202.delivery.Location;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,6 @@ public class Action {
     }
 
     Location getGoTo() {
-        for (String neigh: location.neighbours.keySet()) {
-        }
-        return new Location("0");
+        return location;
     }
 }
