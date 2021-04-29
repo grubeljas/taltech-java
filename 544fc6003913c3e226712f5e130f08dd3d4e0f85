@@ -1,0 +1,6 @@
+[ver:1,total:1577,branch:master]
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/World.java:1242,1619704800:780,1619708400:420,1619712000:35,1619719200:7,m
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/Courier.java:171,1619712000:162,1619719200:9,m
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/strategy/ABABstrategy.java:142,1619719200:142,d
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/ABABstrategy.java:15,1619719200:15,m
+EX/EX08Delivery/src/ee/taltech/iti0202/delivery/Strategy.java:7,1619719200:7,m
