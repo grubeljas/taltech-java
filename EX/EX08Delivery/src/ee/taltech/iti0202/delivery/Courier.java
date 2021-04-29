@@ -7,13 +7,15 @@ import java.util.Optional;
 public class Courier {
 
     String name;
+    World world;
     Optional<Location> location;
     List<Packet> packetList;
     Strategy strategy;
     Integer timeToDestination;
 
-    public Courier(String name) {
+    public Courier(String name, World world) {
         this.name = name;
+        this.world = world;
         this.location = Optional.empty();
         this.packetList = new ArrayList<>();
     }

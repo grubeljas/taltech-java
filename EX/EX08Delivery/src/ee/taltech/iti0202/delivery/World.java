@@ -1,33 +1,22 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class World {
 
-    private List<Courier> couriers;
-    private List<Location> locations;
-
-    public World() {
-        this.couriers = new ArrayList<>();
-        this.locations = new ArrayList<>();
-    }
+    private Map<String, Location> locationMap = new HashMap<>();
+    private Map<String, Courier> courierMap = new HashMap<>();
 
     public Optional<Location> findSameLocation(String name) {
-        for (Location location: locations) {
-            if (location.getName().equals(name)) {
-                return Optional.of(location);
-            }
+        if (locationMap.containsKey(name)) {
+            return Optional.of(locationMap.get(name));
         }
         return Optional.empty();
     }
 
     public Optional<Courier> findSameCourier(String name) {
-        for (Courier courier: couriers) {
-            if (courier.getName().equals(name)) {
-                return Optional.of(courier);
-            }
+        if (courierMap.containsKey(name)) {
+            return Optional.of(courierMap.get(name));
         }
         return Optional.empty();
     }
@@ -44,25 +33,27 @@ public class World {
             Location newLocation = new Location(name);
             for (int i = 0; i < otherLocations.size(); i++) {
                 newLocation.addDistance(otherLocations.get(i), distances.get(i));
+                locationMap.getOrDefault(otherLocations.get(i), new Location(otherLocations.get(i)));
+                locationMap.get(otherLocations.get(i)).addDistance(name, distances.get(i));
             }
-            locations.add(newLocation);
+            locationMap.put(name, newLocation);
             return Optional.of(newLocation);
         }
     }
 
     public Optional<Courier> addCourier(String name, String to) {
-        if (findSameLocation(to).isPresent() || findSameCourier(name).isPresent()) {
+        if (!locationMap.containsKey(to) || courierMap.containsKey(name)) {
             return Optional.empty();
         } else {
-            Courier courier = new Courier(name);
-            courier.setLocation(findSameLocation(to).get());
-            couriers.add(courier);
+            Courier courier = new Courier(name, this);
+            courier.setLocation(locationMap.get(to));
+            courierMap.put(name, courier);
             return Optional.of(courier);
         }
     }
 
     public boolean giveStrategy(String name, Strategy strategy) {
-        if (findSameCourier(name).isPresent()) {
+        if (courierMap.containsKey(name)) {
             findSameCourier(name).get().setStrategy(strategy);
             return true;
         }
@@ -70,7 +61,7 @@ public class World {
     }
 
     public void tick() {
-        for (Courier courier: couriers) {
+        for (Courier courier: courierMap.values()) {
             courier.tick();
         }
 

@@ -1,4 +1,4 @@
-package ee.taltech.iti0202.delivery.strategy;
+package ee.taltech.iti0202.delivery;
 
 import ee.taltech.iti0202.delivery.Location;
 
