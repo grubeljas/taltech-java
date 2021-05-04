@@ -1,0 +1,12 @@
+[ver:1,total:4040,branch:master]
+LX/LX05Generics/src/ee/taltech/iti0202/generics/Hash2Map.java:2185,1620147600:840,1620151200:1345,m
+LX/LX05Generics/src/ee/taltech/iti0202/generics/HashList.java:1068,1620151200:540,1620154800:480,1620158400:48,m
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/oven/Oven.java:198,1620133200:198,r
+.gtm/Application-> Hash2Map.app:161,1620151200:155,1620158400:6,r
+EX/EX06Files/output.txt:160,1620133200:160,r
+.gtm/JUnit-> All in EX06Files.app:100,1620133200:100,r
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/oven/MagicOven.java:62,1620133200:62,r
+EX/EX06Files/test/ee/taltech/iti0202/files/output/OutputFilesWriterTest.java:60,1620147600:60,r
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/orb/Orb.java:20,1620133200:20,r
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/oven/SpaceOven.java:20,1620133200:20,r
+.gtm/Application-> HashList.app:6,1620158400:6,r
