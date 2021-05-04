@@ -26,7 +26,6 @@ public class Courier {
 
     public void setLocation(Location location) {
         this.location = Optional.of(location);
-        this.timeToDestination = 0;
     }
 
     public Optional<Location> getLocation() {
@@ -48,7 +47,10 @@ public class Courier {
         if (timeToDestination > 0) {
             timeToDestination--;
         } else {
-
+            Action action = getStrategy().getAction();
+            action.getDeposit();
+            action.getTake();
+            setLocation(action.getGoTo());
         }
 
     }
