@@ -25,6 +25,10 @@ public class Location {
         return name;
     }
 
+    /**
+     * To string name.
+     * @return
+     */
     public String toString() {
         return getName();
     }

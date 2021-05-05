@@ -25,6 +25,10 @@ public class Courier {
         this.packetList = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
     /**
      * Set location.
      * @param location
@@ -33,6 +37,10 @@ public class Courier {
         this.location = Optional.of(location);
     }
 
+    /**
+     * Get current location.
+     * @return
+     */
     public Optional<Location> getLocation() {
         if (location.isPresent()) {
             return location;
