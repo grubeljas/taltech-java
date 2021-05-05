@@ -11,6 +11,10 @@ public class Location {
     HashMap<String, Integer> neighbours;
     List<Packet> packets;
 
+    /**
+     * Location.
+     * @param name
+     */
     public Location(String name) {
         this.name = name;
         this.packets = new LinkedList<>();
@@ -25,10 +29,19 @@ public class Location {
         return getName();
     }
 
+    /**
+     * Add packet to location.
+     * @param packet
+     */
     public void addPacket(Packet packet) {
         packets.add(packet);
     }
 
+    /**
+     * Check if it has it.
+     * @param name
+     * @return
+     */
     public Optional<Packet> getPacket(String name) {
         for (Packet packet: packets) {
             if (packet.getName().equals(name)) {
@@ -38,10 +51,20 @@ public class Location {
         return Optional.empty();
     }
 
+    /**
+     * Add distance.
+     * @param location
+     * @param distance
+     */
     public void addDistance(String location, int distance) {
         neighbours.put(location, distance);
     }
 
+    /**
+     * Get distance to location.
+     * @param name
+     * @return
+     */
     public Integer getDistanceTo(String name) {
         if (neighbours.containsKey(name)) {
             return neighbours.get(name);

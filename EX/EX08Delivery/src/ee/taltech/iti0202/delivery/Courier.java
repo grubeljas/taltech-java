@@ -13,6 +13,11 @@ public class Courier {
     Strategy strategy;
     Integer timeToDestination;
 
+    /**
+     * Construstor.
+     * @param name
+     * @param world
+     */
     public Courier(String name, World world) {
         this.name = name;
         this.world = world;
@@ -20,10 +25,10 @@ public class Courier {
         this.packetList = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
-
+    /**
+     * Set location.
+     * @param location
+     */
     public void setLocation(Location location) {
         this.location = Optional.of(location);
     }
@@ -43,6 +48,9 @@ public class Courier {
         return strategy;
     }
 
+    /**
+     * Tick.
+     */
     public void tick() {
         if (timeToDestination > 0) {
             timeToDestination--;

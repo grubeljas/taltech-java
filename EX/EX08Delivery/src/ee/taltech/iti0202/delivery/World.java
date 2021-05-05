@@ -1,12 +1,20 @@
 package ee.taltech.iti0202.delivery;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class World {
 
     private Map<String, Location> locationMap = new HashMap<>();
     private Map<String, Courier> courierMap = new HashMap<>();
 
+    /**
+     * Find location.
+     * @param name
+     * @return
+     */
     public Optional<Location> findSameLocation(String name) {
         if (locationMap.containsKey(name)) {
             return Optional.of(locationMap.get(name));
@@ -14,6 +22,11 @@ public class World {
         return Optional.empty();
     }
 
+    /**
+     * Find if world has this courier.
+     * @param name
+     * @return
+     */
     public Optional<Courier> findSameCourier(String name) {
         if (courierMap.containsKey(name)) {
             return Optional.of(courierMap.get(name));
@@ -21,6 +34,13 @@ public class World {
         return Optional.empty();
     }
 
+    /**
+     * Add location.
+     * @param name
+     * @param otherLocations
+     * @param distances
+     * @return
+     */
     public Optional<Location> addLocation(String name, List<String> otherLocations, List<Integer> distances) {
         if (findSameLocation(name).isPresent() || otherLocations.size() != distances.size()) {
             if (findSameLocation(name).isPresent()) {
@@ -41,6 +61,12 @@ public class World {
         }
     }
 
+    /**
+     * Add courier.
+     * @param name
+     * @param to
+     * @return
+     */
     public Optional<Courier> addCourier(String name, String to) {
         if (!locationMap.containsKey(to) || courierMap.containsKey(name)) {
             return Optional.empty();
@@ -52,6 +78,12 @@ public class World {
         }
     }
 
+    /**
+     * Give strategy.
+     * @param name
+     * @param strategy
+     * @return
+     */
     public boolean giveStrategy(String name, Strategy strategy) {
         if (courierMap.containsKey(name)) {
             findSameCourier(name).get().setStrategy(strategy);
@@ -60,10 +92,12 @@ public class World {
         return false;
     }
 
+    /**
+     * Tick.
+     */
     public void tick() {
         for (Courier courier: courierMap.values()) {
             courier.tick();
         }
-
     }
 }

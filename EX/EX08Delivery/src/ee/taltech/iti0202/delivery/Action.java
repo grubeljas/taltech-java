@@ -1,7 +1,5 @@
 package ee.taltech.iti0202.delivery;
 
-import ee.taltech.iti0202.delivery.Location;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +8,10 @@ public class Action {
     private Location location;
     private List<String> deposit, take;
 
+    /**
+     * Constructor.
+     * @param location
+     */
     public Action(Location location) {
         this.location = location;
         this.deposit = new ArrayList<>();
