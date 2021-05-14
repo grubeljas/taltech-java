@@ -1,23 +1,23 @@
 package ee.taltech.iti0202.university.subject;
 
 import ee.taltech.iti0202.university.exception.StudentException;
-import ee.taltech.iti0202.university.student.Student;
+import ee.taltech.iti0202.university.people.Student;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Aine {
+public class Course {
 
     private final List<Student> studentList;
     private int eap;
     private final String name;
-    private AineTüüb aineTüüb;
+    private CourseType courseType;
     private final boolean isAssessment;
 
     /**
      * Type of subject.
      */
-    public enum AineTüüb {
+    public enum CourseType {
         VABAÕPE, ERIALA, ÜLDÕPE
     }
 
@@ -26,12 +26,12 @@ public class Aine {
      * @param eap number of eap.
      * @param name of subject.
      */
-    public Aine(String name, int eap, boolean isAssessment, AineTüüb aineTüüb) {
+    public Course(String name, int eap, boolean isAssessment, CourseType courseType) {
         this.eap = eap;
         this.name = name;
         this.studentList = new LinkedList<>();
         this.isAssessment = isAssessment;
-        this.aineTüüb = aineTüüb;
+        this.courseType = courseType;
     }
 
     /**
@@ -68,8 +68,8 @@ public class Aine {
         return name;
     }
 
-    public AineTüüb getAineTüüb() {
-        return aineTüüb;
+    public CourseType getCourseType() {
+        return courseType;
     }
 
     public boolean isAssessment() {

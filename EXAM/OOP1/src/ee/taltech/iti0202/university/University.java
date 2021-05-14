@@ -1,14 +1,14 @@
 package ee.taltech.iti0202.university;
 
 import ee.taltech.iti0202.university.exception.CourseException;
-import ee.taltech.iti0202.university.student.Student;
-import ee.taltech.iti0202.university.subject.Aine;
+import ee.taltech.iti0202.university.people.Student;
+import ee.taltech.iti0202.university.subject.Course;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class University {
-    private List<Aine> aineList;
+    private List<Course> courseList;
     private List<Student> studentList;
     private String name;
 
@@ -18,22 +18,22 @@ public class University {
      */
     public University(String name) {
         this.name = name;
-        this.aineList = new LinkedList<>();
+        this.courseList = new LinkedList<>();
         this.studentList = new LinkedList<>();
     }
 
     /**
      * Add course if not in the university.
-     * @param aine
+     * @param course
      * @return
      * @throws CourseException
      */
-    public boolean addCourse(Aine aine) throws CourseException {
+    public boolean addCourse(Course course) throws CourseException {
         try {
-            if (aineList.contains(aine)) {
+            if (courseList.contains(course)) {
                 throw new CourseException(CourseException.Reason.ALREADY_IN_UNI);
             }
-            aineList.add(aine);
+            courseList.add(course);
             return true;
         } catch (CourseException e) {
             System.out.println(e.getReason());
@@ -49,8 +49,8 @@ public class University {
         studentList.add(student);
     }
 
-    public List<Aine> getAineList() {
-        return aineList;
+    public List<Course> getAineList() {
+        return courseList;
     }
 
     public List<Student> getStudentList() {

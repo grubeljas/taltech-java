@@ -1,9 +1,9 @@
-package ee.taltech.iti0202.university.student;
+package ee.taltech.iti0202.university.people;
 
 import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
-import ee.taltech.iti0202.university.subject.Aine;
+import ee.taltech.iti0202.university.subject.Course;
 
 import java.util.Optional;
 import java.util.List;
@@ -15,14 +15,14 @@ public class Student {
 
     private final String name;
     private int age;
-    private final List<Aine> activeCourses; // currently enrolled courses
-    private final List<Aine> declaration;
-    private final Map<Aine, Integer> finishedAssessment; //any finished courses with assessments, even 0
-    private final Map<Aine, Boolean> finishedCredits; //any finished courses with credit, (credit - arvestus)
+    private final List<Course> activeCourses; // currently enrolled courses
+    private final List<Course> declaration;
+    private final Map<Course, Integer> finishedAssessment; //any finished courses with assessments, even 0
+    private final Map<Course, Boolean> finishedCredits; //any finished courses with credit, (credit - arvestus)
     private Optional<University> studiedIn;
     private double averageScore;
     private int sumOfEap;
-    static private final int AgeOfMajority = 18;
+    static final private int AGEOFMAJORITY = 18;
 
     /**
      * Constructor.
@@ -49,10 +49,10 @@ public class Student {
      */
     public boolean goToStudy(University university) throws StudentException {
         try {
-            if (age <= AgeOfMajority) {
+            if (age <= AGEOFMAJORITY) {
                 throw new StudentException(StudentException.Reason.UNDER_18);
             } else if (studiedIn.isPresent()) {
-                throw new StudentException(StudentException.Reason.ALREADY_IN_UNI) ;
+                throw new StudentException(StudentException.Reason.ALREADY_IN_UNI);
             }
             studiedIn = Optional.of(university);
             university.addStudent(this);
@@ -66,27 +66,27 @@ public class Student {
     /**
      * Add subject to declaration list, if subject is in university.
      * Student can declare subject even if he/she already failed it.
-     * @param aine
+     * @param course
      * @return
      */
-    public boolean declareAine(Aine aine) {
+    public boolean declareAine(Course course) {
         try {
-            if (!studiedIn.get().getAineList().contains(aine)) {
+            if (!studiedIn.get().getAineList().contains(course)) {
                 throw new CourseException(CourseException.Reason.NOT_IN_UNI);
             }
-            if (getDeclaration().contains(aine)) {
+            if (getDeclaration().contains(course)) {
                 throw new CourseException(CourseException.Reason.NOT_IN_UNI);
             }
-            if (finishedAssessment.containsKey(aine)) {
-                if (finishedAssessment.get(aine) != 0) {
+            if (finishedAssessment.containsKey(course)) {
+                if (finishedAssessment.get(course) != 0) {
                     throw new CourseException(CourseException.Reason.COURSE_IS_PASSED);
                 }
-            } else if (finishedCredits.containsKey(aine)) {
-                if (finishedCredits.get(aine)) {
+            } else if (finishedCredits.containsKey(course)) {
+                if (finishedCredits.get(course)) {
                     throw new CourseException(CourseException.Reason.COURSE_IS_PASSED);
                 }
             }
-            declaration.add(aine);
+            declaration.add(course);
             return true;
         } catch (CourseException e) {
             e.printStackTrace();
@@ -104,9 +104,9 @@ public class Student {
             if (!activeCourses.isEmpty()) {
                 throw new CourseException(CourseException.Reason.ACTIVE_SUBJECTS_IS_NOT_EMPTY);
             }
-            for (Aine aine: declaration) {
-                activeCourses.add(aine);
-                aine.addStudent(this);
+            for (Course course : declaration) {
+                activeCourses.add(course);
+                course.addStudent(this);
             }
             return true;
         } catch (CourseException e) {
@@ -121,9 +121,9 @@ public class Student {
      */
     public double getAverageScore() {
         double sumOfEap = 0, assessmentsWithWeights = 0, averageScore = 0;
-        for (Aine aine: finishedAssessment.keySet()) {
-            double aineEap = aine.getEap();
-            int assessment = finishedAssessment.get(aine);
+        for (Course course : finishedAssessment.keySet()) {
+            double aineEap = course.getEap();
+            int assessment = finishedAssessment.get(course);
             if (assessment == 0) {
                 aineEap /= 2;
             }
@@ -147,19 +147,19 @@ public class Student {
         return name;
     }
 
-    public List<Aine> getActiveCourses() {
+    public List<Course> getActiveCourses() {
         return activeCourses;
     }
 
-    public List<Aine> getDeclaration() {
+    public List<Course> getDeclaration() {
         return declaration;
     }
 
-    public Map<Aine, Integer> getFinishedAssessment() {
+    public Map<Course, Integer> getFinishedAssessment() {
         return finishedAssessment;
     }
 
-    public Map<Aine, Boolean> getFinishedCredits() {
+    public Map<Course, Boolean> getFinishedCredits() {
         return finishedCredits;
     }
 
