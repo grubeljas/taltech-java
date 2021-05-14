@@ -1,0 +1,14 @@
+[ver:1,total:10485,branch:master]
+EXAM/OOP1/src/ee/taltech/iti0202/university/student/Student.java:5865,1620997200:180,1621000800:275,1621008000:628,1621011600:1140,1621015200:2352,1621018800:84,1621022400:1064,1621026000:142,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/University.java:1589,1621000800:540,1621008000:859,1621026000:190,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/Aine.java:1183,1621000800:53,1621008000:427,1621022400:427,1621026000:276,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/CourseException.java:938,1621008000:358,1621015200:228,1621022400:292,1621026000:60,m
+.gtm/Application-> Hello.app:314,1621018800:314,r
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/DeclarationException.java:162,1621015200:114,1621022400:48,d
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/StudentCannotBeAddedToUniException.java:138,1621000800:65,1621008000:23,1621015200:6,1621022400:44,d
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/HindelineAine.java:70,1621000800:44,1621026000:26,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/ArvestuslikAine.java:69,1621000800:43,1621026000:26,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/CannotAddCourseException.java:65,1621008000:65,d
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/StudentException.java:45,1621022400:45,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/CannotAddCourse.java:40,1621008000:40,d
+.gtm/JUnit-> All in EX11ComputerStore.app:7,1621018800:7,r
