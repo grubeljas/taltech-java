@@ -1,0 +1,15 @@
+[ver:1,total:2905,branch:master]
+EXAM/OOP1/src/ee/taltech/iti0202/university/student/Student.java:1040,1620986400:320,1620990000:600,1620993600:120,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/Aine.java:668,1620993600:668,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/HindelineAine.java:315,1620993600:315,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/ArvestuslikAine.java:202,1620993600:202,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/subject/Subject.java:195,1620990000:120,1620993600:75,d
+EXAM/OOP1/src/ee/taltech/iti0202/university/University.java:188,1620986400:188,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/exception/StudentCannotBeAddedToUniException.java:132,1620986400:132,m
+.gtm/JUnit-> All in EX11ComputerStore.app:70,1620219600:70,r
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/exceptions/CannotFixException.java:20,1620986400:20,r
+EX/EX11ComputerStore/gen.json:20,1620219600:20,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Preferences.java:15,1620219600:15,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/PC.java:15,1620219600:15,r
+EX/EX11ComputerStore/src/ee/taltech/iti0202/computerstore/computer/Laptop.java:15,1620219600:15,r
+EX/EX11ComputerStore/test/ee/taltech/iti0202/computerstore/CustomerTest.java:10,1620219600:10,r
