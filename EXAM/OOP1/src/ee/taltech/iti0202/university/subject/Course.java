@@ -1,5 +1,7 @@
 package ee.taltech.iti0202.university.subject;
 
+import ee.taltech.iti0202.university.University;
+import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
 import ee.taltech.iti0202.university.people.Student;
 
@@ -13,6 +15,7 @@ public class Course {
     private final String name;
     private CourseType courseType;
     private final boolean isAssessment;
+    private University university;
 
     /**
      * Type of subject.
@@ -22,9 +25,11 @@ public class Course {
     }
 
     /**
-     * Abstract constructor.
-     * @param eap number of eap.
-     * @param name of subject.
+     * Constructor.
+     * @param name of course
+     * @param eap
+     * @param isAssessment
+     * @param courseType
      */
     public Course(String name, int eap, boolean isAssessment, CourseType courseType) {
         this.eap = eap;
@@ -32,6 +37,25 @@ public class Course {
         this.studentList = new LinkedList<>();
         this.isAssessment = isAssessment;
         this.courseType = courseType;
+    }
+
+    /**
+     * Same constructor but with university.
+     * @param name
+     * @param eap
+     * @param isAssessment
+     * @param courseType
+     * @param university
+     */
+    public Course(String name, int eap, boolean isAssessment, CourseType courseType, University university)
+            throws CourseException {
+        this.eap = eap;
+        this.name = name;
+        this.studentList = new LinkedList<>();
+        this.isAssessment = isAssessment;
+        this.courseType = courseType;
+        setUniversity(university);
+        university.addCourse(this);
     }
 
     /**
@@ -74,5 +98,13 @@ public class Course {
 
     public boolean isAssessment() {
         return isAssessment;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public final void setUniversity(University university) {
+        this.university = university;
     }
 }

@@ -5,11 +5,7 @@ import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
 import ee.taltech.iti0202.university.subject.Course;
 
-import java.util.Optional;
-import java.util.List;
-import java.util.Map;
-import java.util.LinkedList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Student {
 
@@ -22,14 +18,14 @@ public class Student {
     private Optional<University> studiedIn;
     private double averageScore;
     private int sumOfEap;
-    static final private int AGEOFMAJORITY = 18;
+    private static final int AGEOFMAJORITY = 18;
 
     /**
      * Constructor.
      * @param age
      * @param name
      */
-    public Student(int age, String name) {
+    public Student(String name, int age) {
         this.age = age;
         this.name = name;
         this.studiedIn = Optional.empty();
@@ -37,7 +33,6 @@ public class Student {
         this.declaration = new LinkedList<>();
         this.finishedAssessment = new HashMap<>();
         this.finishedCredits = new HashMap<>();
-        this.averageScore = 0;
         this.sumOfEap = 0;
     }
 
@@ -49,7 +44,7 @@ public class Student {
      */
     public boolean goToStudy(University university) throws StudentException {
         try {
-            if (age <= AGEOFMAJORITY) {
+            if (age < AGEOFMAJORITY) {
                 throw new StudentException(StudentException.Reason.UNDER_18);
             } else if (studiedIn.isPresent()) {
                 throw new StudentException(StudentException.Reason.ALREADY_IN_UNI);
@@ -69,9 +64,9 @@ public class Student {
      * @param course
      * @return
      */
-    public boolean declareAine(Course course) {
+    public boolean declareCourse(Course course) {
         try {
-            if (!studiedIn.get().getAineList().contains(course)) {
+            if (!studiedIn.get().getCourseList().contains(course)) {
                 throw new CourseException(CourseException.Reason.NOT_IN_UNI);
             }
             if (getDeclaration().contains(course)) {
@@ -92,6 +87,12 @@ public class Student {
             e.printStackTrace();
             System.out.println(name + e.getReason());
             return false;
+        }
+    }
+
+    public void declareCourse(List<Course> courses) {
+        for (Course course : courses) {
+            declareCourse(course);
         }
     }
 
@@ -165,5 +166,9 @@ public class Student {
 
     public int getSumOfEap() {
         return sumOfEap;
+    }
+
+    public Optional<University> getStudiedIn() {
+        return studiedIn;
     }
 }

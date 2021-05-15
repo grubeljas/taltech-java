@@ -42,14 +42,25 @@ public class University {
     }
 
     /**
-     * Add student.
+     * Add courses.
+     * @param courses
+     * @throws CourseException
+     */
+    public void addCourse(List<Course> courses) throws CourseException {
+        for (Course course: courses) {
+            addCourse(course);
+        }
+    }
+
+    /**
+     * Add student calls from Student class.
      * @param student
      */
     public void addStudent(Student student) {
         studentList.add(student);
     }
 
-    public List<Course> getAineList() {
+    public List<Course> getCourseList() {
         return courseList;
     }
 
