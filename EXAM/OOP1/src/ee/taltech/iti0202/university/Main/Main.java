@@ -45,7 +45,7 @@ public class Main {
         ttu.addCourse(List.of(programmingBeggining, diskreetneMatemaatika, sissejuhatusIT, physics));
         assert ttu.getCourseList().size() == 4;
         System.out.println(ttu.getCourseList().size());
-        assert ttu.addCourse(fakeProgramming) == false;
+        assert !ttu.addCourse(fakeProgramming);
 
         for (int i = 0; i < TEN; i++) {
             Student student = new Student("bot" + i, MAJORITY + i);
@@ -75,7 +75,7 @@ public class Main {
         assert student.getFinishedGrade().get(programmingBeggining) == 3;
         assert student.getFinishedGrade().get(diskreetneMatemaatika) == 0;
         assert student.getFinishedCredits().get(sissejuhatusIT);
-        assert student.getFinishedCredits().get(physics) == false;
+        assert !student.getFinishedCredits().get(physics);
 
         System.out.println("History:" + student.getFinishedGrade() + student.getFinishedCredits());
     }
