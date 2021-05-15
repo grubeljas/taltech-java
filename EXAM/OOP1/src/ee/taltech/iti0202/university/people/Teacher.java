@@ -1,12 +1,9 @@
 package ee.taltech.iti0202.university.people;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class Teacher extends Person{
+public class Teacher extends Person {
 
     private Float[] systemOfAssessment = new Float[5];
-    private final Float[] DEFAULT_ASSESSMENT = new Float[]{0.5f, 0.6f, 0.7f, 0.8f, 0.9f};
+    private final Float[] defaultAssessment = new Float[]{0.5f, 0.6f, 0.7f, 0.8f, 0.9f};
 
     /**
      * Teacher's constructor. Attached to university.
@@ -33,9 +30,14 @@ public class Teacher extends Person{
      */
     public Teacher(String name, int age) {
         super(name, age);
-        this.systemOfAssessment = DEFAULT_ASSESSMENT;
+        this.systemOfAssessment = defaultAssessment;
     }
 
+    /**
+     * Make assessment depends of teacher's system.
+     * @param procentOfCmpletedWork
+     * @return
+     */
     public int makeAssessment(float procentOfCmpletedWork) {
         int grade;
         if (procentOfCmpletedWork > systemOfAssessment[4]) {

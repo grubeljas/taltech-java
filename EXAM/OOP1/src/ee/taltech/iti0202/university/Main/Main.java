@@ -5,17 +5,20 @@ import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
 import ee.taltech.iti0202.university.people.Student;
 import ee.taltech.iti0202.university.subject.Course;
-import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class Main {
 
-    private static final int EAPNUMBER = 6;
     private static final int TEN = 10;
     private static final int MAJORITY = 18;
 
-    @Test
+    /**
+     * Main method all primitive thigs.
+     * @param args
+     * @throws StudentException
+     * @throws CourseException
+     */
     public static void main(String[] args) throws StudentException, CourseException {
         University ttu = new University("TTU");
         University tartuUni = new University("TU");
@@ -43,7 +46,6 @@ public class Main {
         assert ttu.getCourseList().size() == 4;
         System.out.println(ttu.getCourseList().size());
         assert ttu.addCourse(fakeProgramming) == false;
-
 
         for (int i = 0; i < TEN; i++) {
             Student student = new Student("bot" + i, MAJORITY + i);

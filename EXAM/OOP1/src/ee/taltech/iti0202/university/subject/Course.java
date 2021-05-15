@@ -115,6 +115,11 @@ public class Course {
         return name.equals(course.name);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     public Optional<Teacher> getTeacher() {
         return teacher;
     }

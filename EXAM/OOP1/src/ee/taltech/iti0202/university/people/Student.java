@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.HashMap;
 
-public class Student extends Person{
+public class Student extends Person {
 
     private final List<Course> declaration;
     private final Map<Course, Integer> finishedGrade; //any finished courses with Grades, even 0
@@ -22,6 +22,9 @@ public class Student extends Person{
     private double averageScore;
     private Random random;
     private int sumOfEap;
+    private static final float FORTY = 0.4f;
+    private static final float QUATER = 0.25f;
+    private static final float HALF = 0.5f;
     private static final int AGEOFMAJORITY = 18;
 
     enum ExamStrategy {
@@ -149,17 +152,17 @@ public class Student extends Person{
      * @return
      */
     public double getAverageScore() {
-        double sumOfEap = 0, GradesWithWeights = 0, averageScore = 0;
+        double sumOfEap = 0, gradesWithWeights = 0, averageScore = 0;
         for (Course course : finishedGrade.keySet()) {
             double aineEap = course.getEap();
-            int Grade = finishedGrade.get(course);
-            if (Grade == 0) {
+            int grade = finishedGrade.get(course);
+            if (grade == 0) {
                 aineEap /= 2;
             }
             sumOfEap += aineEap;
-            GradesWithWeights += Grade * aineEap;
+            gradesWithWeights += grade * aineEap;
         }
-        averageScore = GradesWithWeights / sumOfEap;
+        averageScore = gradesWithWeights / sumOfEap;
         averageScore = Math.ceil(averageScore * 10) / 10; //ümardamine
         return averageScore;
     }
@@ -174,19 +177,19 @@ public class Student extends Person{
             if (!getActiveCourses().contains(course)) {
                 throw new CourseException(CourseException.Reason.NOT_IN_ACTIVE);
             }
-            float procent_completion;
+            float procentCompletion;
             if (examStrategy.equals(ExamStrategy.RANDOM)) {
-                procent_completion = random.nextFloat();
+                procentCompletion = random.nextFloat();
             } else if (examStrategy.equals(ExamStrategy.STUPID)) {
-                procent_completion = random.nextFloat() * 0.4f + 0.4f;
+                procentCompletion = random.nextFloat() * FORTY + FORTY;
             } else if (examStrategy.equals(ExamStrategy.SMART)) {
-                procent_completion = random.nextFloat() * 0.25f + 0.75f;
+                procentCompletion = random.nextFloat() * QUATER + QUATER * 3;
             } else if (examStrategy.equals(ExamStrategy.CHEAT)) {
-                procent_completion = random.nextInt(1) * 1f;
+                procentCompletion = random.nextInt(1) * 1f;
             } else {
-                procent_completion = random.nextFloat() * 0.5f + 0.5f;
+                procentCompletion = random.nextFloat() * HALF + HALF;
             }
-            int grade = course.getTeacher().get().makeAssessment(procent_completion);
+            int grade = course.getTeacher().get().makeAssessment(procentCompletion);
             setGrade(course, grade);
             return true;
         } catch (CourseException e) {
