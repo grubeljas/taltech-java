@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TeacherDeclarationTest {
 
-    private final int AGE = 33;
+    private final int age = 33;
 
     /**
      * Ei jõudnud teha teste.
@@ -19,8 +19,8 @@ public class TeacherDeclarationTest {
     @Test
     public void teacherTest() throws CourseException, StudentException {
         University ttu = new University("TTU");
-        Teacher ago = new Teacher("Ago", AGE, ttu);
-        Teacher tammel = new Teacher("Tammel", AGE, ttu);
+        Teacher ago = new Teacher("Ago", age, ttu);
+        Teacher tammel = new Teacher("Tammel", age, ttu);
         Course programmingBeggining = new Course("Programmeerimine algkursus",
                 6,
                 true,
