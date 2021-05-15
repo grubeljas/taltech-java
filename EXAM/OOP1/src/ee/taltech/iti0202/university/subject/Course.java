@@ -41,7 +41,7 @@ public class Course {
         this.studentList = new LinkedList<>();
         this.isGrade = isGrade;
         this.courseType = courseType;
-        this.teacher = null;
+        this.teacher = Optional.empty();
     }
 
     /**

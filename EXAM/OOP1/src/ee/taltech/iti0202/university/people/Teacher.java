@@ -1,8 +1,14 @@
 package ee.taltech.iti0202.university.people;
 
+import ee.taltech.iti0202.university.University;
+import ee.taltech.iti0202.university.subject.Course;
+
+import java.util.List;
+
 public class Teacher extends Person {
 
-    private Float[] systemOfAssessment = new Float[5];
+    private University university;
+    private Float[] systemOfAssessment;
     private final Float[] defaultAssessment = new Float[]{0.5f, 0.6f, 0.7f, 0.8f, 0.9f};
 
     /**
@@ -15,8 +21,9 @@ public class Teacher extends Person {
      * @param age
      * @param systemOfAssessment
      */
-    public Teacher(String name, int age, Float[] systemOfAssessment) {
+    public Teacher(String name, int age, University university, Float[] systemOfAssessment) {
         super(name, age);
+        this.university = university;
         this.systemOfAssessment = systemOfAssessment;
     }
 
@@ -28,9 +35,10 @@ public class Teacher extends Person {
      * @param name
      * @param age
      */
-    public Teacher(String name, int age) {
+    public Teacher(String name, int age, University university) {
         super(name, age);
         this.systemOfAssessment = defaultAssessment;
+        this.university = university;
     }
 
     /**
@@ -56,7 +64,7 @@ public class Teacher extends Person {
         return grade;
     }
 
-    public void setSystemOfAssessment(Float[] systemOfAssessment) {
-        this.systemOfAssessment = systemOfAssessment;
+    public University getUniversity() {
+        return university;
     }
 }

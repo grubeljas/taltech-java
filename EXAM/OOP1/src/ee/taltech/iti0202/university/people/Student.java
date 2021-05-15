@@ -139,6 +139,7 @@ public class Student extends Person {
                 getActiveCourses().add(course);
                 course.addStudent(this);
             }
+            declaration.clear();
             return true;
         } catch (CourseException e) {
             e.printStackTrace();
@@ -150,10 +151,10 @@ public class Student extends Person {
      * Count average score (KKH) of Grade subjects.
      * @return
      */
-    public double getAverageScore() {
-        double sumOfEap = 0, gradesWithWeights = 0, averageScore = 0;
+    public float getAverageScore() {
+        float sumOfEap = 0, gradesWithWeights = 0, averageScore = 0;
         for (Course course : finishedGrade.keySet()) {
-            double aineEap = course.getEap();
+            float aineEap = course.getEap();
             int grade = finishedGrade.get(course);
             if (grade == 0) {
                 aineEap /= 2;
@@ -162,7 +163,7 @@ public class Student extends Person {
             gradesWithWeights += grade * aineEap;
         }
         averageScore = gradesWithWeights / sumOfEap;
-        averageScore = Math.ceil(averageScore * 10) / 10; //ümardamine
+        averageScore = (float) (Math.ceil(averageScore * 10) / 10); //ümardamine
         return averageScore;
     }
 

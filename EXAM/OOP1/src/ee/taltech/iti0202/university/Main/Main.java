@@ -78,5 +78,7 @@ public class Main {
         assert !student.getFinishedCredits().get(physics);
 
         System.out.println("History:" + student.getFinishedGrade() + student.getFinishedCredits());
+
+        assert student.getAverageScore() == 2f;
     }
 }
