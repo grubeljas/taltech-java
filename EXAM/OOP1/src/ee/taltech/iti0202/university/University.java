@@ -2,6 +2,7 @@ package ee.taltech.iti0202.university;
 
 import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.people.Student;
+import ee.taltech.iti0202.university.people.Teacher;
 import ee.taltech.iti0202.university.subject.Course;
 
 import java.util.LinkedList;
@@ -34,11 +35,25 @@ public class University {
                 throw new CourseException(CourseException.Reason.ALREADY_IN_UNI);
             }
             courseList.add(course);
+            course.setUniversity(this);
             return true;
         } catch (CourseException e) {
             System.out.println(e.getReason());
             return false;
         }
+    }
+
+    /**
+     * Change main teacher of course.
+     * @param course
+     * @param teacher
+     */
+    public void changeTeacherOfCourse(Course course, Teacher teacher) {
+        if (course.getTeacher().isPresent()) {
+            course.getTeacher().get().getActiveCourses().remove(course);
+        }
+        course.setTeacher(teacher);
+        teacher.getActiveCourses().add(course);
     }
 
     /**

@@ -4,9 +4,12 @@ import ee.taltech.iti0202.university.University;
 import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
 import ee.taltech.iti0202.university.people.Student;
+import ee.taltech.iti0202.university.people.Teacher;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class Course {
 
@@ -14,8 +17,9 @@ public class Course {
     private int eap;
     private final String name;
     private CourseType courseType;
-    private final boolean isAssessment;
+    private final boolean isGrade;
     private University university;
+    private Optional<Teacher> teacher;
 
     /**
      * Type of subject.
@@ -28,32 +32,35 @@ public class Course {
      * Constructor.
      * @param name of course
      * @param eap
-     * @param isAssessment
+     * @param isGrade
      * @param courseType
      */
-    public Course(String name, int eap, boolean isAssessment, CourseType courseType) {
+    public Course(String name, int eap, boolean isGrade, CourseType courseType) {
         this.eap = eap;
         this.name = name;
         this.studentList = new LinkedList<>();
-        this.isAssessment = isAssessment;
+        this.isGrade = isGrade;
         this.courseType = courseType;
+        this.teacher = null;
     }
 
     /**
-     * Same constructor but with university.
+     * Same constructor but with university and teacher.
      * @param name
      * @param eap
-     * @param isAssessment
+     * @param isGrade
      * @param courseType
      * @param university
      */
-    public Course(String name, int eap, boolean isAssessment, CourseType courseType, University university)
+    public Course(String name, int eap, boolean isGrade, CourseType courseType, University university, Teacher teacher)
             throws CourseException {
         this.eap = eap;
         this.name = name;
         this.studentList = new LinkedList<>();
-        this.isAssessment = isAssessment;
+        this.isGrade = isGrade;
         this.courseType = courseType;
+        this.teacher = Optional.of(teacher);
+        teacher.getActiveCourses().add(this);
         setUniversity(university);
         university.addCourse(this);
     }
@@ -63,9 +70,9 @@ public class Course {
      * @param student
      * @return
      */
-    public boolean addStudent(Student student) {
+    public boolean addStudent(Student student) throws StudentException {
         try {
-            if (!studentList.contains(student)) {
+            if (studentList.contains(student)) {
                 throw new StudentException(StudentException.Reason.ALREADY_IN_COURSE);
             }
             studentList.add(student);
@@ -96,8 +103,24 @@ public class Course {
         return courseType;
     }
 
-    public boolean isAssessment() {
-        return isAssessment;
+    public boolean isGrade() {
+        return isGrade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return name.equals(course.name);
+    }
+
+    public Optional<Teacher> getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = Optional.of(teacher);
     }
 
     public University getUniversity() {

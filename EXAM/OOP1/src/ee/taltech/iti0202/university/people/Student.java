@@ -5,46 +5,53 @@ import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
 import ee.taltech.iti0202.university.subject.Course;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+import java.util.HashMap;
 
-public class Student {
+public class Student extends Person{
 
-    private final String name;
-    private int age;
-    private final List<Course> activeCourses; // currently enrolled courses
     private final List<Course> declaration;
-    private final Map<Course, Integer> finishedAssessment; //any finished courses with assessments, even 0
+    private final Map<Course, Integer> finishedGrade; //any finished courses with Grades, even 0
     private final Map<Course, Boolean> finishedCredits; //any finished courses with credit, (credit - arvestus)
     private Optional<University> studiedIn;
     private double averageScore;
+    private Random random;
     private int sumOfEap;
     private static final int AGEOFMAJORITY = 18;
 
+    enum ExamStrategy {
+        RANDOM, SMART, STUPID, CHEAT
+    }
+
     /**
      * Constructor.
+     * getActiveCourses() - access to enrolled and not finished courses.
      * @param age
      * @param name
      */
     public Student(String name, int age) {
-        this.age = age;
-        this.name = name;
+        super(name, age);
         this.studiedIn = Optional.empty();
-        this.activeCourses = new LinkedList<>();
         this.declaration = new LinkedList<>();
-        this.finishedAssessment = new HashMap<>();
+        this.finishedGrade = new HashMap<>();
         this.finishedCredits = new HashMap<>();
         this.sumOfEap = 0;
+        this.random = new Random();
     }
 
     /**
      * Go study to university, if student is adult and currently not in a university.
      * @param university
      * @return
-     * @throws StudentException
      */
-    public boolean goToStudy(University university) throws StudentException {
+    public boolean goToStudy(University university) {
         try {
-            if (age < AGEOFMAJORITY) {
+            if (getAge() < AGEOFMAJORITY) {
                 throw new StudentException(StudentException.Reason.UNDER_18);
             } else if (studiedIn.isPresent()) {
                 throw new StudentException(StudentException.Reason.ALREADY_IN_UNI);
@@ -53,8 +60,23 @@ public class Student {
             university.addStudent(this);
             return true;
         } catch (StudentException e) {
-            System.out.println(name + e.getReason());
+            System.out.println(getName() + e.getReason());
             return false;
+        }
+    }
+
+    /**
+     * Leave from university and delete all info except finished subjects.
+     */
+    public void leaveUniversity() {
+        if (studiedIn.isPresent()) {
+            studiedIn.get().getStudentList().remove(this);
+            studiedIn = Optional.empty();
+            for (Course course: getActiveCourses()) {
+                course.getStudentList().remove(this);
+            }
+            getActiveCourses().clear();
+            declaration.clear();
         }
     }
 
@@ -64,16 +86,16 @@ public class Student {
      * @param course
      * @return
      */
-    public boolean declareCourse(Course course) {
+    public boolean addCourse(Course course) throws CourseException {
         try {
             if (!studiedIn.get().getCourseList().contains(course)) {
                 throw new CourseException(CourseException.Reason.NOT_IN_UNI);
             }
             if (getDeclaration().contains(course)) {
-                throw new CourseException(CourseException.Reason.NOT_IN_UNI);
+                throw new CourseException(CourseException.Reason.ALREADY_IN_DECLARATION);
             }
-            if (finishedAssessment.containsKey(course)) {
-                if (finishedAssessment.get(course) != 0) {
+            if (finishedGrade.containsKey(course)) {
+                if (finishedGrade.get(course) != 0) {
                     throw new CourseException(CourseException.Reason.COURSE_IS_PASSED);
                 }
             } else if (finishedCredits.containsKey(course)) {
@@ -85,14 +107,20 @@ public class Student {
             return true;
         } catch (CourseException e) {
             e.printStackTrace();
-            System.out.println(name + e.getReason());
+            System.out.println(getName() + e.getReason());
             return false;
         }
     }
 
-    public void declareCourse(List<Course> courses) {
+    /**
+     * Add subjects to declaration list, if subject is in university.
+     * Student can declare subject again if he/she failed it.
+     * @param courses
+     * @return
+     */
+    public void addCourse(List<Course> courses) throws CourseException {
         for (Course course : courses) {
-            declareCourse(course);
+            addCourse(course);
         }
     }
 
@@ -100,13 +128,13 @@ public class Student {
      * Declare all subjects of declaration, if there is no active subjects.
      * @return
      */
-    public boolean declareSubjects() {
+    public boolean declareSubjects() throws CourseException, StudentException {
         try {
-            if (!activeCourses.isEmpty()) {
+            if (!getActiveCourses().isEmpty()) {
                 throw new CourseException(CourseException.Reason.ACTIVE_SUBJECTS_IS_NOT_EMPTY);
             }
             for (Course course : declaration) {
-                activeCourses.add(course);
+                getActiveCourses().add(course);
                 course.addStudent(this);
             }
             return true;
@@ -117,47 +145,101 @@ public class Student {
     }
 
     /**
-     * Count average score (KKH) of assessment subjects.
+     * Count average score (KKH) of Grade subjects.
      * @return
      */
     public double getAverageScore() {
-        double sumOfEap = 0, assessmentsWithWeights = 0, averageScore = 0;
-        for (Course course : finishedAssessment.keySet()) {
+        double sumOfEap = 0, GradesWithWeights = 0, averageScore = 0;
+        for (Course course : finishedGrade.keySet()) {
             double aineEap = course.getEap();
-            int assessment = finishedAssessment.get(course);
-            if (assessment == 0) {
+            int Grade = finishedGrade.get(course);
+            if (Grade == 0) {
                 aineEap /= 2;
             }
             sumOfEap += aineEap;
-            assessmentsWithWeights += assessment * aineEap;
+            GradesWithWeights += Grade * aineEap;
         }
-        averageScore = assessmentsWithWeights / sumOfEap;
+        averageScore = GradesWithWeights / sumOfEap;
         averageScore = Math.ceil(averageScore * 10) / 10; //ümardamine
         return averageScore;
     }
 
-    public int getAge() {
-        return age;
+    /**
+     * Student get random number of points. Depends of that he gets Grade or credit(1-5 is pass; 0 is fail).
+     * @param course
+     * @return
+     */
+    public boolean getGrade(Course course, ExamStrategy examStrategy) {
+        try {
+            if (!getActiveCourses().contains(course)) {
+                throw new CourseException(CourseException.Reason.NOT_IN_ACTIVE);
+            }
+            float procent_completion;
+            if (examStrategy.equals(ExamStrategy.RANDOM)) {
+                procent_completion = random.nextFloat();
+            } else if (examStrategy.equals(ExamStrategy.STUPID)) {
+                procent_completion = random.nextFloat() * 0.4f + 0.4f;
+            } else if (examStrategy.equals(ExamStrategy.SMART)) {
+                procent_completion = random.nextFloat() * 0.25f + 0.75f;
+            } else if (examStrategy.equals(ExamStrategy.CHEAT)) {
+                procent_completion = random.nextInt(1) * 1f;
+            } else {
+                procent_completion = random.nextFloat() * 0.5f + 0.5f;
+            }
+            int grade = course.getTeacher().get().makeAssessment(procent_completion);
+            setGrade(course, grade);
+            return true;
+        } catch (CourseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    /**
+     * Just get any grade or credit(1-5 is pass; 0 is fail).
+     * @param course
+     * @return
+     */
+    public boolean getGrade(Course course, int grade) {
+        try {
+            if (!getActiveCourses().contains(course)) {
+                throw new CourseException(CourseException.Reason.NOT_IN_ACTIVE);
+            } else if (grade > 5 && grade < 0) {
+                throw new CourseException(CourseException.Reason.INVALID_GRADE);
+            }
+            setGrade(course, grade);
+            return true;
+        } catch (CourseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Course> getActiveCourses() {
-        return activeCourses;
+    /**
+     * Set grade for course and finish it.
+     * @param course
+     * @param grade
+     */
+    public void setGrade(Course course, int grade) {
+        if (course.isGrade()) {
+            finishedGrade.put(course, grade);
+        } else {
+            if (grade == 0) {
+                finishedCredits.put(course, false);
+            } else {
+                finishedCredits.put(course, true);
+            }
+        }
+        getActiveCourses().remove(course);
+        course.getStudentList().remove(this);
     }
 
     public List<Course> getDeclaration() {
         return declaration;
     }
 
-    public Map<Course, Integer> getFinishedAssessment() {
-        return finishedAssessment;
+    public Map<Course, Integer> getFinishedGrade() {
+        return finishedGrade;
     }
 
     public Map<Course, Boolean> getFinishedCredits() {
