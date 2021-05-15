@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 
 public class MainTest {
 
+    /**
+     * Main test.
+     * @throws CourseException
+     * @throws StudentException
+     */
     @Test
     public void mainTest() throws CourseException, StudentException {
         String[] args = null;

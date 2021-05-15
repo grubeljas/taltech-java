@@ -1,9 +1,6 @@
 package ee.taltech.iti0202.university.people;
 
 import ee.taltech.iti0202.university.University;
-import ee.taltech.iti0202.university.subject.Course;
-
-import java.util.List;
 
 public class Teacher extends Person {
 

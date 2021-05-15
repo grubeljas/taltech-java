@@ -2,24 +2,25 @@ package ee.taltech.iti0202.university;
 
 import ee.taltech.iti0202.university.exception.CourseException;
 import ee.taltech.iti0202.university.exception.StudentException;
-import ee.taltech.iti0202.university.people.Student;
 import ee.taltech.iti0202.university.people.Teacher;
 import ee.taltech.iti0202.university.subject.Course;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class Teacher_Declaration_Test {
+public class TeacherDeclarationTest {
+
+    private final int AGE = 33;
 
     /**
      * Ei jõudnud teha teste.
      * @throws CourseException
      */
     @Test
-    public void TeacherTest() throws CourseException, StudentException {
+    public void teacherTest() throws CourseException, StudentException {
         University ttu = new University("TTU");
-        Teacher ago = new Teacher("Ago", 33, ttu);
-        Teacher tammel = new Teacher("Tammel", 33, ttu, new Float[]{0.5f, 0.8f, 0.85f, 0.9f, 0.95f});
+        Teacher ago = new Teacher("Ago", AGE, ttu);
+        Teacher tammel = new Teacher("Tammel", AGE, ttu);
         Course programmingBeggining = new Course("Programmeerimine algkursus",
                 6,
                 true,
