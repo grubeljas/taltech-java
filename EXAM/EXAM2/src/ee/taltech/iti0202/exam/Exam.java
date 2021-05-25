@@ -2,6 +2,9 @@ package ee.taltech.iti0202.exam;
 
 public class Exam {
 
+    private static final int SIXTY = 60;
+    private static final int TWENTYFOUR = 24;
+
     /**
      * Write a  method that finds correct difference between two timestamps. Timestamps are given in format HH:MM where
      * HH is two-digit hour marker and MM is two-digit
@@ -25,12 +28,12 @@ public class Exam {
         int minutes2 = new Integer(seperatedTime2[1]);
 
         if (minutes2 < minutes1) {
-            minutes2 += 60;
+            minutes2 += SIXTY;
             hours2--;
         }
 
         if (hours2 < hours1) {
-            hours2 += 24;
+            hours2 += TWENTYFOUR;
         }
         hours2 = hours2 - hours1;
         minutes2 = minutes2 - minutes1;
