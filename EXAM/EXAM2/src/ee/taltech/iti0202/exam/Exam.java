@@ -22,10 +22,10 @@ public class Exam {
     public static String timeDiff(String time1, String time2) {
         String[] seperatedTime1 = time1.split(":");
         String[] seperatedTime2 = time2.split(":");
-        int hours1 = new Integer(seperatedTime1[0]);
-        int minutes1 = new Integer(seperatedTime1[1]);
-        int hours2 = new Integer(seperatedTime2[0]);
-        int minutes2 = new Integer(seperatedTime2[1]);
+        Integer hours1 = new Integer(seperatedTime1[0]);
+        Integer minutes1 = new Integer(seperatedTime1[1]);
+        Integer hours2 = new Integer(seperatedTime2[0]);
+        Integer minutes2 = new Integer(seperatedTime2[1]);
 
         if (minutes2 < minutes1) {
             minutes2 += SIXTY;

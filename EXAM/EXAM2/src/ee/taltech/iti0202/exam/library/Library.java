@@ -8,10 +8,10 @@ import java.util.Optional;
 
 public class Library {
 
-    public List<Book> books = new ArrayList<>();
-    public List<Book> availableBooks = new ArrayList<>();
-    public List<Book> lentBooks = new ArrayList<>();
-    public Map<Book, Integer> lentCounter = new HashMap<>();
+    private List<Book> books = new ArrayList<>();
+    private List<Book> availableBooks = new ArrayList<>();
+    private List<Book> lentBooks = new ArrayList<>();
+    private Map<Book, Integer> lentCounter = new HashMap<>();
 
     /**
      * Adds a book to the library.
