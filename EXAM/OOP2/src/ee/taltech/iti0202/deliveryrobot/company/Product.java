@@ -1,5 +1,6 @@
-package ee.taltech.iti0202.deliveryrobot.delivery;
+package ee.taltech.iti0202.deliveryrobot.company;
 
+import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 

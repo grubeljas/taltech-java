@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
-import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
@@ -15,12 +14,13 @@ public class Company {
     private List<DeliveryRobot> waitingRobotList;
     private List<DeliveryRobot> activeRobotList;
     private List<DeliveryRobot> brokenRobotList;
+    private List<Delivery> currentDeliveries;
 
     /**
      * Constructor with name and budget.
      * @param name
      */
-    public Company(String name, int budget) throws  NoNameException, NotPositiveNumberException{
+    public Company(String name, int budget) throws  NoNameException, NotPositiveNumberException {
         if (name.isEmpty()) {
             throw new NoNameException("Name of" + Company.class + "cannot be empty.");
         }
@@ -77,6 +77,19 @@ public class Company {
         }
         deliveryRobotList.add(robot);
         robot.setBelongsTo(this);
+        return true;
+    }
+
+    /**
+     * Add delivery to
+     * @param delivery
+     * @return
+     */
+    public boolean getDelivery(Delivery delivery) {
+        if (currentDeliveries.contains(delivery)) {
+            return false;
+        }
+        currentDeliveries.add(delivery);
         return true;
     }
 }

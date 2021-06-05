@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
-import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
@@ -13,6 +12,12 @@ public class Warehouse {
     private Company property;
     private Map<Product, Integer> productAmount = new HashMap<>();
 
+    /**
+     * Constructor with name.
+     * @param name
+     * @param property
+     * @throws NoNameException
+     */
     public Warehouse(String name, Company property) throws NoNameException {
         if (name.isEmpty()) {
             throw new NoNameException("Name of" + Warehouse.class + "cannot be empty.");
