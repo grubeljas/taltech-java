@@ -1,0 +1,15 @@
+[ver:1,total:4500,branch:master]
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/DeliveryRobot.java:1300,1622887200:24,1622890800:1216,1622894400:60,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Product.java:750,1622894400:450,1622898000:300,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Status.java:740,1622887200:180,1622890800:140,1622894400:420,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobot.java:426,1622894400:426,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NoNameException.java:300,1622898000:300,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Company.java:300,1622887200:24,1622890800:264,1622894400:12,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Status.java:240,1622894400:240,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Warehouse.java:180,1622887200:180,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Delivery.java:132,1622887200:132,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NotPositiveWeightException.java:50,1622898000:50,m
+EXAM/OOP1/src/ee/taltech/iti0202/university/people/Student.java:30,1622894400:30,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Зкщвгсе.java:30,1622894400:30,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Delivery.java:12,1622894400:12,m
+EX/EX05MysticOrbs/src/ee/taltech/iti0202/mysticorbs/exceptions/CannotFixException.java:10,1622898000:10,r
