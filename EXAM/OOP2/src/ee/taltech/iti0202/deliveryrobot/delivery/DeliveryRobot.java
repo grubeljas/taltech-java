@@ -1,24 +1,37 @@
 package ee.taltech.iti0202.deliveryrobot.delivery;
 
-import ee.taltech.iti0202.deliveryrobot.Company;
+import ee.taltech.iti0202.deliveryrobot.company.Company;
+import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
+import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
 import java.util.Optional;
 
 public class DeliveryRobot {
+
+    public enum StatusOfRobot {
+        WAITING, DELIVERY, BROKEN
+    }
 
     private String name;
     private Optional<Company> belongsTo;
     private int loadcapacity;
     private static int idCounter = 0;
     private int id = ++idCounter;
-    private Status status = Status.WAITING;
+    private StatusOfRobot status = StatusOfRobot.WAITING;
 
     /**
-     * Constructor with name only. This is necessary to add company which belongs to.
+     * Constructor with name and capacity only. This is necessary to add company which belongs to.
      * @param name
      */
-    public DeliveryRobot(String name) {
+    public DeliveryRobot(String name, int loadcapacity) throws NoNameException, NotPositiveNumberException {
+        if (name.isEmpty()) {
+            throw new NoNameException("Name of" + DeliveryRobot.class + "cannot be empty.");
+        }
+        if (loadcapacity <= 0) {
+            throw new NotPositiveNumberException("Load capacity mustn't be 0 or less.");
+        }
         this.name = name;
+        this.loadcapacity = loadcapacity;
         this.belongsTo = Optional.empty();
     }
 
@@ -29,7 +42,7 @@ public class DeliveryRobot {
      */
     public DeliveryRobot(String name, Company company) {
         this.name = name;
-        this.belongsTo = Optional.of(company);
+        setBelongsTo(company);
     }
 
     public String getName() {
@@ -49,14 +62,19 @@ public class DeliveryRobot {
     }
 
     /**
-     * Call only from Company method addRobot(Robot robot).
+     * Add company where robot from.
+     * Call from Company method addRobot or Robot constructor.
      * @param belongsTo
      */
-    public void setBelongsTo(Optional<Company> belongsTo) {
-        this.belongsTo = belongsTo;
+    public void setBelongsTo(Company belongsTo) {
+        this.belongsTo = Optional.of(belongsTo);
     }
 
-    public void setStatus(Status status) {
+    public StatusOfRobot getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusOfRobot status) {
         this.status = status;
     }
 }

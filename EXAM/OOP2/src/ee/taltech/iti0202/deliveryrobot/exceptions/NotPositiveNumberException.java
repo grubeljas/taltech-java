@@ -1,12 +1,12 @@
 package ee.taltech.iti0202.deliveryrobot.exceptions;
 
-public class NoNameException extends Exception {
+public class NotPositiveNumberException extends Exception {
 
     /**
      * Constructor.
      * @param message
      */
-    public NoNameException(String message) {
+    public NotPositiveNumberException(String message) {
         super(message);
     }
 
