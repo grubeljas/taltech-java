@@ -1,0 +1,13 @@
+[ver:1,total:5400,branch:master]
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:1450,1622908800:7,1622912400:815,1622916000:628,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Product.java:983,1622908800:267,1622912400:684,1622916000:32,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Warehouse.java:642,1622908800:642,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobot.java:586,1622898000:388,1622908800:186,1622912400:12,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Warehouse.java:522,1622908800:65,1622912400:457,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Company.java:332,1622898000:71,1622908800:261,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NoNameException.java:317,1622898000:317,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/Product.java:309,1622898000:309,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/WrongStatusException.java:154,1622908800:154,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NotPositiveWeightException.java:55,1622898000:55,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Status.java:38,1622908800:38,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NotPositiveNumberException.java:12,1622912400:12,m
