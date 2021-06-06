@@ -32,10 +32,11 @@ public class Client {
      * @param company
      * @param productList
      */
-    public void makeOrder(Company company, List<Product> productList) {
+    public Delivery makeOrder(Company company, List<Product> productList) {
         HashMap<Product, Integer> productAmount = new HashMap<>();
         Delivery delivery = new Delivery(productList, this);
         deliveryHistory.add(delivery);
         company.addDelivery(delivery);
+        return delivery;
     }
 }

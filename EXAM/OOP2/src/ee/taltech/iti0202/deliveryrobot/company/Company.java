@@ -133,7 +133,7 @@ public class Company {
      */
     public boolean addRobot(DeliveryRobot robot) {
         if (statistics.getDeliveryRobotList().contains(robot)
-                || robot.getStatus().equals(DeliveryRobot.StatusOfRobot.DELIVERY)) {
+                || robot.getOwner().isPresent()) {
             return false;
         }
         statistics.getDeliveryRobotList().add(robot);
@@ -154,13 +154,32 @@ public class Company {
         this.companyStrategy = companyStrategy;
     }
 
+    public Map<Product, Integer> getAllProducts() {
+        return allProducts;
+    }
+
+    public List<Warehouse> getWarehouseList() {
+        return warehouseList;
+    }
+
+    public List<Delivery> getWaitingDeliveries() {
+        return waitingDeliveries;
+    }
+
+    public List<DeliveryRobot> getActiveRobotList() {
+        return activeRobotList;
+    }
+
+    public List<DeliveryRobot> getWaitingRobotList() {
+        return waitingRobotList;
+    }
+
     /**
      * Add delivery to statistics.
      * @param delivery
      * @return
      */
     public boolean addDelivery(Delivery delivery) {
-
         if (waitingDeliveries.contains(delivery)) {
             return false;
         }
@@ -228,6 +247,7 @@ public class Company {
             if (robot.getStatus().equals(DeliveryRobot.StatusOfRobot.BROKEN)) {
                 brokenRobotList.add(robot);
             } else {
+                robot.setStatus(DeliveryRobot.StatusOfRobot.WAITING);
                 waitingRobotList.add(robot);
             }
             activeRobotList.remove(robot);

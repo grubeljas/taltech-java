@@ -16,7 +16,6 @@ public class DeliveryRobot {
     private String name;
     private Optional<Company> owner;
     private int loadcapacity;
-    private LinkedList<Product> storage = new LinkedList<>();
     private static int idCounter = 0;
     private int usage, id = ++idCounter;
     private StatusOfRobot status = StatusOfRobot.WAITING;
@@ -40,16 +39,6 @@ public class DeliveryRobot {
     }
 
     /**
-     * Constructor with name and company.
-     * @param name
-     * @param company
-     */
-    public DeliveryRobot(String name, Company company) {
-        this.name = name;
-        setOwner(company);
-    }
-
-    /**
      * Deliver products.
      * @param delivery
      * @param rides
@@ -59,6 +48,13 @@ public class DeliveryRobot {
             delivery.getClient().getRecievedProducts().add(product);
         }
         drive(rides);
+    }
+
+    /**
+     * Reset id counter.
+     */
+    public static void resetIDCounter() {
+        idCounter = 0;
     }
 
     /**
@@ -94,10 +90,6 @@ public class DeliveryRobot {
 
     public Optional<Company> getOwner() {
         return owner;
-    }
-
-    public LinkedList<Product> getStorage() {
-        return storage;
     }
 
     /**
