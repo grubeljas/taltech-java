@@ -5,7 +5,6 @@ import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
 import java.util.Optional;
-import java.util.LinkedList;
 
 public class DeliveryRobot {
 

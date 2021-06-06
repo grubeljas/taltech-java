@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
 import ee.taltech.iti0202.deliveryrobot.client.Client;
-import ee.taltech.iti0202.deliveryrobot.delivery.Delivery;
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;

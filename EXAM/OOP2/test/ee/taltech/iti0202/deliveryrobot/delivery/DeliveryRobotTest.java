@@ -6,7 +6,6 @@ import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class DeliveryRobotTest {
