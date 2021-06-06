@@ -16,7 +16,7 @@ import java.util.Optional;
 public class Company {
 
     private String name;
-    private int budget, deliveryCoefficient, productPriceCoefficient;
+    private int budget, deliveryCoefficient, productPriceCoefficient, oneRidePrice;
     private Statistics statistics;
     private Strategy robotStrategy, companyStrategy;
     private List<DeliveryRobot> waitingRobotList;
@@ -29,10 +29,11 @@ public class Company {
      * @param budget of company
      * @param deliveryCoefficient per one robot delivery.
      * @param productPriceCoefficient multiply by product price.
+     * @param oneRidePrice price for one robot delivery.
      * @throws NoNameException
      * @throws NotPositiveNumberException
      */
-    public Company(String name, int budget, int deliveryCoefficient, int productPriceCoefficient)
+    public Company(String name, int budget, int deliveryCoefficient, int productPriceCoefficient, int oneRidePrice)
             throws  NoNameException, NotPositiveNumberException {
         if (name.isEmpty()) {
             throw new NoNameException("Name of" + Company.class + "cannot be empty.");
@@ -40,11 +41,21 @@ public class Company {
         if (budget < 0) {
             throw new NotPositiveNumberException("Budget cannot be less than 0.");
         }
+        if (deliveryCoefficient < 0) {
+            throw new NotPositiveNumberException("DeliveryCoefficient cannot be less than 0.");
+        }
+        if (productPriceCoefficient < 0) {
+            throw new NotPositiveNumberException("ProductPriceCoefficient cannot be less than 0.");
+        }
+        if (oneRidePrice < 0) {
+            throw new NotPositiveNumberException("OneRidePrice cannot be less than 0.");
+        }
         this.budget = budget;
         this.name = name;
         this.statistics = new Statistics(this);
         this.productPriceCoefficient = productPriceCoefficient;
         this.deliveryCoefficient = deliveryCoefficient;
+        this.oneRidePrice = oneRidePrice;
         this.robotStrategy = new UsualStrategy();
         this.companyStrategy = new UsualStrategy();
     }
@@ -125,13 +136,63 @@ public class Company {
         return true;
     }
 
+    /**
+     * Make the delivery.
+     * @param delivery
+     * @param robot
+     */
+    public int deliver(Delivery delivery, DeliveryRobot robot) {
+        robot.setStatus(DeliveryRobot.StatusOfRobot.DELIVERY);
+        waitingRobotList.remove(robot);
+        activeRobotList.add(robot);
+        List<Product> productList = robotStrategy.makeSort(delivery.getProductList());
+        int numberOfRides = 1;
+        int loadWeight = robot.getLoadcapacity();
+        for (int i = 0; i < productList.size(); i++) {
+            if (loadWeight - productList.get(i).getWeight() < 0) {
+                numberOfRides += 1;
+                loadWeight = robot.getLoadcapacity();
+            }
+            loadWeight -= productList.get(i).getWeight();
+        }
+        int profit = numberOfRides * (deliveryCoefficient - oneRidePrice)
+                + delivery.findTotalPrice() * productPriceCoefficient;
+        budget += profit;
+        robot.makeDelivery(delivery, numberOfRides);
+        statistics.getCurrentDeliveries().remove(delivery);
+        statistics.getDeliveryHistory().add(delivery);
+        return profit;
+    }
+
+    /**
+     * Call back all robots to the base.
+     */
+    public void returnRobots() {
+        for (DeliveryRobot robot: activeRobotList) {
+            if (robot.getStatus().equals(DeliveryRobot.StatusOfRobot.BROKEN)) {
+                brokenRobotList.add(robot);
+            } else {
+                waitingRobotList.add(robot);
+            }
+            activeRobotList.remove(robot);
+        }
+    }
+
+    /**
+     * Take an order.
+     */
     public void takeAnOrder() {
-        Delivery delivery = (Delivery) companyStrategy.makeSort(statistics.getCurrentDeliveries()).get(0);
-        Optional<DeliveryRobot> deliveryRobot = findSuitableRobot(delivery);
-        if (deliveryRobot.isPresent()) {
-
-        } else {
-
+        Optional<DeliveryRobot> deliveryRobot;
+        List<Delivery> delivery = (List<Delivery>) companyStrategy.makeSort(statistics.getCurrentDeliveries());
+        for (int i = 0; i < delivery.size(); i++) {
+            deliveryRobot = findSuitableRobot(delivery.get(i));
+            if (deliveryRobot.isEmpty()) {
+                deliveryRobot = findAnyRobot(delivery.get(i));
+            }
+            if (deliveryRobot.isPresent()) {
+                deliver(delivery.get(i), deliveryRobot.get());
+                break;
+            }
         }
     }
 

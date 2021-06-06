@@ -11,7 +11,7 @@ import java.util.List;
 public class Client {
 
     private String name;
-    private List<Product> productList = new LinkedList();
+    private List<Product> recievedProducts = new LinkedList();
     private List<Delivery> deliveryHistory = new LinkedList<>();
     private int distance;
 
@@ -23,6 +23,10 @@ public class Client {
     public Client(String name, int distance) {
         this.name = name;
         this.distance = distance;
+    }
+
+    public List<Product> getRecievedProducts() {
+        return recievedProducts;
     }
 
     /**

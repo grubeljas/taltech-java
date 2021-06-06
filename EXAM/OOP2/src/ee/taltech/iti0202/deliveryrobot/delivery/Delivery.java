@@ -22,11 +22,19 @@ public class Delivery {
         this.totalPrice = findTotalPrice();
     }
 
+    /**
+     * Find price of all products.
+     * @return
+     */
     public int findTotalPrice() {
         return getProductList().stream().mapToInt(Product::getPrice).sum();
     }
 
     public List<Product> getProductList() {
         return productList;
+    }
+
+    public Client getClient() {
+        return client;
     }
 }

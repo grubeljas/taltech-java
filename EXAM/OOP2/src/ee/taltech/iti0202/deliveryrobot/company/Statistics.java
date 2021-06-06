@@ -34,6 +34,10 @@ public class Statistics {
         return deliveryRobotList;
     }
 
+    public List<Delivery> getDeliveryHistory() {
+        return deliveryHistory;
+    }
+
     /**
      * Add delivery to company statistics.
      * @param delivery

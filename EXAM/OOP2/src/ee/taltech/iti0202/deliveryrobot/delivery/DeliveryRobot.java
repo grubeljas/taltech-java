@@ -49,6 +49,37 @@ public class DeliveryRobot {
         setOwner(company);
     }
 
+    /**
+     * Deliver products.
+     * @param delivery
+     * @param rides
+     */
+    public void makeDelivery(Delivery delivery, int rides) {
+        for (Product product: delivery.getProductList()) {
+            delivery.getClient().getRecievedProducts().add(product);
+        }
+        drive(rides);
+    }
+
+    /**
+     * If robot rides 10 or more times it broke.
+     * @param rides
+     */
+    public void drive(int rides) {
+        usage += rides;
+        if (usage >= 10) {
+            setStatus(StatusOfRobot.BROKEN);
+        }
+    }
+
+    /**
+     * Fix the robot.
+     */
+    public void fix() {
+        usage = 0;
+        setStatus(StatusOfRobot.WAITING);
+    }
+
     public String getName() {
         return name;
     }
