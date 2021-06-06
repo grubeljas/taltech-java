@@ -5,6 +5,7 @@ import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
 import java.util.Optional;
+import java.util.LinkedList;
 
 public class DeliveryRobot {
 
@@ -13,8 +14,9 @@ public class DeliveryRobot {
     }
 
     private String name;
-    private Optional<Company> belongsTo;
+    private Optional<Company> owner;
     private int loadcapacity;
+    private LinkedList<Product> storage = new LinkedList<>();
     private static int idCounter = 0;
     private int id = ++idCounter;
     private StatusOfRobot status = StatusOfRobot.WAITING;
@@ -32,7 +34,7 @@ public class DeliveryRobot {
         }
         this.name = name;
         this.loadcapacity = loadcapacity;
-        this.belongsTo = Optional.empty();
+        this.owner = Optional.empty();
     }
 
     /**
@@ -42,7 +44,7 @@ public class DeliveryRobot {
      */
     public DeliveryRobot(String name, Company company) {
         this.name = name;
-        setBelongsTo(company);
+        setOwner(company);
     }
 
     public String getName() {
@@ -57,17 +59,21 @@ public class DeliveryRobot {
         return loadcapacity;
     }
 
-    public Optional<Company> getBelongsTo() {
-        return belongsTo;
+    public Optional<Company> getOwner() {
+        return owner;
+    }
+
+    public LinkedList<Product> getStorage() {
+        return storage;
     }
 
     /**
      * Add company where robot from.
      * Call from Company method addRobot or Robot constructor.
-     * @param belongsTo
+     * @param owner
      */
-    public void setBelongsTo(Company belongsTo) {
-        this.belongsTo = Optional.of(belongsTo);
+    public void setOwner(Company owner) {
+        this.owner = Optional.of(owner);
     }
 
     public StatusOfRobot getStatus() {

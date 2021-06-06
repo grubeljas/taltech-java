@@ -1,12 +1,11 @@
 package ee.taltech.iti0202.deliveryrobot;
 
-import ee.taltech.iti0202.deliveryrobot.client.Client;
 import ee.taltech.iti0202.deliveryrobot.company.Company;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class World {
+public final class World {
 
     private List<Company> companyList = new LinkedList<>();
     private static World instance = null;

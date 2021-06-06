@@ -8,14 +8,17 @@ import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
+import java.awt.*;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
 
 public class Company {
 
     private String name;
     private int budget;
     private Statistics statistics;
-    private List<DeliveryRobot> deliveryRobotList;
     private List<DeliveryRobot> waitingRobotList;
     private List<DeliveryRobot> activeRobotList;
     private List<DeliveryRobot> brokenRobotList;
@@ -68,26 +71,22 @@ public class Company {
         return name;
     }
 
-    public List<DeliveryRobot> getDeliveryRobotList() {
-        return deliveryRobotList;
-    }
-
     /**
      * Add robot to the company if robot is not already in it.
      * @param robot
      * @return
      */
     public boolean addRobot(DeliveryRobot robot) {
-        if (deliveryRobotList.contains(robot)) {
+        if (statistics.getDeliveryRobotList().contains(robot)) {
             return false;
         }
-        deliveryRobotList.add(robot);
-        robot.setBelongsTo(this);
+        statistics.getDeliveryRobotList().add(robot);
+        robot.setOwner(this);
         return true;
     }
 
     /**
-     * Add delivery to
+     * Add delivery to statistics.
      * @param delivery
      * @return
      */
@@ -97,6 +96,20 @@ public class Company {
         }
         statistics.addDelivery(delivery);
         return true;
+    }
+
+    /**
+     * Find best robot for the delivery according to weight of delivery.
+     * @param delivery
+     * @return
+     */
+    public Optional<DeliveryRobot> findSuitableRobot(Delivery delivery) {
+        int totalWeight = delivery.getProductList().stream()
+                .mapToInt(Product::getWeight).sum();
+        Optional<DeliveryRobot> bestOption = waitingRobotList.stream()
+                .filter(robot -> robot.getLoadcapacity() >= totalWeight)
+                .min(Comparator.comparing(robot -> robot.getLoadcapacity() - totalWeight));
+        return bestOption;
     }
 
     /**

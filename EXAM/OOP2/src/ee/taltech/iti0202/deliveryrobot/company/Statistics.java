@@ -1,17 +1,18 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
 import ee.taltech.iti0202.deliveryrobot.delivery.Delivery;
+import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class Statistics {
 
     private Company company;
     private HashMap<Product, Integer> productPopularity = new HashMap<>();
     private List<Delivery> currentDeliveries;
+    private List<DeliveryRobot> deliveryRobotList;
 
     /**
      * Constructor shows company of the statistics.
@@ -27,6 +28,10 @@ public class Statistics {
 
     public List<Delivery> getCurrentDeliveries() {
         return currentDeliveries;
+    }
+
+    public List<DeliveryRobot> getDeliveryRobotList() {
+        return deliveryRobotList;
     }
 
     /**
