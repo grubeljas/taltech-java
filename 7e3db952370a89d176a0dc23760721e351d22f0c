@@ -1,0 +1,8 @@
+[ver:1,total:1980,branch:master]
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:1440,1622995200:765,1622998800:675,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/client/Client.java:195,1622995200:45,1622998800:150,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Delivery.java:172,1622998800:172,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/PopularFirstStrategy.java:80,1622995200:80,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Statistics.java:68,1622998800:68,m
+PR/PR04Stock/src/ee/taltech/iti0202/stock/stock/Stock.java:15,1622998800:15,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/ProfitableDeliveryFirstStrategy.java:10,1622995200:10,r
