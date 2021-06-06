@@ -5,14 +5,15 @@ import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Statistics {
 
     private Company company;
     private HashMap<Product, Integer> productPopularity = new HashMap<>();
-    private List<Delivery> currentDeliveries, deliveryHistory;
-    private List<DeliveryRobot> deliveryRobotList;
+    private List<Delivery> currentDeliveries = new LinkedList<>(), deliveryHistory = new LinkedList<>();
+    private List<DeliveryRobot> deliveryRobotList = new LinkedList<>();
 
     /**
      * Constructor shows company of the statistics.

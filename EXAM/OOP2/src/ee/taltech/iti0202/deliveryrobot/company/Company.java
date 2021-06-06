@@ -9,6 +9,7 @@ import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 import ee.taltech.iti0202.deliveryrobot.strategy.Strategy;
 import ee.taltech.iti0202.deliveryrobot.strategy.UsualStrategy;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Comparator;
 import java.util.Optional;
@@ -19,9 +20,9 @@ public class Company {
     private int budget, deliveryCoefficient, productPriceCoefficient, oneRidePrice;
     private Statistics statistics;
     private Strategy robotStrategy, companyStrategy;
-    private List<DeliveryRobot> waitingRobotList;
-    private List<DeliveryRobot> activeRobotList;
-    private List<DeliveryRobot> brokenRobotList;
+    private List<DeliveryRobot> waitingRobotList = new LinkedList<>();
+    private List<DeliveryRobot> activeRobotList = new LinkedList<>();
+    private List<DeliveryRobot> brokenRobotList = new LinkedList<>();
 
     /**
      * Constructor of company.
@@ -95,6 +96,10 @@ public class Company {
         return statistics;
     }
 
+    public int getOneRidePrice() {
+        return oneRidePrice;
+    }
+
     /**
      * Add robot to the company if robot is not already in it.
      * @param robot
@@ -102,7 +107,7 @@ public class Company {
      */
     public boolean addRobot(DeliveryRobot robot) {
         if (statistics.getDeliveryRobotList().contains(robot)
-                && robot.getStatus().equals(DeliveryRobot.StatusOfRobot.DELIVERY)) {
+                || robot.getStatus().equals(DeliveryRobot.StatusOfRobot.DELIVERY)) {
             return false;
         }
         statistics.getDeliveryRobotList().add(robot);
@@ -175,6 +180,20 @@ public class Company {
                 waitingRobotList.add(robot);
             }
             activeRobotList.remove(robot);
+        }
+    }
+
+    /**
+     * Fix robots if enough money(price of fixing 2x of ride price).
+     */
+    public void fixRobots() {
+        for (DeliveryRobot robot: brokenRobotList) {
+            if (budget - 2 * oneRidePrice >= 0) {
+                robot.fix();
+                budget -= 2 * oneRidePrice;
+            } else {
+                break;
+            }
         }
     }
 

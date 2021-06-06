@@ -28,7 +28,7 @@ public class DeliveryRobot {
      */
     public DeliveryRobot(String name, int loadcapacity) throws NoNameException, NotPositiveNumberException {
         if (name.isEmpty()) {
-            throw new NoNameException("Name of" + DeliveryRobot.class + "cannot be empty.");
+            throw new NoNameException("Name of robot cannot be empty.");
         }
         if (loadcapacity <= 0) {
             throw new NotPositiveNumberException("Load capacity mustn't be 0 or less.");

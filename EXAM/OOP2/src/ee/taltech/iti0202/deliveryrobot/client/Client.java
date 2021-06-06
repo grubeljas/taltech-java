@@ -13,16 +13,14 @@ public class Client {
     private String name;
     private List<Product> recievedProducts = new LinkedList();
     private List<Delivery> deliveryHistory = new LinkedList<>();
-    private int distance;
 
     /**
      * Constructor of client with name and distance for delivery in hours.
      * Budget of client doesn't matter in this system.
      * @param name
      */
-    public Client(String name, int distance) {
+    public Client(String name) {
         this.name = name;
-        this.distance = distance;
     }
 
     public List<Product> getRecievedProducts() {
