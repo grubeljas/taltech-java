@@ -1,0 +1,21 @@
+[ver:1,total:4560,branch:master]
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/primitive/ExceptionsTest.java:1134,1623006000:1134,d
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/ProfitableDeliveryFirstStrategy.java:760,1623002400:700,1623006000:60,m
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/company/CompanyTest.java:597,1623006000:382,1623009600:215,m
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/primitive/MinimalRequirementTest.java:506,1623006000:506,d
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/exception/ExceptionsTest.java:441,1623006000:232,1623009600:209,m
+.gtm/JUnit-> All in OOP2.app:328,1623006000:149,1623009600:179,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:317,1623002400:22,1623006000:218,1623009600:77,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/client/Client.java:188,1623006000:188,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/PopularFirstStrategy.java:103,1623002400:103,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Warehouse.java:56,1623006000:56,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Statistics.java:30,1623009600:30,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobot.java:21,1623006000:21,m
+EXAM/OOP1/test/ee.taltech.iti0202.university/MainTest.java:16,1623006000:16,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/LightFirstStrategy.java:15,1623002400:15,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/WrongStatusException.java:10,1623006000:10,d
+.gtm/JUnit-> ExceptionsTest.buyNegativeAmountProductsTest.app:10,1623009600:10,r
+.gtm/JUnit-> MinimalRequirementTest.robotWithEmptyName.app:8,1623006000:8,r
+.gtm/TestNG-> MinimalRequirementTest.app:8,1623006000:8,r
+.gtm/JUnit-> MinimalRequirementTest.app:7,1623006000:7,r
+.gtm/JUnit-> ee.taltech.iti0202.deliveryrobot.primitive in OOP2.app:5,1623006000:5,r
