@@ -1,0 +1,9 @@
+[ver:1,total:3780,branch:master]
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/company/CompanyTest.java:1827,1623013200:261,1623016800:1566,m
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobotTest.java:1107,1623016800:1107,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:300,1623013200:30,1623016800:270,m
+.gtm/JUnit-> All in OOP2.app:296,1623013200:55,1623016800:241,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobot.java:113,1623016800:113,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/client/Client.java:75,1623016800:75,m
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/strategy/StrategyTest.java:40,1623016800:40,m
+.gtm/JUnit-> CompanyTest.cannotAddRobotTwiceTest.app:22,1623013200:14,1623016800:8,r
