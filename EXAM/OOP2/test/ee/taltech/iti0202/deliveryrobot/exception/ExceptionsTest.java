@@ -1,7 +1,6 @@
 package ee.taltech.iti0202.deliveryrobot.exception;
 
 import ee.taltech.iti0202.deliveryrobot.company.Company;
-import ee.taltech.iti0202.deliveryrobot.delivery.Delivery;
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;
@@ -11,6 +10,11 @@ import org.junit.jupiter.api.Test;
 
 public class ExceptionsTest {
 
+    /**
+     * Empty name of robot.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void robotWithEmptyNameTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -19,6 +23,11 @@ public class ExceptionsTest {
         } catch (NoNameException e) { }
     }
 
+    /**
+     * Negative load capacity.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void robotWithNegativeLoadCapacityTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -27,6 +36,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * No name product.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void productWithNoNameTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -35,6 +49,11 @@ public class ExceptionsTest {
         } catch (NoNameException e) { }
     }
 
+    /**
+     * NEgative Weight.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void productWithNegativeWeightTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -43,6 +62,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Negative price test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void productWithNegativePriceTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -51,6 +75,10 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * No name company.
+     * @throws NotPositiveNumberException
+     */
     @Test
     public void companyWithNoNameTest() throws NotPositiveNumberException {
         try {
@@ -59,6 +87,11 @@ public class ExceptionsTest {
         } catch (NoNameException e) { }
     }
 
+    /**
+     * Negative budget test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void companiesWithNonPositiveBudgetTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -68,6 +101,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Negative delivery coff test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void companiesWithNonPositiveDeliveryCoffTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -77,6 +115,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Negative price coff test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void companiesWithNonPositivePriceCoffTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -86,6 +129,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Negative ride price test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void companiesWithNonPositiveRidePriceTest() throws NotPositiveNumberException, NoNameException {
         try {
@@ -95,6 +143,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Buy too much products test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void buyTooMuchProductsTest() throws NotPositiveNumberException, NoNameException {
         Company company = new Company("poor comapny", 100, 2,
@@ -108,6 +161,11 @@ public class ExceptionsTest {
         } catch (NotPositiveNumberException e) { }
     }
 
+    /**
+     * Negative amount of products test.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void buyNegativeAmountProductsTest() throws NotPositiveNumberException, NoNameException {
         Company company = new Company("poor comapny", 100, 2,

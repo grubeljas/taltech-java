@@ -3,12 +3,15 @@ package ee.taltech.iti0202.deliveryrobot.company;
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class CompanyTest {
 
+    /**
+     * Test company with one robot. Check name and lists with the robot.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void simpleCompanyWithOneRobotTest() throws NotPositiveNumberException, NoNameException {
         Company company = new Company("primitive", 100,
