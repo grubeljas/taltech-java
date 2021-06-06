@@ -9,6 +9,7 @@ public class Delivery {
 
     private List<Product> productList = new LinkedList<>();
     private Client client;
+    private int totalPrice;
 
     /**
      * Constructor with hashmap of products and client.
@@ -18,6 +19,11 @@ public class Delivery {
     public Delivery(List<Product> productList, Client client) {
         this.client = client;
         this.productList = productList;
+        this.totalPrice = findTotalPrice();
+    }
+
+    public int findTotalPrice() {
+        return getProductList().stream().mapToInt(Product::getPrice).sum();
     }
 
     public List<Product> getProductList() {

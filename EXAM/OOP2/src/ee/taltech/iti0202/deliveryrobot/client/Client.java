@@ -33,6 +33,7 @@ public class Client {
     public void makeOrder(Company company, List<Product> productList) {
         HashMap<Product, Integer> productAmount = new HashMap<>();
         Delivery delivery = new Delivery(productList, this);
+        deliveryHistory.add(delivery);
         company.getDelivery(delivery);
     }
 }

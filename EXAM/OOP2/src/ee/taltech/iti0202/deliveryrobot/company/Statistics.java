@@ -11,7 +11,7 @@ public class Statistics {
 
     private Company company;
     private HashMap<Product, Integer> productPopularity = new HashMap<>();
-    private List<Delivery> currentDeliveries;
+    private List<Delivery> currentDeliveries, deliveryHistory;
     private List<DeliveryRobot> deliveryRobotList;
 
     /**

@@ -1,6 +1,5 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
-import ee.taltech.iti0202.deliveryrobot.World;
 import ee.taltech.iti0202.deliveryrobot.delivery.Delivery;
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
 import ee.taltech.iti0202.deliveryrobot.delivery.Product;
@@ -48,7 +47,6 @@ public class Company {
         this.deliveryCoefficient = deliveryCoefficient;
         this.robotStrategy = new UsualStrategy();
         this.companyStrategy = new UsualStrategy();
-        World.getInstance().addCompany(this);
     }
 
     /**
@@ -106,6 +104,14 @@ public class Company {
         return true;
     }
 
+    public void setRobotStrategy(Strategy robotStrategy) {
+        this.robotStrategy = robotStrategy;
+    }
+
+    public void setCompanyStrategy(Strategy companyStrategy) {
+        this.companyStrategy = companyStrategy;
+    }
+
     /**
      * Add delivery to statistics.
      * @param delivery
@@ -119,24 +125,47 @@ public class Company {
         return true;
     }
 
+    public void takeAnOrder() {
+        Delivery delivery = (Delivery) companyStrategy.makeSort(statistics.getCurrentDeliveries()).get(0);
+        Optional<DeliveryRobot> deliveryRobot = findSuitableRobot(delivery);
+        if (deliveryRobot.isPresent()) {
+
+        } else {
+
+        }
+    }
+
     /**
-     * Find best robot for the delivery according to weight of delivery.
+     * Find best robot for one delivery according to weight of delivery.
      * @param delivery
      * @return
      */
     public Optional<DeliveryRobot> findSuitableRobot(Delivery delivery) {
         int totalWeight = delivery.getProductList().stream()
                 .mapToInt(Product::getWeight).sum();
-        Optional<DeliveryRobot> bestOption = waitingRobotList.stream()
-                .filter(robot -> robot.getLoadcapacity() >= totalWeight)
-                .min(Comparator.comparing(robot -> robot.getLoadcapacity() - totalWeight));
-        return bestOption;
+        return findRobot(totalWeight);
     }
 
     /**
-     * Next day.
+     * Find any robot for delivery (can carry the most heavy product in delivery).
+     * @param delivery
+     * @return
      */
-    public void nextDay() {
+    public Optional<DeliveryRobot> findAnyRobot(Delivery delivery) {
+        int maxWeight = delivery.getProductList().stream()
+                .max(Comparator.comparing(Product::getWeight)).get().getWeight();
+        return findRobot(maxWeight);
+    }
 
+    /**
+     * Find robot according this weight.
+     * @param weight
+     * @return
+     */
+    public Optional<DeliveryRobot> findRobot(int weight) {
+        Optional<DeliveryRobot> bestOption = waitingRobotList.stream()
+                .filter(robot -> robot.getLoadcapacity() >= weight)
+                .min(Comparator.comparing(robot -> robot.getLoadcapacity() - weight));
+        return bestOption;
     }
 }
