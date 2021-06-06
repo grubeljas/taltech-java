@@ -1,8 +1,12 @@
 package ee.taltech.iti0202.deliveryrobot.strategy;
 
-import ee.taltech.iti0202.deliveryrobot.company.Company;
 import java.util.List;
 
 public interface Strategy {
-    public List makeSort(List list);
+    /**
+     * Sort products or deliveries in necessary order.
+     * @param list
+     * @return
+     */
+    List makeSort(List list);
 }

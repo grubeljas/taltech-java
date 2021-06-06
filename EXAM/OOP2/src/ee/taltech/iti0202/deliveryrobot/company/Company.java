@@ -7,10 +7,11 @@ import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
+import ee.taltech.iti0202.deliveryrobot.strategy.Strategy;
+import ee.taltech.iti0202.deliveryrobot.strategy.UsualStrategy;
 
 import java.util.List;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.Optional;
 
 public class Company {
@@ -18,6 +19,7 @@ public class Company {
     private String name;
     private int budget, deliveryCoefficient, productPriceCoefficient;
     private Statistics statistics;
+    private Strategy robotStrategy, companyStrategy;
     private List<DeliveryRobot> waitingRobotList;
     private List<DeliveryRobot> activeRobotList;
     private List<DeliveryRobot> brokenRobotList;
@@ -44,6 +46,8 @@ public class Company {
         this.statistics = new Statistics(this);
         this.productPriceCoefficient = productPriceCoefficient;
         this.deliveryCoefficient = deliveryCoefficient;
+        this.robotStrategy = new UsualStrategy();
+        this.companyStrategy = new UsualStrategy();
         World.getInstance().addCompany(this);
     }
 
