@@ -1,0 +1,10 @@
+[ver:1,total:4020,branch:master]
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:1789,1623009600:742,1623013200:1047,m
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/company/CompanyTest.java:1661,1623009600:1204,1623013200:457,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Delivery.java:203,1623013200:203,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Statistics.java:198,1623009600:54,1623013200:144,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/exceptions/NoProductsException.java:68,1623013200:68,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Warehouse.java:54,1623009600:40,1623013200:14,m
+.gtm/JUnit-> CompanyTest.d.app:29,1623013200:29,r
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/exception/ExceptionsTest.java:13,1623013200:13,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/client/Client.java:5,1623013200:5,m
