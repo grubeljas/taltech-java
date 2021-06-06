@@ -18,11 +18,12 @@ public class DeliveryRobot {
     private int loadcapacity;
     private LinkedList<Product> storage = new LinkedList<>();
     private static int idCounter = 0;
-    private int id = ++idCounter;
+    private int usage, id = ++idCounter;
     private StatusOfRobot status = StatusOfRobot.WAITING;
 
     /**
      * Constructor with name and capacity only. This is necessary to add company which belongs to.
+     * Break after 10 deliveries.
      * @param name
      */
     public DeliveryRobot(String name, int loadcapacity) throws NoNameException, NotPositiveNumberException {
@@ -35,6 +36,7 @@ public class DeliveryRobot {
         this.name = name;
         this.loadcapacity = loadcapacity;
         this.owner = Optional.empty();
+        this.usage = 0;
     }
 
     /**

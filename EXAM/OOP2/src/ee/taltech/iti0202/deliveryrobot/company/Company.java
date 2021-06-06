@@ -8,35 +8,42 @@ import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
-import java.awt.*;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.Optional;
-import java.util.function.BinaryOperator;
 
 public class Company {
 
     private String name;
-    private int budget;
+    private int budget, deliveryCoefficient, productPriceCoefficient;
     private Statistics statistics;
     private List<DeliveryRobot> waitingRobotList;
     private List<DeliveryRobot> activeRobotList;
     private List<DeliveryRobot> brokenRobotList;
 
     /**
-     * Constructor with name and budget.
-     * @param name
+     * Constructor of company.
+     * @param name cannot be empty.
+     * @param budget of company
+     * @param deliveryCoefficient per one robot delivery.
+     * @param productPriceCoefficient multiply by product price.
+     * @throws NoNameException
+     * @throws NotPositiveNumberException
      */
-    public Company(String name, int budget) throws  NoNameException, NotPositiveNumberException {
+    public Company(String name, int budget, int deliveryCoefficient, int productPriceCoefficient)
+            throws  NoNameException, NotPositiveNumberException {
         if (name.isEmpty()) {
             throw new NoNameException("Name of" + Company.class + "cannot be empty.");
         }
-        if (budget <= 0) {
-            throw new NotPositiveNumberException("Budget cannot be less than 1.");
+        if (budget < 0) {
+            throw new NotPositiveNumberException("Budget cannot be less than 0.");
         }
         this.budget = budget;
         this.name = name;
         this.statistics = new Statistics(this);
+        this.productPriceCoefficient = productPriceCoefficient;
+        this.deliveryCoefficient = deliveryCoefficient;
         World.getInstance().addCompany(this);
     }
 
@@ -71,16 +78,26 @@ public class Company {
         return name;
     }
 
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
     /**
      * Add robot to the company if robot is not already in it.
      * @param robot
      * @return
      */
     public boolean addRobot(DeliveryRobot robot) {
-        if (statistics.getDeliveryRobotList().contains(robot)) {
+        if (statistics.getDeliveryRobotList().contains(robot)
+                && robot.getStatus().equals(DeliveryRobot.StatusOfRobot.DELIVERY)) {
             return false;
         }
         statistics.getDeliveryRobotList().add(robot);
+        if (robot.getStatus().equals(DeliveryRobot.StatusOfRobot.WAITING)) {
+            waitingRobotList.add(robot);
+        } else if (robot.getStatus().equals(DeliveryRobot.StatusOfRobot.BROKEN)) {
+            brokenRobotList.add(robot);
+        }
         robot.setOwner(this);
         return true;
     }
