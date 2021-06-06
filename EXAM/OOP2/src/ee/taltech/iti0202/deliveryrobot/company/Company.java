@@ -1,6 +1,10 @@
 package ee.taltech.iti0202.deliveryrobot.company;
 
+import ee.taltech.iti0202.deliveryrobot.World;
+import ee.taltech.iti0202.deliveryrobot.delivery.Delivery;
 import ee.taltech.iti0202.deliveryrobot.delivery.DeliveryRobot;
+import ee.taltech.iti0202.deliveryrobot.delivery.Product;
+import ee.taltech.iti0202.deliveryrobot.delivery.Warehouse;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
@@ -10,11 +14,11 @@ public class Company {
 
     private String name;
     private int budget;
+    private Statistics statistics;
     private List<DeliveryRobot> deliveryRobotList;
     private List<DeliveryRobot> waitingRobotList;
     private List<DeliveryRobot> activeRobotList;
     private List<DeliveryRobot> brokenRobotList;
-    private List<Delivery> currentDeliveries;
 
     /**
      * Constructor with name and budget.
@@ -29,6 +33,8 @@ public class Company {
         }
         this.budget = budget;
         this.name = name;
+        this.statistics = new Statistics(this);
+        World.getInstance().addCompany(this);
     }
 
     /**
@@ -86,10 +92,17 @@ public class Company {
      * @return
      */
     public boolean getDelivery(Delivery delivery) {
-        if (currentDeliveries.contains(delivery)) {
+        if (statistics.getCurrentDeliveries().contains(delivery)) {
             return false;
         }
-        currentDeliveries.add(delivery);
+        statistics.addDelivery(delivery);
         return true;
+    }
+
+    /**
+     * Next day.
+     */
+    public void nextDay() {
+
     }
 }

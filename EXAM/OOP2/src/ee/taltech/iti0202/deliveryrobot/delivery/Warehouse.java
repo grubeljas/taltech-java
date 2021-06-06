@@ -1,5 +1,6 @@
-package ee.taltech.iti0202.deliveryrobot.company;
+package ee.taltech.iti0202.deliveryrobot.delivery;
 
+import ee.taltech.iti0202.deliveryrobot.company.Company;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
@@ -31,7 +32,7 @@ public class Warehouse {
      * @param product
      * @return
      */
-    protected void loadPackage(Product product, Integer count) throws NotPositiveNumberException {
+    public void loadPackage(Product product, Integer count) throws NotPositiveNumberException {
         if (count <= 0) {
             throw new NotPositiveNumberException("Amount must be more than 0.");
         }
