@@ -37,6 +37,11 @@ public class CompanyTest {
         assert company.getStatistics().getDeliveryRobotList().size() == 1;
     }
 
+    /**
+     * Add broken robot too.
+     * @throws NotPositiveNumberException
+     * @throws NoNameException
+     */
     @Test
     public void addBrokenRobotTest() throws NotPositiveNumberException, NoNameException {
         DeliveryRobot robot = new DeliveryRobot("First", 10);

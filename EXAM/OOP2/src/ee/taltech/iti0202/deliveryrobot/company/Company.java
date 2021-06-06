@@ -170,7 +170,7 @@ public class Company {
     }
 
     /**
-     * Make the delivery.
+     * Make the delivery and count the profit.
      * @param delivery
      * @param robot
      */
@@ -178,7 +178,9 @@ public class Company {
         robot.setStatus(DeliveryRobot.StatusOfRobot.DELIVERY);
         waitingRobotList.remove(robot);
         activeRobotList.add(robot);
+        takeProducts(delivery);
         List<Product> productList = robotStrategy.makeSort(delivery.getProductList());
+
         int numberOfRides = 1;
         int loadWeight = robot.getLoadcapacity();
         for (int i = 0; i < productList.size(); i++) {
@@ -191,11 +193,31 @@ public class Company {
         int profit = numberOfRides * (deliveryCoefficient - oneRidePrice)
                 + delivery.findTotalPrice() * productPriceCoefficient;
         budget += profit;
+
         waitingDeliveries.remove(delivery);
         statistics.getDeliveryHistory().add(delivery);
+
         robot.makeDelivery(delivery, numberOfRides);
 
         return profit;
+    }
+
+    /**
+     * Take out products from warehouses (all controlled in has enough products).
+     * @param delivery
+     */
+    public void takeProducts(Delivery delivery) {
+        for (Product product: delivery.getProductList()) {
+            allProducts.put(product, allProducts.get(product) - 1);
+            for (Warehouse warehouse: warehouseList) {
+                if (warehouse.getProductAmount().containsKey(product)) {
+                    if (warehouse.getProductAmount().get(product) >= 1) {
+                        warehouse.getProductAmount().put(product, warehouse.getProductAmount().get(product) - 1);
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     /**
