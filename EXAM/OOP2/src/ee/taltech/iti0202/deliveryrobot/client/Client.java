@@ -36,6 +36,6 @@ public class Client {
         HashMap<Product, Integer> productAmount = new HashMap<>();
         Delivery delivery = new Delivery(productList, this);
         deliveryHistory.add(delivery);
-        company.getDelivery(delivery);
+        company.addDelivery(delivery);
     }
 }

@@ -12,7 +12,7 @@ public class Statistics {
 
     private Company company;
     private HashMap<Product, Integer> productPopularity = new HashMap<>();
-    private List<Delivery> currentDeliveries = new LinkedList<>(), deliveryHistory = new LinkedList<>();
+    private List<Delivery> deliveryHistory = new LinkedList<>();
     private List<DeliveryRobot> deliveryRobotList = new LinkedList<>();
 
     /**
@@ -25,10 +25,6 @@ public class Statistics {
 
     public HashMap<Product, Integer> getProductPopularity() {
         return productPopularity;
-    }
-
-    public List<Delivery> getCurrentDeliveries() {
-        return currentDeliveries;
     }
 
     public List<DeliveryRobot> getDeliveryRobotList() {
@@ -44,7 +40,6 @@ public class Statistics {
      * @param delivery
      */
     public void addDelivery(Delivery delivery) {
-        currentDeliveries.add(delivery);
         countProductOfDelivery(delivery);
     }
 
@@ -53,8 +48,9 @@ public class Statistics {
      * @param delivery
      */
     public void countProductOfDelivery(Delivery delivery) {
-        for (Product product: delivery.getProductList()) {
-            productPopularity.put(product, productPopularity.getOrDefault(product, 0) + 1);
+        for (Product product: delivery.getCountProduct().keySet()) {
+            productPopularity.put(product, productPopularity.getOrDefault(product, 0)
+                    + delivery.getCountProduct().get(product));
         }
     }
 }

@@ -9,10 +9,12 @@ import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 import ee.taltech.iti0202.deliveryrobot.strategy.Strategy;
 import ee.taltech.iti0202.deliveryrobot.strategy.UsualStrategy;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
+import java.util.Comparator;
 
 public class Company {
 
@@ -20,9 +22,12 @@ public class Company {
     private int budget, deliveryCoefficient, productPriceCoefficient, oneRidePrice;
     private Statistics statistics;
     private Strategy robotStrategy, companyStrategy;
+    private Map<Product, Integer> allProducts = new HashMap<>();
+    private List<Delivery> waitingDeliveries = new LinkedList<>();
     private List<DeliveryRobot> waitingRobotList = new LinkedList<>();
     private List<DeliveryRobot> activeRobotList = new LinkedList<>();
     private List<DeliveryRobot> brokenRobotList = new LinkedList<>();
+    private List<Warehouse> warehouseList = new LinkedList<>();
 
     /**
      * Constructor of company.
@@ -62,6 +67,22 @@ public class Company {
     }
 
     /**
+     * Add warehouse.
+     * @param warehouse
+     */
+    public boolean addWarehouse(Warehouse warehouse) {
+        if (!warehouseList.contains(warehouse)) {
+            warehouseList.add(warehouse);
+            return true;
+        }
+        return false;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    /**
      * Buy amount of product and load in warehouse. Decrease budget.
      * @param warehouse
      * @param product
@@ -86,6 +107,7 @@ public class Company {
      */
     public void stealProduct(Warehouse warehouse, Product product, int amount) throws NotPositiveNumberException {
         warehouse.loadPackage(product, amount);
+        allProducts.put(product, amount);
     }
 
     public String getName() {
@@ -98,6 +120,10 @@ public class Company {
 
     public int getOneRidePrice() {
         return oneRidePrice;
+    }
+
+    public List<DeliveryRobot> getBrokenRobotList() {
+        return brokenRobotList;
     }
 
     /**
@@ -133,11 +159,13 @@ public class Company {
      * @param delivery
      * @return
      */
-    public boolean getDelivery(Delivery delivery) {
-        if (statistics.getCurrentDeliveries().contains(delivery)) {
+    public boolean addDelivery(Delivery delivery) {
+
+        if (waitingDeliveries.contains(delivery)) {
             return false;
         }
         statistics.addDelivery(delivery);
+        waitingDeliveries.add(delivery);
         return true;
     }
 
@@ -163,9 +191,10 @@ public class Company {
         int profit = numberOfRides * (deliveryCoefficient - oneRidePrice)
                 + delivery.findTotalPrice() * productPriceCoefficient;
         budget += profit;
-        robot.makeDelivery(delivery, numberOfRides);
-        statistics.getCurrentDeliveries().remove(delivery);
+        waitingDeliveries.remove(delivery);
         statistics.getDeliveryHistory().add(delivery);
+        robot.makeDelivery(delivery, numberOfRides);
+
         return profit;
     }
 
@@ -202,8 +231,11 @@ public class Company {
      */
     public void takeAnOrder() {
         Optional<DeliveryRobot> deliveryRobot;
-        List<Delivery> delivery = (List<Delivery>) companyStrategy.makeSort(statistics.getCurrentDeliveries());
+        List<Delivery> delivery = (List<Delivery>) companyStrategy.makeSort(waitingDeliveries);
         for (int i = 0; i < delivery.size(); i++) {
+            if (!hasEnoughProducts(delivery.get(i))) {
+                continue;
+            }
             deliveryRobot = findSuitableRobot(delivery.get(i));
             if (deliveryRobot.isEmpty()) {
                 deliveryRobot = findAnyRobot(delivery.get(i));
@@ -213,6 +245,23 @@ public class Company {
                 break;
             }
         }
+    }
+
+    /**
+     * Control if company has enough products.
+     * @param delivery
+     * @return
+     */
+    public boolean hasEnoughProducts(Delivery delivery) {
+        for (Product product: delivery.getCountProduct().keySet()) {
+            if (!allProducts.containsKey(product)) {
+                return false;
+            }
+            if (allProducts.get(product) < delivery.getCountProduct().get(product)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

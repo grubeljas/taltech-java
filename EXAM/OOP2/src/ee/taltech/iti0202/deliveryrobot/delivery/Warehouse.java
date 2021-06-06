@@ -33,4 +33,12 @@ public class Warehouse {
         }
         productAmount.put(product, productAmount.getOrDefault(product, 0) + count);
     }
+
+    public Company getProperty() {
+        return property;
+    }
+
+    public Map<Product, Integer> getProductAmount() {
+        return productAmount;
+    }
 }
