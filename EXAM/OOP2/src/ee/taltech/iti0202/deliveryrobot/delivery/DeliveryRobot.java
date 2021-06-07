@@ -91,6 +91,10 @@ public class DeliveryRobot {
         return owner;
     }
 
+    public int getUsage() {
+        return usage;
+    }
+
     /**
      * Add company where robot from.
      * Call from Company method addRobot or Robot constructor.

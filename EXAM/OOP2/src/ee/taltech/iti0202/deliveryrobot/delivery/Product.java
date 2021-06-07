@@ -3,7 +3,7 @@ package ee.taltech.iti0202.deliveryrobot.delivery;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NoNameException;
 import ee.taltech.iti0202.deliveryrobot.exceptions.NotPositiveNumberException;
 
-public class Product {
+public class Product implements Comparable<Product> {
 
     private String name;
     private int weight, price;
@@ -38,5 +38,10 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return 1;
     }
 }

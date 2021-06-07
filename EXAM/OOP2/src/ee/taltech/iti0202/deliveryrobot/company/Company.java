@@ -118,10 +118,6 @@ public class Company {
         return statistics;
     }
 
-    public int getOneRidePrice() {
-        return oneRidePrice;
-    }
-
     public List<DeliveryRobot> getBrokenRobotList() {
         return brokenRobotList;
     }

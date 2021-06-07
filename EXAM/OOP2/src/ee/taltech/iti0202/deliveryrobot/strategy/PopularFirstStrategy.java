@@ -1,10 +1,14 @@
 package ee.taltech.iti0202.deliveryrobot.strategy;
 
 import ee.taltech.iti0202.deliveryrobot.company.Company;
+import ee.taltech.iti0202.deliveryrobot.delivery.Product;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.reverseOrder;
 
 public class PopularFirstStrategy implements Strategy {
     private Company company;
@@ -19,11 +23,10 @@ public class PopularFirstStrategy implements Strategy {
 
     @Override
     public List makeSort(List list) {
-        List list1 = (List) list.stream()
-                .sorted((o1, o2) -> company.getStatistics().getProductPopularity().get(o1).
-                        compareTo(company.getStatistics().getProductPopularity().get(o2)))
-                .sorted(Comparator.reverseOrder())
+        list = (List) list.stream()
+                .sorted(Comparator.comparing(o -> company.getStatistics().getProductPopularity().get(o)))
                 .collect(Collectors.toList());
-        return list1;
+        Collections.sort(list, Collections.reverseOrder());
+        return list;
     }
 }

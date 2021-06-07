@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Delivery {
+public class Delivery implements Comparable<Delivery> {
 
     private List<Product> productList = new LinkedList<>();
     private Map<Product, Integer> countProduct = new HashMap<>();
@@ -46,13 +46,8 @@ public class Delivery {
         return countProduct;
     }
 
-    /**
-     * Count every product in delivery.
-     * @return
-     */
-    public void countProduct() {
-        for (Product product: productList) {
-            countProduct.put(product, countProduct.getOrDefault(product, 0) + 1);
-        }
+    @Override
+    public int compareTo(Delivery o) {
+        return -1;
     }
 }
