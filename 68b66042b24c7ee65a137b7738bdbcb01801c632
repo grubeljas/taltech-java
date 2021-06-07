@@ -1,0 +1,13 @@
+[ver:1,total:6720,branch:master]
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/strategy/StrategyTest.java:3538,1623016800:60,1623020400:2412,1623024000:1066,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/PopularFirstStrategy.java:1236,1623020400:744,1623024000:492,m
+.gtm/JUnit-> All in OOP2.app:984,1623020400:352,1623024000:632,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Product.java:640,1623020400:8,1623024000:632,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/ProfitableDeliveryFirstStrategy.java:133,1623020400:10,1623024000:123,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/Delivery.java:54,1623024000:54,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/strategy/Strategy.java:37,1623024000:37,m
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/company/Company.java:24,1623024000:24,m
+.gtm/JUnit-> StrategyTest.usualStrategyTest.app:22,1623020400:22,r
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/exception/ExceptionsTest.java:20,1623020400:20,r
+EXAM/OOP2/test/ee/taltech/iti0202/deliveryrobot/company/CompanyTest.java:18,1623020400:18,r
+EXAM/OOP2/src/ee/taltech/iti0202/deliveryrobot/delivery/DeliveryRobot.java:14,1623020400:14,m
