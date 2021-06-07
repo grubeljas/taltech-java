@@ -84,7 +84,7 @@ public class StrategyTest {
         List listOfOrder = List.of(calc, pen, lamp, pen);
         client.makeOrder(company, listOfOrder);
         company.takeAnOrder();
-        ;
+
         assert company.getBudget() == 26; //(5 + 2 + 2 | 9) * 1 + 2 * (5 - 1)
         assert robot.getUsage() == 2;
     }
@@ -93,7 +93,7 @@ public class StrategyTest {
      * Test delivery which gives more money.
      */
     @Test
-    public void ProfitableDeliveryFirstTest() {
+    public void profitableDeliveryFirstTest() {
         company.setCompanyStrategy(new ProfitableDeliveryFirstStrategy(company));
 
         client.makeOrder(company, List.of(calc));
